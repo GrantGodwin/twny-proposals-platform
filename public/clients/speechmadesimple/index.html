@@ -1,0 +1,2649 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#5A358C" />
+<title>Speech Made Simple — Concept &amp; Live Demo</title>
+<meta name="description" content="Brand direction and live website prototype for Speech Made Simple — a paediatric speech and literacy practice for Melbourne's inner-west." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS
+============================================================ */
+:root{
+  --purple:        #5A358C;
+  --purple-deep:   #3F2466;
+  --purple-soft:   #7F5BB3;
+  --orange:        #FF8A2B;
+  --orange-deep:   #E0731A;
+  --lavender:      #F0E6FA;
+  --lavender-soft: #F8F1FC;
+  --cream:         #FFF6EB;
+  --cream-deep:    #F6EBD9;
+  --ink:           #2B2E35;
+  --ink-2:         #4A4F5A;
+  --ink-3:         #6B7280;
+  --grey:          #C9C5C8;
+  --line:          #E4DBD1;
+  --line-soft:     #EFE9DF;
+  --surface:       #FFFFFF;
+
+  --serif: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --sans:  'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ui:    'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --max-w: 1240px;
+  --gutter: clamp(20px, 4.5vw, 40px);
+  --radius-sm: 8px;
+  --radius:    16px;
+  --radius-lg: 28px;
+  --radius-xl: 36px;
+}
+
+/* ============================================================
+   RESET & BASE
+============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+body{
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img, svg { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: 0; background: transparent; color: inherit; }
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-variation-settings: "opsz" 144;
+  line-height: 1.05;
+  letter-spacing: -0.018em;
+  margin: 0;
+  color: var(--ink);
+}
+p { margin: 0; }
+
+.wrap{ max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); }
+.wrap-narrow{ max-width: 920px; margin: 0 auto; padding: 0 var(--gutter); }
+
+.eyebrow{
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--purple);
+}
+.eyebrow.orange { color: var(--orange-deep); }
+.eyebrow.dim    { color: var(--ink-3); }
+.eyebrow.cream  { color: rgba(255,246,235,0.6); }
+
+/* ============================================================
+   BUTTONS
+============================================================ */
+.btn, .btn-ghost, .btn-orange{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+  white-space: nowrap;
+  min-height: 48px;
+}
+.btn{ background: var(--purple); color: var(--cream); }
+.btn:hover { background: var(--purple-deep); transform: translateY(-1px); }
+.btn-ghost{ background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+.btn-ghost:hover { background: var(--ink); color: var(--cream); }
+.btn-ghost.on-dark{ color: var(--cream); border-color: rgba(255,246,235,0.5); }
+.btn-ghost.on-dark:hover{ background: var(--cream); color: var(--purple-deep); }
+.btn-orange{ background: var(--orange); color: var(--ink); }
+.btn-orange:hover { background: var(--orange-deep); color: var(--cream); transform: translateY(-1px); }
+.btn .arrow, .btn-ghost .arrow, .btn-orange .arrow { transition: transform .2s; }
+.btn:hover .arrow, .btn-ghost:hover .arrow, .btn-orange:hover .arrow { transform: translateX(3px); }
+
+/* ============================================================
+   PHOTOGRAPHIC PLACEHOLDERS
+   Warm gradient mixes with subtle film grain — stand-in for
+   commissioned documentary photography.
+============================================================ */
+.photo{
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.photo::after{
+  content: "";
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 1;
+}
+.photo .photo-note{
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: rgba(43,46,53,0.55);
+  color: var(--cream);
+  padding: 6px 10px;
+  border-radius: 4px;
+  z-index: 2;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+/* Warm afternoon light, indoor — for hero */
+.photo-hero{
+  background:
+    radial-gradient(ellipse 80% 60% at 22% 22%, rgba(255,238,210,0.92) 0%, rgba(255,238,210,0) 55%),
+    radial-gradient(ellipse 60% 50% at 80% 85%, rgba(63,36,102,0.55) 0%, rgba(63,36,102,0) 65%),
+    linear-gradient(160deg, #EAC9A2 0%, #B8865E 50%, #6E4F3A 100%);
+}
+/* Cool classroom light — for schools */
+.photo-schools{
+  background:
+    radial-gradient(ellipse 70% 55% at 18% 28%, rgba(240,230,250,0.85) 0%, rgba(240,230,250,0) 55%),
+    radial-gradient(ellipse 70% 60% at 82% 88%, rgba(63,36,102,0.7) 0%, rgba(63,36,102,0) 65%),
+    linear-gradient(170deg, #9A87B8 0%, #5A3F7E 60%, #2F1C50 100%);
+}
+/* Warm portrait — for about */
+.photo-portrait{
+  background:
+    radial-gradient(ellipse 65% 55% at 72% 28%, rgba(255,238,210,0.7) 0%, rgba(255,238,210,0) 55%),
+    radial-gradient(ellipse 80% 70% at 30% 95%, rgba(43,46,53,0.85) 0%, rgba(43,46,53,0) 60%),
+    linear-gradient(180deg, #D8B89A 0%, #8A6850 55%, #3F2A20 100%);
+}
+
+/* ============================================================
+   PROPOSAL — top deck
+============================================================ */
+.proposal{ background: var(--cream); }
+html.js-ready body.demo-mode .proposal{ display: none !important; }
+
+/* —— Deck nav —— */
+.deck-nav{
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(255,246,235,0.88);
+  backdrop-filter: saturate(140%) blur(14px);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
+  border-bottom: 1px solid var(--line-soft);
+}
+.deck-nav-inner{
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 14px var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 64px;
+}
+.deck-nav .deck-mark{
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.deck-nav .deck-mark svg{ width: 28px; height: auto; }
+.deck-nav .deck-tag{
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.deck-nav .deck-tag strong { color: var(--ink); }
+.deck-nav .deck-cta{
+  padding: 10px 18px;
+  background: var(--purple);
+  color: var(--cream);
+  border-radius: 999px;
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background .2s, transform .2s;
+}
+.deck-nav .deck-cta:hover { background: var(--purple-deep); transform: translateY(-1px); }
+@media (max-width: 600px){
+  .deck-nav-inner { padding: 10px 18px; min-height: 56px; }
+  .deck-nav .deck-tag { display: none; }
+  .deck-nav .deck-cta { font-size: 11px; padding: 9px 14px; }
+}
+
+/* —— Cover —— */
+.deck-cover{
+  padding: clamp(72px, 12vw, 144px) 0 clamp(56px, 9vw, 112px);
+  position: relative;
+  border-bottom: 1px solid var(--line);
+}
+.cover-meta{
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--ui);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: clamp(36px, 6vw, 64px);
+  flex-wrap: wrap;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+.cover-logo{
+  margin-bottom: clamp(28px, 4vw, 48px);
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+.cover-logo svg{
+  width: clamp(56px, 7vw, 82px);
+  height: auto;
+  flex-shrink: 0;
+}
+.cover-logo .lockup-text{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cover-logo .lockup-text .a{
+  font-family: var(--ui);
+  font-weight: 700;
+  font-size: clamp(18px, 2vw, 22px);
+  letter-spacing: 0.04em;
+  color: var(--purple);
+  line-height: 1;
+  text-transform: uppercase;
+}
+.cover-logo .lockup-text .b{
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: clamp(9px, 1vw, 11px);
+  letter-spacing: 0.28em;
+  color: var(--orange-deep);
+  line-height: 1;
+  text-transform: uppercase;
+}
+.cover-title{
+  font-size: clamp(40px, 9vw, 96px);
+  line-height: 1;
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  max-width: 14ch;
+  position: relative;
+  z-index: 1;
+}
+.cover-title em{ font-style: italic; font-weight: 300; color: var(--purple); }
+.cover-sub{
+  margin-top: clamp(20px, 3vw, 32px);
+  max-width: 52ch;
+  font-size: clamp(16px, 1.8vw, 19px);
+  line-height: 1.55;
+  color: var(--ink-2);
+  position: relative;
+  z-index: 1;
+}
+.cover-actions{
+  margin-top: clamp(32px, 5vw, 56px);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+.cover-decor{
+  position: absolute;
+  top: 8%;
+  right: -6%;
+  width: clamp(220px, 30vw, 420px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--lavender);
+  z-index: 0;
+  pointer-events: none;
+}
+.cover-decor::after{
+  content: "";
+  position: absolute;
+  bottom: 6%;
+  left: -14%;
+  width: 26%;
+  height: 26%;
+  border-radius: 50%;
+  background: var(--orange);
+  opacity: 0.7;
+}
+@media (max-width: 720px){
+  .cover-decor { top: -4%; right: -28%; width: 280px; opacity: 0.55; }
+}
+
+/* —— Deck sections —— */
+.deck-section{
+  padding: clamp(56px, 8vw, 104px) 0;
+}
+.deck-section.alt { background: var(--lavender-soft); }
+
+.deck-head{
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: clamp(20px, 4vw, 48px);
+  align-items: end;
+  margin-bottom: clamp(32px, 5vw, 56px);
+  padding-bottom: clamp(20px, 3vw, 32px);
+  border-bottom: 1px solid var(--line);
+}
+.deck-head .num{
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--purple);
+}
+.deck-head h2{
+  font-size: clamp(28px, 4.8vw, 52px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  max-width: 22ch;
+}
+.deck-head h2 em { font-style: italic; color: var(--purple); font-weight: 400; }
+@media (max-width: 720px){
+  .deck-head{ grid-template-columns: 1fr; gap: 10px; padding-bottom: 20px; margin-bottom: 28px; }
+}
+
+/* ============================================================
+   DECK · OPPORTUNITY
+============================================================ */
+.opp-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 3vw, 28px);
+}
+@media (max-width: 760px){ .opp-grid { grid-template-columns: 1fr; } }
+
+.opp-card{
+  padding: clamp(28px, 4vw, 36px);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+}
+.opp-card.purple{ background: var(--lavender); border-color: transparent; }
+.opp-card h3{
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(20px, 2.6vw, 26px);
+  letter-spacing: -0.005em;
+  margin-bottom: 22px;
+}
+.opp-card ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+.opp-card li{
+  padding-left: 26px;
+  position: relative;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.opp-card li::before{
+  content: "";
+  position: absolute;
+  left: 0; top: 9px;
+  width: 14px; height: 1.5px;
+  background: var(--purple);
+}
+.opp-card.warn li::before{ background: var(--orange-deep); }
+
+/* ============================================================
+   DECK · AUDIT
+============================================================ */
+.audit-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(14px, 2vw, 20px);
+}
+@media (max-width: 880px){ .audit-grid { grid-template-columns: 1fr; }}
+
+.audit-card{
+  padding: clamp(26px, 3.5vw, 32px);
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.audit-card .tag{
+  display: inline-block;
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 4px;
+  align-self: flex-start;
+}
+.audit-card .tag.keep { background: var(--lavender); color: var(--purple-deep); }
+.audit-card .tag.gap  { background: #FFE5D0; color: var(--orange-deep); }
+.audit-card .tag.opp  { background: var(--cream-deep); color: var(--ink); }
+.audit-card h4{
+  font-family: var(--serif);
+  font-size: clamp(19px, 2.2vw, 22px);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+}
+.audit-card p{
+  font-size: 15px;
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+
+/* ============================================================
+   DECK · POSITIONING
+============================================================ */
+.pos-card{
+  background: var(--purple);
+  color: var(--cream);
+  border-radius: var(--radius-xl);
+  padding: clamp(36px, 6vw, 64px);
+  position: relative;
+  overflow: hidden;
+}
+.pos-card::after{
+  content:"";
+  position:absolute;
+  right:-8%; top:-30%;
+  width: 50%; height: 160%;
+  background: radial-gradient(circle, rgba(255,138,43,0.22) 0%, rgba(255,138,43,0) 60%);
+  pointer-events:none;
+}
+.pos-card .eyebrow{ color: rgba(255,246,235,0.6); position: relative; }
+.pos-card .stmt{
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(22px, 3.6vw, 40px);
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  max-width: 22ch;
+  margin-top: 16px;
+  color: var(--cream);
+  position: relative;
+}
+.pos-card .stmt em { font-style: italic; color: #FFC79A; }
+
+.pillars{
+  margin-top: clamp(40px, 6vw, 64px);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(18px, 3vw, 28px);
+}
+@media (max-width: 880px){ .pillars { grid-template-columns: 1fr 1fr; gap: 20px;} }
+@media (max-width: 480px){ .pillars { grid-template-columns: 1fr; } }
+
+.pillar{ padding-top: 22px; border-top: 1px solid var(--ink); }
+.pillar .num{
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--orange-deep);
+  text-transform: uppercase;
+}
+.pillar h4{
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(18px, 2vw, 22px);
+  letter-spacing: -0.005em;
+  margin: 10px 0 6px;
+}
+.pillar p{ font-size: 14px; color: var(--ink-2); line-height: 1.55; }
+
+/* ============================================================
+   DECK · BRAND KIT
+============================================================ */
+.kit-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 3vw, 24px);
+}
+@media (max-width: 880px){ .kit-grid { grid-template-columns: 1fr; } }
+
+.kit-tile{
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line-soft);
+  padding: clamp(28px, 4vw, 36px);
+}
+.kit-tile h4{
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 24px;
+}
+
+.kit-logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  background: var(--lavender);
+  border-radius: var(--radius);
+  padding: 36px;
+}
+.logo-lockup{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+.logo-mark-svg{
+  width: clamp(120px, 16vw, 160px);
+  height: auto;
+}
+.logo-words{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.logo-words-main{
+  font-family: var(--ui);
+  font-weight: 700;
+  font-size: clamp(34px, 5vw, 52px);
+  letter-spacing: 0.04em;
+  color: var(--purple);
+  line-height: 1;
+}
+.logo-words-sub{
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: clamp(11px, 1.4vw, 13px);
+  letter-spacing: 0.32em;
+  color: var(--orange-deep);
+  line-height: 1;
+}
+
+/* Typography specimens */
+.type-stack > div{
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--line-soft);
+}
+.type-stack > div:last-child{ border-bottom: 0; }
+.type-stack .label{
+  font-family: var(--ui);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 6px;
+}
+.type-display{
+  font-family: var(--serif);
+  font-size: clamp(32px, 4.5vw, 48px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--purple);
+}
+.type-display em { font-style: italic; }
+.type-ui{
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.type-body{ font-family: var(--sans); font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+
+/* Colour swatches */
+.swatch-row{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.swatch{ text-align: left; }
+.swatch .chip{
+  height: 96px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-soft);
+  margin-bottom: 10px;
+}
+.swatch .lbl{
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.swatch .hex{
+  font-family: var(--ui);
+  font-weight: 500;
+  font-size: 10px;
+  color: var(--ink-3);
+  letter-spacing: 0.04em;
+}
+
+/* "In use" tile */
+.kit-inuse{
+  background: var(--purple);
+  border-radius: var(--radius);
+  padding: 40px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  position: relative;
+  overflow: hidden;
+}
+.kit-inuse::after{
+  content: "";
+  position: absolute;
+  right: -10%; top: -30%;
+  width: 60%; height: 160%;
+  background: radial-gradient(circle, rgba(255,138,43,0.2) 0%, rgba(255,138,43,0) 60%);
+}
+.kit-inuse .lockup-text{ position: relative; z-index: 1; align-items: center; }
+.kit-inuse .lockup-text .a{
+  font-family: var(--ui);
+  font-weight: 700;
+  font-size: clamp(20px, 2.6vw, 26px);
+  letter-spacing: 0.04em;
+  color: var(--cream);
+  line-height: 1;
+  text-transform: uppercase;
+}
+.kit-inuse .lockup-text .b{
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  color: #FFC79A;
+  line-height: 1;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+.kit-inuse .lockup-text{ display: flex; flex-direction: column; gap: 0; }
+
+/* ============================================================
+   DECK · LAUNCH
+============================================================ */
+.launch-block{
+  padding: clamp(72px, 11vw, 128px) 0;
+  background:
+    radial-gradient(ellipse at 25% 30%, rgba(255,138,43,0.15) 0%, rgba(255,138,43,0) 50%),
+    var(--purple);
+  color: var(--cream);
+  text-align: center;
+}
+.launch-block .eyebrow{ color: rgba(255,246,235,0.55); }
+.launch-block h2{
+  color: var(--cream);
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(36px, 6.4vw, 76px);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  max-width: 14ch;
+  margin: 18px auto 0;
+}
+.launch-block h2 em { font-style: italic; color: var(--orange); }
+.launch-block p{
+  max-width: 48ch;
+  margin: 22px auto 0;
+  color: rgba(255,246,235,0.7);
+  font-size: clamp(15px, 1.6vw, 16px);
+  line-height: 1.6;
+}
+.launch-block .ia-list{
+  margin: 28px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 20px;
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,246,235,0.65);
+  max-width: 56ch;
+}
+.launch-block .ia-list span:not(:last-child)::after{
+  content: "·";
+  margin-left: 20px;
+  color: rgba(255,246,235,0.3);
+}
+.launch-block .btn-orange{ margin-top: 36px; padding: 18px 28px; }
+
+/* ============================================================
+   SITE
+============================================================ */
+.site-view{ background: var(--cream); display: block; }
+html.js-ready .site-view{ display: none; }
+html.js-ready body.demo-mode .site-view{ display: block; }
+body.demo-mode{ overflow-y: auto; }
+
+.return-pill{
+  position: fixed;
+  bottom: 18px;
+  left: 18px;
+  z-index: 200;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 28px -8px rgba(43,46,53,0.4);
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+.return-pill:hover{ background: var(--purple); }
+body.demo-mode .return-pill{ display: inline-flex; }
+@media (max-width: 540px){ .return-pill{ bottom: 14px; left: 14px; padding: 9px 14px; font-size: 10px; } }
+
+/* ============================================================
+   SITE NAV
+============================================================ */
+.sms-nav{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255,246,235,0.92);
+  backdrop-filter: saturate(140%) blur(14px);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
+  border-bottom: 1px solid var(--line-soft);
+}
+.sms-nav-inner{
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 16px var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 72px;
+}
+.brand-mark{ display: inline-flex; align-items: center; gap: 10px; }
+.brand-mark svg{ flex-shrink: 0; }
+.brand-mark .wordmark{
+  font-family: var(--ui);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--purple);
+  line-height: 1;
+}
+.brand-mark .wordmark small{
+  display: block;
+  font-family: var(--ui);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--orange-deep);
+  margin-top: 4px;
+}
+
+.sms-menu{
+  display: flex;
+  gap: 28px;
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.sms-menu a{ padding: 6px 2px; transition: color .2s; }
+.sms-menu a:hover { color: var(--purple); }
+
+.sms-nav .sms-cta{
+  padding: 12px 22px;
+  background: var(--purple);
+  color: var(--cream);
+  border-radius: 999px;
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background .2s, transform .2s;
+}
+.sms-nav .sms-cta:hover{ background: var(--purple-deep); transform: translateY(-1px); }
+
+.sms-burger{
+  display: none;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream-deep);
+  position: relative;
+}
+.sms-burger span{
+  display: block;
+  width: 20px; height: 1.5px;
+  background: var(--ink);
+  position: absolute;
+  left: 12px;
+  transition: transform .25s, opacity .2s, top .25s;
+}
+.sms-burger span:nth-child(1){ top: 16px; }
+.sms-burger span:nth-child(2){ top: 21px; }
+.sms-burger span:nth-child(3){ top: 26px; }
+body.menu-open .sms-burger span:nth-child(1){ top: 21px; transform: rotate(45deg); }
+body.menu-open .sms-burger span:nth-child(2){ opacity: 0; }
+body.menu-open .sms-burger span:nth-child(3){ top: 21px; transform: rotate(-45deg); }
+
+@media (max-width: 920px){
+  .sms-menu { display: none; }
+  .sms-nav .sms-cta { display: none; }
+  .sms-burger { display: inline-flex; }
+}
+
+.mobile-menu{
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--cream);
+  z-index: 90;
+  display: none;
+  flex-direction: column;
+  padding: 96px 28px 40px;
+  overflow-y: auto;
+}
+body.menu-open .mobile-menu{ display: flex; }
+.mobile-menu a{
+  font-family: var(--serif);
+  font-size: 30px;
+  letter-spacing: -0.01em;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line-soft);
+  color: var(--ink);
+}
+.mobile-menu a:last-of-type{ border-bottom: 0; }
+.mobile-menu .mm-cta{
+  margin-top: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 24px;
+  background: var(--purple);
+  color: var(--cream);
+  border-radius: 999px;
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.mobile-menu .mm-meta{
+  margin-top: 36px;
+  border-top: 1px solid var(--line-soft);
+  padding-top: 22px;
+  display: grid;
+  gap: 8px;
+  font-family: var(--ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+.mobile-menu .mm-meta b{
+  display: block;
+  color: var(--ink);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  margin-top: 4px;
+}
+
+/* ============================================================
+   HERO
+============================================================ */
+.sms-hero{
+  padding: clamp(56px, 9vw, 120px) 0 clamp(56px, 9vw, 112px);
+  position: relative;
+  overflow: hidden;
+}
+.sms-hero::before{
+  content: "";
+  position: absolute;
+  top: -12%; right: -10%;
+  width: clamp(280px, 46vw, 580px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--lavender);
+  z-index: 0;
+}
+.sms-hero .wrap{ position: relative; z-index: 1; }
+
+.hero-grid{
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(40px, 6vw, 72px);
+  align-items: center;
+}
+.hero-text h1{
+  font-size: clamp(40px, 7.4vw, 88px);
+  line-height: 1;
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  max-width: 12ch;
+}
+.hero-text h1 em{ font-style: italic; color: var(--purple); font-weight: 300; }
+.hero-text .lede{
+  margin-top: clamp(20px, 3vw, 28px);
+  max-width: 42ch;
+  font-size: clamp(16px, 1.8vw, 18px);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.hero-actions{
+  margin-top: clamp(28px, 4vw, 32px);
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.hero-trust{
+  margin-top: clamp(36px, 5vw, 48px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: center;
+  font-family: var(--ui);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.hero-trust .dot{
+  width: 3px; height: 3px;
+  background: var(--orange);
+  border-radius: 50%;
+}
+.photo-hero-wrap{ aspect-ratio: 4/5; }
+
+@media (max-width: 880px){
+  .hero-grid{ grid-template-columns: 1fr; gap: 36px; }
+  .photo-hero-wrap{ aspect-ratio: 5/4; max-width: 480px; margin: 0 auto; width: 100%; }
+}
+@media (max-width: 540px){
+  .sms-hero { padding: 40px 0 56px; }
+  .hero-text h1{ letter-spacing: -0.02em; }
+}
+
+/* ============================================================
+   AFFILIATIONS
+============================================================ */
+.affil-strip{
+  padding: clamp(24px, 3.5vw, 36px) 0;
+  background: var(--cream);
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+}
+.affil-eyebrow{
+  display: block;
+  text-align: center;
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 20px;
+}
+.affil-row{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px clamp(20px, 4vw, 44px);
+}
+.affil-item{
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: clamp(11px, 1.3vw, 13px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.affil-item::before{
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--purple);
+}
+.affil-item.warm::before{ background: var(--orange); }
+@media (max-width: 540px){
+  .affil-row{ gap: 12px 22px; }
+  .affil-item{ font-size: 11px; }
+  .affil-item::before{ width: 6px; height: 6px; }
+}
+
+/* ============================================================
+   PROMISE (quieter pacing now — less ornate)
+============================================================ */
+.sms-promise{
+  padding: clamp(56px, 8vw, 96px) 0;
+  background: var(--lavender-soft);
+}
+.promise-head{
+  max-width: 38ch;
+  margin-bottom: clamp(36px, 5vw, 48px);
+}
+.promise-head h2{
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  margin-top: 12px;
+}
+.promise-head h2 em { font-style: italic; color: var(--purple); }
+
+.promise-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 3vw, 28px);
+}
+@media (max-width: 980px){ .promise-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px){ .promise-grid { grid-template-columns: 1fr; gap: 22px;} }
+
+.promise h4{
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(18px, 2.1vw, 21px);
+  letter-spacing: -0.005em;
+  margin: 0 0 8px;
+}
+.promise p{
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+/* ============================================================
+   SERVICES
+============================================================ */
+.sms-services{
+  padding: clamp(64px, 9vw, 112px) 0;
+}
+.services-head{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 5vw, 56px);
+  margin-bottom: clamp(36px, 5vw, 48px);
+  align-items: end;
+}
+.services-head h2{
+  font-size: clamp(28px, 4.6vw, 48px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 16ch;
+  margin-top: 12px;
+}
+.services-head h2 em { font-style: italic; color: var(--purple); }
+.services-head p{
+  font-size: clamp(15px, 1.6vw, 16px);
+  color: var(--ink-2);
+  line-height: 1.6;
+  max-width: 44ch;
+}
+@media (max-width: 720px){
+  .services-head { grid-template-columns: 1fr; gap: 14px;}
+}
+
+.services-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+@media (max-width: 960px){ .services-grid { grid-template-columns: 1fr 1fr; }}
+@media (max-width: 540px){ .services-grid { grid-template-columns: 1fr; }}
+
+.service-card{
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  padding: clamp(22px, 3vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 220px;
+  transition: transform .2s, border-color .2s;
+}
+.service-card:hover{
+  transform: translateY(-2px);
+  border-color: var(--purple);
+}
+.service-card .ico{
+  width: 36px; height: 36px;
+  background: var(--lavender);
+  border-radius: 10px;
+  display: grid; place-items: center;
+}
+.service-card h3{
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(19px, 2.2vw, 21px);
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+}
+.service-card p{
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.55;
+  flex: 1;
+}
+.service-card .more{
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--purple);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.service-card.flag{
+  background: var(--orange);
+  border-color: var(--orange-deep);
+}
+.service-card.flag .ico{ background: rgba(43,46,53,0.1); }
+.service-card.flag .more, .service-card.flag p{ color: var(--ink); }
+
+/* ============================================================
+   SCHOOLS (flagship — bigger moment)
+============================================================ */
+.sms-schools{
+  background: var(--purple);
+  color: var(--cream);
+  padding: clamp(72px, 10vw, 128px) 0;
+  position: relative;
+  overflow: hidden;
+}
+.sms-schools::after{
+  content: "";
+  position: absolute;
+  top: -20%; left: -10%;
+  width: 50%; height: 80%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,138,43,0.15) 0%, rgba(255,138,43,0) 60%);
+  pointer-events: none;
+}
+.sms-schools .wrap{ position: relative; z-index: 1; }
+.schools-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 72px);
+  align-items: center;
+}
+.schools-grid .eyebrow{ color: rgba(255,246,235,0.6); }
+.schools-grid h2{
+  color: var(--cream);
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(32px, 5.4vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-top: 16px;
+  max-width: 16ch;
+}
+.schools-grid h2 em { font-style: italic; color: var(--orange); font-weight: 300; }
+.schools-grid p{
+  color: rgba(255,246,235,0.78);
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.6;
+  margin-top: 22px;
+  max-width: 44ch;
+}
+.schools-stats{
+  margin-top: clamp(32px, 4vw, 40px);
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: clamp(28px, 4vw, 40px);
+}
+.schools-stats .n{
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1;
+  color: var(--cream);
+}
+.schools-stats .l{
+  font-family: var(--ui);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,246,235,0.65);
+  margin-top: 8px;
+}
+.schools-actions{
+  margin-top: clamp(28px, 4vw, 36px);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.photo-schools-wrap{ aspect-ratio: 4/5; }
+@media (max-width: 880px){
+  .schools-grid{ grid-template-columns: 1fr; gap: 36px; }
+  .photo-schools-wrap{ aspect-ratio: 5/4; max-width: 480px; margin: 0 auto; width: 100%; }
+}
+@media (max-width: 540px){
+  .schools-stats{ grid-template-columns: 1fr 1fr; gap: 22px;}
+}
+
+/* ============================================================
+   QUOTES (quieter than before)
+============================================================ */
+.sms-quotes{
+  padding: clamp(56px, 8vw, 96px) 0;
+  background: var(--cream);
+  border-bottom: 1px solid var(--line-soft);
+}
+.quotes-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 4vw, 40px);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+@media (max-width: 720px){ .quotes-grid { grid-template-columns: 1fr; gap: 32px; }}
+
+.quote{
+  padding: 0;
+}
+.quote .eyebrow{ display: block; margin-bottom: 16px; }
+.quote blockquote{
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(17px, 2vw, 21px);
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+.quote cite{
+  display: block;
+  margin-top: 18px;
+  font-style: normal;
+  font-family: var(--ui);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.quote cite b{
+  display: block;
+  color: var(--ink);
+  font-weight: 600;
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+
+/* ============================================================
+   STEPS
+============================================================ */
+.sms-steps{
+  padding: clamp(56px, 8vw, 96px) 0;
+}
+.steps-head{
+  max-width: 56ch;
+  margin-bottom: clamp(32px, 5vw, 48px);
+}
+.steps-head h2{
+  font-size: clamp(26px, 4.2vw, 44px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-top: 12px;
+}
+.steps-head h2 em{ font-style: italic; color: var(--purple); }
+.steps-head p{ margin-top: 14px; color: var(--ink-2); font-size: clamp(15px, 1.6vw, 16px); line-height: 1.6; max-width: 48ch; }
+
+.steps-row{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 3vw, 28px);
+}
+@media (max-width: 980px){ .steps-row { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 540px){ .steps-row { grid-template-columns: 1fr; gap: 24px;} }
+
+.step{
+  padding-top: 20px;
+  border-top: 1px solid var(--ink);
+}
+.step .num{
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange-deep);
+}
+.step h4{
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(18px, 2.1vw, 21px);
+  letter-spacing: -0.005em;
+  margin: 12px 0 6px;
+}
+.step p{ font-size: 14.5px; color: var(--ink-2); line-height: 1.55; }
+
+/* ============================================================
+   FEES
+============================================================ */
+.sms-fees{
+  padding: clamp(56px, 8vw, 96px) 0;
+  background: var(--lavender-soft);
+}
+.fees-head{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 5vw, 48px);
+  align-items: end;
+  margin-bottom: clamp(32px, 5vw, 48px);
+}
+.fees-head h2{
+  font-size: clamp(26px, 4.2vw, 44px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 18ch;
+  margin-top: 12px;
+}
+.fees-head h2 em{ font-style: italic; color: var(--purple); }
+.fees-head p{
+  color: var(--ink-2);
+  font-size: clamp(15px, 1.6vw, 16px);
+  line-height: 1.6;
+  max-width: 44ch;
+}
+@media (max-width: 720px){ .fees-head{ grid-template-columns: 1fr; gap: 14px;}}
+
+.fees-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+@media (max-width: 880px){ .fees-grid{ grid-template-columns: 1fr; }}
+
+.fee-card{
+  padding: clamp(24px, 3.5vw, 32px);
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+}
+.fee-card.featured{ background: var(--lavender); border-color: transparent; }
+.fee-card .eyebrow{ display: block; margin-bottom: 12px; }
+.fee-card h3{
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(20px, 2.2vw, 24px);
+  letter-spacing: -0.005em;
+  margin-bottom: 12px;
+}
+.fee-card p{ font-size: 14.5px; color: var(--ink-2); line-height: 1.55;}
+.fee-card ul{
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+.fee-card li{
+  font-size: 14px;
+  color: var(--ink-2);
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.5;
+}
+.fee-card li::before{
+  content: "";
+  position: absolute;
+  left: 0; top: 8px;
+  width: 11px; height: 1.5px;
+  background: var(--purple);
+}
+
+/* ============================================================
+   ABOUT
+============================================================ */
+.sms-about{
+  padding: clamp(64px, 9vw, 112px) 0;
+}
+.about-grid{
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(40px, 6vw, 72px);
+  align-items: start;
+}
+.photo-portrait-wrap{ aspect-ratio: 4/5; }
+
+.about-text h2{
+  font-size: clamp(28px, 4.6vw, 48px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin-top: 12px;
+}
+.about-text h2 em{ font-style: italic; color: var(--purple); }
+.about-text .lede{
+  margin-top: 22px;
+  font-size: clamp(16px, 1.7vw, 18px);
+  color: var(--ink-2);
+  line-height: 1.55;
+  max-width: 46ch;
+}
+.about-text p{ margin-top: 16px; color: var(--ink-2); line-height: 1.65; font-size: 15.5px; max-width: 50ch;}
+
+.creds{
+  margin-top: clamp(28px, 4vw, 36px);
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.cred .label{
+  display: block;
+  font-family: var(--ui);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 4px;
+}
+.cred .value{
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--ink);
+}
+@media (max-width: 880px){
+  .about-grid{ grid-template-columns: 1fr; gap: 32px;}
+  .photo-portrait-wrap{ aspect-ratio: 4/4; max-width: 440px; margin: 0 auto; width: 100%; }
+}
+
+/* ============================================================
+   FAQ
+============================================================ */
+.sms-faq{
+  padding: clamp(56px, 8vw, 96px) 0;
+  background: var(--cream);
+  border-top: 1px solid var(--line-soft);
+}
+.faq-grid{
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: clamp(36px, 5vw, 72px);
+  align-items: start;
+}
+@media (max-width: 880px){
+  .faq-grid{ grid-template-columns: 1fr; gap: 28px;}
+}
+.faq-head h2{
+  font-size: clamp(26px, 4.2vw, 42px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin-top: 12px;
+}
+.faq-head h2 em{ font-style: italic; color: var(--purple); }
+.faq-head p{ margin-top: 14px; color: var(--ink-2); font-size: 15.5px; line-height: 1.6; max-width: 32ch;}
+
+.faq-list{ border-top: 1px solid var(--line); }
+.faq-item{ border-bottom: 1px solid var(--line); }
+.faq-item summary{
+  list-style: none;
+  cursor: pointer;
+  padding: clamp(16px, 2.2vw, 20px) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(16px, 1.9vw, 19px);
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+.faq-item summary::-webkit-details-marker{ display: none; }
+.faq-item summary .plus{
+  width: 26px; height: 26px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--lavender);
+  display: grid; place-items: center;
+  font-family: var(--ui); font-weight: 600;
+  font-size: 13px;
+  color: var(--purple);
+  transition: transform .25s, background .25s, color .25s;
+}
+.faq-item[open] summary .plus{
+  background: var(--purple);
+  color: var(--cream);
+  transform: rotate(45deg);
+}
+.faq-item .answer{
+  padding: 0 0 20px;
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 58ch;
+}
+
+/* ============================================================
+   CONTACT
+============================================================ */
+.sms-contact{
+  padding: clamp(64px, 9vw, 120px) 0;
+  background: var(--purple);
+  color: var(--cream);
+}
+.contact-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 72px);
+  align-items: start;
+}
+.contact-grid h2{
+  color: var(--cream);
+  font-size: clamp(32px, 5.2vw, 56px);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin-top: 12px;
+}
+.contact-grid h2 em{ font-style: italic; color: var(--orange); font-weight: 300; }
+.contact-grid p{
+  color: rgba(255,246,235,0.78);
+  margin-top: 20px;
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.6;
+  max-width: 42ch;
+}
+
+.contact-meta{
+  margin-top: clamp(28px, 4vw, 36px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  border-top: 1px solid rgba(255,246,235,0.18);
+  padding-top: 24px;
+}
+.contact-meta .label{
+  display: block;
+  font-family: var(--ui);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,246,235,0.55);
+  margin-bottom: 6px;
+}
+.contact-meta a, .contact-meta b{
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--cream);
+  border-bottom: 1px solid rgba(255,138,43,0.4);
+  padding-bottom: 2px;
+}
+@media (max-width: 540px){ .contact-meta { grid-template-columns: 1fr; }}
+
+.contact-form{
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,246,235,0.18);
+  border-radius: var(--radius-lg);
+  padding: clamp(24px, 4vw, 32px);
+  display: grid;
+  gap: 16px;
+}
+.contact-form .row{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 480px){ .contact-form .row{ grid-template-columns: 1fr; }}
+.contact-form label{
+  display: block;
+  font-family: var(--ui);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,246,235,0.65);
+  margin-bottom: 8px;
+}
+.contact-form input,
+.contact-form select,
+.contact-form textarea{
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(255,246,235,0.3);
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 15px;
+  padding: 10px 0;
+  outline: none;
+  transition: border-color .2s;
+  min-height: 42px;
+}
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus{ border-color: var(--orange); }
+.contact-form textarea{ min-height: 100px; resize: vertical; }
+.contact-form select{
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, rgba(255,246,235,0.5) 50%),
+                    linear-gradient(135deg, rgba(255,246,235,0.5) 50%, transparent 50%);
+  background-position: calc(100% - 18px) center, calc(100% - 12px) center;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 28px;
+}
+.contact-form button{
+  margin-top: 6px;
+  padding: 16px 26px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: var(--ink);
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  justify-self: start;
+  min-height: 48px;
+}
+.contact-form button:hover{ background: var(--cream); }
+
+@media (max-width: 880px){ .contact-grid{ grid-template-columns: 1fr; gap: 28px;}}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.sms-footer{
+  background: var(--cream-deep);
+  padding: clamp(48px, 7vw, 64px) 0 28px;
+  border-top: 1px solid var(--line);
+}
+.footer-grid{
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: clamp(28px, 4vw, 48px);
+  margin-bottom: clamp(28px, 4vw, 44px);
+}
+@media (max-width: 880px){ .footer-grid{ grid-template-columns: 1fr 1fr; gap: 32px;}}
+@media (max-width: 540px){ .footer-grid{ grid-template-columns: 1fr; }}
+
+.footer-tag{
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(17px, 1.9vw, 20px);
+  line-height: 1.4;
+  max-width: 22ch;
+  margin: 14px 0 16px;
+  color: var(--ink);
+}
+.footer-col h5{
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 14px;
+}
+.footer-col ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+  font-family: var(--sans);
+  font-size: 14px;
+}
+.footer-col a:hover{ color: var(--purple); }
+.footer-bottom{
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-family: var(--ui);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   MOTION
+============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ================================================================
+     PROPOSAL
+================================================================= -->
+<div class="proposal" id="proposal">
+
+  <nav class="deck-nav" aria-label="Concept document">
+    <div class="deck-nav-inner">
+      <span class="deck-mark">
+        <svg viewBox="0 0 230 195" fill="none" aria-hidden="true">
+          <path d="M86 6C46 6 14 38 14 78C14 100 25 120 43 132L30 182L75 146C79 147 82 148 86 148C130 148 158 115 158 78C158 38 128 6 86 6Z" fill="#5A358C"/>
+          <path d="M150 26L174 36L154 50Z" fill="#5A358C"/>
+          <circle cx="124" cy="46" r="6.5" fill="#FFF6EB"/>
+          <path d="M162 52C134 52 110 76 110 102C110 120 119 135 131 143L121 188L152 155C155 156 158 157 162 157C188 157 210 134 210 102C210 76 188 52 162 52Z" fill="#FF8A2B"/>
+          <path d="M204 82L224 92L204 102Z" fill="#FF8A2B"/>
+          <circle cx="188" cy="85" r="5" fill="#FFF6EB"/>
+        </svg>
+        <span class="deck-tag"><strong>Speech Made Simple</strong> · 2026 Concept</span>
+      </span>
+      <a href="#site-top" id="launchDemoTop" class="deck-cta">Launch Demo →</a>
+    </div>
+  </nav>
+
+  <!-- Cover -->
+  <section class="deck-cover">
+    <div class="cover-decor" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="cover-meta">
+        <span>Speech Made Simple</span>
+        <span>Brand &amp; Website Concept</span>
+        <span>May 2026</span>
+      </div>
+
+      <div class="cover-logo">
+        <svg viewBox="0 0 230 195" fill="none" aria-hidden="true">
+          <path d="M86 6C46 6 14 38 14 78C14 100 25 120 43 132L30 182L75 146C79 147 82 148 86 148C130 148 158 115 158 78C158 38 128 6 86 6Z" fill="#5A358C"/>
+          <path d="M150 26L174 36L154 50Z" fill="#5A358C"/>
+          <circle cx="124" cy="46" r="6.5" fill="#FFF6EB"/>
+          <path d="M162 52C134 52 110 76 110 102C110 120 119 135 131 143L121 188L152 155C155 156 158 157 162 157C188 157 210 134 210 102C210 76 188 52 162 52Z" fill="#FF8A2B"/>
+          <path d="M204 82L224 92L204 102Z" fill="#FF8A2B"/>
+          <circle cx="188" cy="85" r="5" fill="#FFF6EB"/>
+        </svg>
+        <div class="lockup-text">
+          <span class="a">Speech Made Simple</span>
+          <span class="b">Paediatric speech &amp; literacy · Vic</span>
+        </div>
+      </div>
+
+      <h1 class="cover-title">A calmer way to find the <em>right help.</em></h1>
+      <p class="cover-sub">A brand and website concept for a paediatric speech &amp; literacy practice for Melbourne's inner-west.</p>
+
+      <div class="cover-actions">
+        <a href="#site-top" id="launchDemoHero" class="btn-orange">Launch live demo <span class="arrow">→</span></a>
+        <a href="#concept" class="btn-ghost">Read the thinking <span class="arrow">↓</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 — Opportunity -->
+  <section class="deck-section" id="concept">
+    <div class="wrap">
+      <div class="deck-head">
+        <div class="num">01 · The opportunity</div>
+        <h2>The category is stuck in <em>2018</em>.</h2>
+      </div>
+
+      <div class="opp-grid">
+        <div class="opp-card warn">
+          <h3>What everyone else is doing</h3>
+          <ul>
+            <li>Slider heroes with cartoon palettes — coded for kids, not parents.</li>
+            <li>Stock photography that erodes trust on contact.</li>
+            <li>Schools buried as a location tile, not a program.</li>
+            <li>Fees hidden behind "funding".</li>
+          </ul>
+        </div>
+        <div class="opp-card purple">
+          <h3>What we'd do instead</h3>
+          <ul>
+            <li>Editorial typography on warm cream — feels grown-up.</li>
+            <li>Documentary photography in real homes and classrooms.</li>
+            <li>School partnerships as a flagship, not a footnote.</li>
+            <li>Transparent fees as a premium signal.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 — Audit -->
+  <section class="deck-section alt">
+    <div class="wrap">
+      <div class="deck-head">
+        <div class="num">02 · The current site</div>
+        <h2>One thing to keep, two to <em>change</em>.</h2>
+      </div>
+
+      <div class="audit-grid">
+        <div class="audit-card">
+          <span class="tag keep">Keep</span>
+          <h4>The "popcorn" philosophy</h4>
+          <p>The most human line on the site, buried in the hero. We let it lead: children pop at their own pace.</p>
+        </div>
+        <div class="audit-card">
+          <span class="tag gap">Change</span>
+          <h4>Schools is a location, not a program</h4>
+          <p>One of four location tiles. Jessica's 60+ school history deserves its own page, its own pricing, its own audience.</p>
+        </div>
+        <div class="audit-card">
+          <span class="tag opp">Add</span>
+          <h4>A first-visit narrative</h4>
+          <p>Worried parents arrive at 9pm. Nothing on the current site explains what an assessment actually looks like.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — Positioning -->
+  <section class="deck-section">
+    <div class="wrap">
+      <div class="deck-head">
+        <div class="num">03 · Positioning</div>
+        <h2>What we want parents and principals to <em>recognise.</em></h2>
+      </div>
+
+      <div class="pos-card">
+        <div class="eyebrow">Positioning</div>
+        <p class="stmt">A Melbourne inner-west speech &amp; literacy practice for families and schools who want <em>calm, evidence-based therapy</em> — at their child's pace.</p>
+      </div>
+
+      <div class="pillars">
+        <div class="pillar">
+          <div class="num">01</div>
+          <h4>Calm, not clinical</h4>
+          <p>A waiting room, not a wait list.</p>
+        </div>
+        <div class="pillar">
+          <div class="num">02</div>
+          <h4>Skilled, not showy</h4>
+          <p>Credentials carry quietly.</p>
+        </div>
+        <div class="pillar">
+          <div class="num">03</div>
+          <h4>Human, not childish</h4>
+          <p>For the adults who do the booking.</p>
+        </div>
+        <div class="pillar">
+          <div class="num">04</div>
+          <h4>Local, not corporate</h4>
+          <p>Moonee Valley, named schools.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 — Brand kit -->
+  <section class="deck-section alt">
+    <div class="wrap">
+      <div class="deck-head">
+        <div class="num">04 · The kit</div>
+        <h2>A visual language with room to <em>breathe.</em></h2>
+      </div>
+
+      <div class="kit-grid" style="margin-bottom: clamp(16px, 2vw, 24px);">
+        <div class="kit-tile">
+          <h4>Logo</h4>
+          <div class="kit-logo">
+            <div class="logo-lockup">
+              <svg class="logo-mark-svg" viewBox="0 0 230 195" fill="none" aria-label="Speech Made Simple">
+                <path d="M86 6C46 6 14 38 14 78C14 100 25 120 43 132L30 182L75 146C79 147 82 148 86 148C130 148 158 115 158 78C158 38 128 6 86 6Z" fill="#5A358C"/>
+                <path d="M150 26L174 36L154 50Z" fill="#5A358C"/>
+                <circle cx="124" cy="46" r="6.5" fill="#FFF6EB"/>
+                <path d="M162 52C134 52 110 76 110 102C110 120 119 135 131 143L121 188L152 155C155 156 158 157 162 157C188 157 210 134 210 102C210 76 188 52 162 52Z" fill="#FF8A2B"/>
+                <path d="M204 82L224 92L204 102Z" fill="#FF8A2B"/>
+                <circle cx="188" cy="85" r="5" fill="#FFF6EB"/>
+              </svg>
+              <div class="logo-words">
+                <span class="logo-words-main">SPEECH</span>
+                <span class="logo-words-sub">MADE SIMPLE</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="kit-tile">
+          <h4>Typography</h4>
+          <div class="type-stack">
+            <div>
+              <div class="label">Headings — Fraunces</div>
+              <div class="type-display">Found <em>simply.</em></div>
+            </div>
+            <div>
+              <div class="label">UI &amp; nav — Montserrat SemiBold</div>
+              <div class="type-ui">Book a consult →</div>
+            </div>
+            <div>
+              <div class="label">Body — Inter</div>
+              <div class="type-body">Short, focused sessions with specific goals — at home, kindy or school.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="kit-grid">
+        <div class="kit-tile">
+          <h4>Palette</h4>
+          <div class="swatch-row">
+            <div class="swatch"><div class="chip" style="background: #5A358C;"></div><div class="lbl">Purple</div><div class="hex">#5A358C</div></div>
+            <div class="swatch"><div class="chip" style="background: #FF8A2B;"></div><div class="lbl">Orange</div><div class="hex">#FF8A2B</div></div>
+            <div class="swatch"><div class="chip" style="background: #FFF6EB;"></div><div class="lbl">Cream</div><div class="hex">#FFF6EB</div></div>
+          </div>
+          <div class="swatch-row" style="margin-top: 10px;">
+            <div class="swatch"><div class="chip" style="background: #F0E6FA;"></div><div class="lbl">Lavender</div><div class="hex">#F0E6FA</div></div>
+            <div class="swatch"><div class="chip" style="background: #2B2E35;"></div><div class="lbl">Charcoal</div><div class="hex">#2B2E35</div></div>
+            <div class="swatch"><div class="chip" style="background: #C9C5C8;"></div><div class="lbl">Grey</div><div class="hex">#C9C5C8</div></div>
+          </div>
+        </div>
+
+        <div class="kit-tile">
+          <h4>In use</h4>
+          <div class="kit-inuse">
+            <div class="lockup-text">
+              <span class="a">Speech Made Simple</span>
+              <span class="b">Paediatric speech &amp; literacy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Launch -->
+  <section class="launch-block">
+    <div class="wrap">
+      <div class="eyebrow">— The build —</div>
+      <h2>Now see it <em>working.</em></h2>
+      <p>A working prototype of the new site. Explore as a parent or principal would.</p>
+      <div class="ia-list" aria-label="Sitemap">
+        <span>Home</span><span>Services</span><span>For schools</span><span>About</span><span>Fees</span><span>FAQ</span><span>Contact</span>
+      </div>
+      <a href="#site-top" id="launchDemoMain" class="btn-orange">Launch demo site <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+</div><!-- /.proposal -->
+
+
+<button class="return-pill" id="returnToDeck" aria-label="Return to concept document">
+  ← Back to concept
+</button>
+
+
+<!-- ================================================================
+     LIVE SITE
+================================================================= -->
+<div class="site-view" id="siteView">
+
+  <header class="sms-nav" role="banner">
+    <div class="sms-nav-inner">
+      <a href="#site-top" class="brand-mark" aria-label="Speech Made Simple — Home" id="site-top">
+        <svg width="34" height="30" viewBox="0 0 230 195" fill="none" aria-hidden="true">
+          <path d="M86 6C46 6 14 38 14 78C14 100 25 120 43 132L30 182L75 146C79 147 82 148 86 148C130 148 158 115 158 78C158 38 128 6 86 6Z" fill="#5A358C"/>
+          <path d="M150 26L174 36L154 50Z" fill="#5A358C"/>
+          <circle cx="124" cy="46" r="6.5" fill="#FFF6EB"/>
+          <path d="M162 52C134 52 110 76 110 102C110 120 119 135 131 143L121 188L152 155C155 156 158 157 162 157C188 157 210 134 210 102C210 76 188 52 162 52Z" fill="#FF8A2B"/>
+          <path d="M204 82L224 92L204 102Z" fill="#FF8A2B"/>
+          <circle cx="188" cy="85" r="5" fill="#FFF6EB"/>
+        </svg>
+        <span class="wordmark">Speech Made Simple<small>Paediatric speech · Vic</small></span>
+      </a>
+
+      <nav class="sms-menu" aria-label="Main">
+        <a href="#site-services">Services</a>
+        <a href="#site-schools">For schools</a>
+        <a href="#site-about">About</a>
+        <a href="#site-fees">Fees</a>
+        <a href="#site-faq">FAQ</a>
+      </nav>
+
+      <a href="#site-contact" class="sms-cta">Book a consult</a>
+      <button class="sms-burger" aria-label="Open menu" id="burger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Site navigation">
+    <a href="#site-services" data-mm>Services</a>
+    <a href="#site-schools" data-mm>For schools</a>
+    <a href="#site-about" data-mm>About</a>
+    <a href="#site-fees" data-mm>Fees</a>
+    <a href="#site-faq" data-mm>FAQ</a>
+    <a href="#site-contact" data-mm class="mm-cta">Book a consult →</a>
+    <div class="mm-meta">
+      <div>Phone<b>0422 847 554</b></div>
+      <div>Email<b>jessica@speechmadesimple.com.au</b></div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="sms-hero" aria-labelledby="hero-heading">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <div class="eyebrow">Paediatric speech &amp; literacy · Moonee Valley</div>
+          <h1 id="hero-heading">A calmer way to find the <em>right help.</em></h1>
+          <p class="lede">If your child's speech, language or literacy feels harder than it should, Jess will tell you whether therapy is the right call.</p>
+          <div class="hero-actions">
+            <a href="#site-contact" class="btn">Book a consult <span class="arrow">→</span></a>
+            <a href="#site-steps" class="btn-ghost">What to expect <span class="arrow">→</span></a>
+          </div>
+          <div class="hero-trust">
+            <span>Practising since 2012</span><span class="dot"></span>
+            <span>Speech Pathology Australia</span><span class="dot"></span>
+            <span>Medicare provider</span>
+          </div>
+        </div>
+
+        <div class="photo photo-hero photo-hero-wrap" role="img" aria-label="Photo — warm afternoon light through a window, a parent reading with their child, unposed">
+          <div class="photo-note">Reading at home · natural light</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AFFILIATIONS -->
+  <section class="affil-strip" aria-label="Registrations and training">
+    <div class="wrap">
+      <span class="affil-eyebrow">A registered, evidence-based practice</span>
+      <div class="affil-row">
+        <span class="affil-item">Speech Pathology Australia</span>
+        <span class="affil-item warm">Medicare Provider</span>
+        <span class="affil-item">NDIS plan- &amp; self-managed</span>
+        <span class="affil-item warm">Hanen-trained</span>
+        <span class="affil-item">Lidcombe-trained</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMISE -->
+  <section class="sms-promise">
+    <div class="wrap">
+      <div class="promise-head">
+        <div class="eyebrow">How we work</div>
+        <h2>Therapy that fits your family — not the other way <em>around.</em></h2>
+      </div>
+
+      <div class="promise-grid">
+        <div class="promise">
+          <h4>At your child's pace</h4>
+          <p>Children don't develop on a schedule. We move at the pace your child actually needs.</p>
+        </div>
+        <div class="promise">
+          <h4>Where it works</h4>
+          <p>Home, kindy or a quiet classroom corner. Telehealth where it fits.</p>
+        </div>
+        <div class="promise">
+          <h4>With the team</h4>
+          <p>We share reports, brief teachers and stay reachable between sessions.</p>
+        </div>
+        <div class="promise">
+          <h4>Honest progress</h4>
+          <p>We'll tell you when to keep going. And when to stop.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="sms-services" id="site-services">
+    <div class="wrap">
+      <div class="services-head">
+        <div>
+          <div class="eyebrow">What we help with</div>
+          <h2>Five areas, twelve years of <em>practice.</em></h2>
+        </div>
+        <p>Speech Made Simple supports children from 18 months to 18 years across five core areas. Tap any tile for what therapy actually looks like.</p>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="ico">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="9" stroke="#5A358C" stroke-width="1.5"/>
+              <path d="M8 12 Q12 7, 16 12" stroke="#FF8A2B" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+          <h3>Speech sounds</h3>
+          <p>For children who are difficult to understand, or whose speech sits behind their age.</p>
+          <a class="more" href="#">Read more →</a>
+        </article>
+
+        <article class="service-card">
+          <div class="ico">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <rect x="4" y="6" width="16" height="12" rx="1.5" stroke="#5A358C" stroke-width="1.5"/>
+              <path d="M8 10 H16 M8 13 H14 M8 16 H12" stroke="#FF8A2B" stroke-width="1.4"/>
+            </svg>
+          </div>
+          <h3>Language</h3>
+          <p>Following instructions, finding words, building sentences — understanding and expression.</p>
+          <a class="more" href="#">Read more →</a>
+        </article>
+
+        <article class="service-card">
+          <div class="ico">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M4 18 L10 10 L14 14 L20 6" stroke="#5A358C" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+              <circle cx="14" cy="14" r="1.5" fill="#FF8A2B"/>
+            </svg>
+          </div>
+          <h3>Literacy</h3>
+          <p>Reading and spelling that doesn't click. Evidence-based decoding, alongside the classroom teacher.</p>
+          <a class="more" href="#">Read more →</a>
+        </article>
+
+        <article class="service-card">
+          <div class="ico">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M5 15 C5 11, 8 8, 12 8 C16 8, 19 11, 19 15 L17 20 H7 Z" stroke="#5A358C" stroke-width="1.5" fill="none"/>
+              <path d="M12 4 V8" stroke="#FF8A2B" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <h3>Fluency</h3>
+          <p>For children who stutter. Lidcombe with younger children, other approaches as they grow.</p>
+          <a class="more" href="#">Read more →</a>
+        </article>
+
+        <article class="service-card">
+          <div class="ico">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <circle cx="9" cy="12" r="4" stroke="#5A358C" stroke-width="1.5"/>
+              <circle cx="15" cy="12" r="4" stroke="#FF8A2B" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <h3>Social communication</h3>
+          <p>Conversation, friendships, reading cues — practical skills, not scripts. Including autism.</p>
+          <a class="more" href="#">Read more →</a>
+        </article>
+
+        <article class="service-card flag">
+          <div class="ico">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="9" width="18" height="11" stroke="#2B2E35" stroke-width="1.5"/>
+              <path d="M3 9 L12 3 L21 9" stroke="#2B2E35" stroke-width="1.5" fill="none"/>
+              <rect x="10" y="13" width="4" height="7" fill="#2B2E35"/>
+            </svg>
+          </div>
+          <h3>School partnerships</h3>
+          <p>A different offer — standing therapy days, screens, teacher coaching. See the program.</p>
+          <a class="more" href="#site-schools">View the program →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHOOLS -->
+  <section class="sms-schools" id="site-schools">
+    <div class="wrap">
+      <div class="schools-grid">
+        <div>
+          <div class="eyebrow">For schools</div>
+          <h2>A speech pathologist on your <em>team</em>, not a referral list.</h2>
+          <p>The school partnership program brings a consistent, named speech pathologist on-site — standing therapy days, kindy and prep screens, and ongoing coaching for your learning-support team.</p>
+
+          <div class="schools-stats">
+            <div>
+              <div class="n">60+</div>
+              <div class="l">Schools previously serviced</div>
+            </div>
+            <div>
+              <div class="n">12yr</div>
+              <div class="l">Paediatric SP experience</div>
+            </div>
+            <div>
+              <div class="n">3</div>
+              <div class="l">Partnership formats</div>
+            </div>
+          </div>
+
+          <div class="schools-actions">
+            <a href="#site-contact" class="btn-orange">Request the school pack <span class="arrow">→</span></a>
+            <a href="#site-steps" class="btn-ghost on-dark">How it works <span class="arrow">→</span></a>
+          </div>
+        </div>
+
+        <div class="photo photo-schools photo-schools-wrap" role="img" aria-label="Photo — a quiet primary-school classroom corner with window light, picture book on a small table">
+          <div class="photo-note">Classroom corner · in-school session</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTES -->
+  <section class="sms-quotes">
+    <div class="wrap">
+      <div class="quotes-grid">
+        <div class="quote">
+          <span class="eyebrow">From a parent</span>
+          <blockquote>"Jess helped us understand what our daughter was actually doing — and what we should and shouldn't push on. Six months in, her kindy teacher told us she's a different kid."</blockquote>
+          <cite><b>Em, Aberfeldie</b>Parent</cite>
+        </div>
+        <div class="quote">
+          <span class="eyebrow orange">From a school</span>
+          <blockquote>"Having Jess on-site one day a week has changed how our learning-support team works. Our teachers know the strategies and our parents trust the reports."</blockquote>
+          <cite><b>L. Harding</b>Deputy Principal</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="sms-steps" id="site-steps">
+    <div class="wrap">
+      <div class="steps-head">
+        <div class="eyebrow">How it works</div>
+        <h2>From first call to first session, <em>no surprises.</em></h2>
+        <p>Most families come to us worried. Here's exactly what happens — so you know what you're saying yes to.</p>
+      </div>
+      <div class="steps-row">
+        <div class="step">
+          <div class="num">01 · A first call</div>
+          <h4>Tell us what you're noticing</h4>
+          <p>Free 15-minute call. We'll tell you honestly whether an assessment is the right next step.</p>
+        </div>
+        <div class="step">
+          <div class="num">02 · Assessment</div>
+          <h4>An hour or two, then a report</h4>
+          <p>One or two sessions in your home or your child's setting. You leave with a written report.</p>
+        </div>
+        <div class="step">
+          <div class="num">03 · Therapy</div>
+          <h4>Weekly or fortnightly</h4>
+          <p>Short sessions with specific goals. Five-minute home-practice ideas — not a worksheet pile.</p>
+        </div>
+        <div class="step">
+          <div class="num">04 · Review</div>
+          <h4>We talk about whether to keep going</h4>
+          <p>Every 8–10 sessions we sit down together. Sometimes the right answer is to stop.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEES -->
+  <section class="sms-fees" id="site-fees">
+    <div class="wrap">
+      <div class="fees-head">
+        <div>
+          <div class="eyebrow">Fees &amp; funding</div>
+          <h2>Clear pricing, no surprises in the report <em>email.</em></h2>
+        </div>
+        <p>We publish session fees because we'd want to see them too. School partnerships have their own pricing on the Schools page.</p>
+      </div>
+
+      <div class="fees-grid">
+        <div class="fee-card">
+          <span class="eyebrow">Family — initial</span>
+          <h3>Initial consult &amp; assessment</h3>
+          <p>History, observation and standardised assessment where appropriate, plus a written report.</p>
+          <ul>
+            <li>45–60 minutes</li>
+            <li>Written report within 2 weeks</li>
+            <li>Same hourly rate as therapy</li>
+          </ul>
+        </div>
+        <div class="fee-card featured">
+          <span class="eyebrow">Family — ongoing</span>
+          <h3>Therapy sessions</h3>
+          <p>Short, focused therapy at home, kindy or school with a brief written summary every 8–10 sessions.</p>
+          <ul>
+            <li>45 minutes, weekly or fortnightly</li>
+            <li>Home-practice ideas each session</li>
+            <li>Reports shared with school on consent</li>
+          </ul>
+        </div>
+        <div class="fee-card">
+          <span class="eyebrow">Funding</span>
+          <h3>Medicare, NDIS &amp; PHI</h3>
+          <p>Registered Medicare provider. NDIS self- and plan-managed. Most private extras cover SP.</p>
+          <ul>
+            <li>Medicare CDM plans</li>
+            <li>NDIS self- or plan-managed</li>
+            <li>Private health rebates</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="sms-about" id="site-about">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="photo photo-portrait photo-portrait-wrap" role="img" aria-label="Photo — Jessica, warm soft daylight, three-quarter portrait, natural">
+          <div class="photo-note">Jessica · portrait</div>
+        </div>
+        <div class="about-text">
+          <div class="eyebrow">About Jess</div>
+          <h2>Twelve years of paediatric speech, on <em>your street.</em></h2>
+          <p class="lede">I'm Jessica Stiles — Jess to my families. I started Speech Made Simple in 2018, after eight years working across schools and private practice in Melbourne's west.</p>
+          <p>Most of my caseload now is split between home visits across Moonee Valley and a small number of partner schools. Reading and spelling difficulties are still where I do my best work, but I see the full range — speech sounds, language, fluency, social communication — for kids between 18 months and 18.</p>
+
+          <div class="creds">
+            <div class="cred"><span class="label">Qualification</span><span class="value">M. Speech Pathology, La Trobe</span></div>
+            <div class="cred"><span class="label">Registration</span><span class="value">Speech Pathology Australia</span></div>
+            <div class="cred"><span class="label">Trained in</span><span class="value">Hanen · Lidcombe · PECS</span></div>
+            <div class="cred"><span class="label">Based</span><span class="value">City of Moonee Valley</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sms-faq" id="site-faq">
+    <div class="wrap">
+      <div class="faq-grid">
+        <div class="faq-head">
+          <div class="eyebrow">Common questions</div>
+          <h2>What most parents ask <em>first.</em></h2>
+          <p>If your question isn't here, just ring or email.</p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary>How do I know if my child needs therapy at all?<span class="plus">+</span></summary>
+            <div class="answer">Often you can't be sure — that's what the free 15-minute call is for. Sometimes the honest answer is "wait six months and see".</div>
+          </details>
+          <details class="faq-item">
+            <summary>Where do sessions happen?<span class="plus">+</span></summary>
+            <div class="answer">Usually in your home or your child's kindy or school. Moonee Valley and the surrounding inner-west. Telehealth where it suits the goal.</div>
+          </details>
+          <details class="faq-item">
+            <summary>What does a session cost?<span class="plus">+</span></summary>
+            <div class="answer">45-minute sessions at a transparent flat rate, listed on the Fees page. No assessment loading, no admin fees.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Are you an NDIS provider?<span class="plus">+</span></summary>
+            <div class="answer">Not registered, but we work with self- and plan-managed plans.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Do I need a GP referral?<span class="plus">+</span></summary>
+            <div class="answer">No. A GP referral is only needed if you want a Medicare rebate via a Chronic Disease Management Plan.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Can my child's teacher be involved?<span class="plus">+</span></summary>
+            <div class="answer">Yes, and we recommend it. We share reports and brief classroom staff with your consent.</div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="sms-contact" id="site-contact">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div>
+          <div class="eyebrow cream">Get in touch</div>
+          <h2>Start with a <em>fifteen-minute call.</em></h2>
+          <p>No commitment. Tell Jess what you're noticing and she'll tell you honestly whether an assessment is the right step.</p>
+
+          <div class="contact-meta">
+            <div>
+              <span class="label">Phone</span>
+              <a href="tel:0422847554">0422 847 554</a>
+            </div>
+            <div>
+              <span class="label">Email</span>
+              <a href="mailto:jessica@speechmadesimple.com.au">jessica@<wbr>speechmadesimple.com.au</a>
+            </div>
+            <div>
+              <span class="label">Service area</span>
+              <b>Moonee Valley &amp; inner-west</b>
+            </div>
+            <div>
+              <span class="label">Hours</span>
+              <b>Mon–Thu</b>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Demo only — this form is wired up to your CMS in production.');">
+          <div class="row">
+            <div>
+              <label for="who">I am a</label>
+              <select id="who" required>
+                <option>Parent or carer</option>
+                <option>School or learning-support staff</option>
+                <option>Allied-health colleague</option>
+              </select>
+            </div>
+            <div>
+              <label for="cname">Your name</label>
+              <input id="cname" type="text" placeholder="First name" required />
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="cphone">Phone</label>
+              <input id="cphone" type="tel" placeholder="04XX XXX XXX" />
+            </div>
+            <div>
+              <label for="cemail">Email</label>
+              <input id="cemail" type="email" placeholder="you@example.com" required />
+            </div>
+          </div>
+          <div>
+            <label for="cmsg">What you're noticing</label>
+            <textarea id="cmsg" placeholder="A sentence or two is plenty."></textarea>
+          </div>
+          <button type="submit">Send enquiry →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="sms-footer" role="contentinfo">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-mark">
+            <svg width="32" height="28" viewBox="0 0 230 195" fill="none" aria-hidden="true">
+              <path d="M86 6C46 6 14 38 14 78C14 100 25 120 43 132L30 182L75 146C79 147 82 148 86 148C130 148 158 115 158 78C158 38 128 6 86 6Z" fill="#5A358C"/>
+              <path d="M150 26L174 36L154 50Z" fill="#5A358C"/>
+              <circle cx="124" cy="46" r="6.5" fill="#FFF6EB"/>
+              <path d="M162 52C134 52 110 76 110 102C110 120 119 135 131 143L121 188L152 155C155 156 158 157 162 157C188 157 210 134 210 102C210 76 188 52 162 52Z" fill="#FF8A2B"/>
+              <path d="M204 82L224 92L204 102Z" fill="#FF8A2B"/>
+              <circle cx="188" cy="85" r="5" fill="#FFF6EB"/>
+            </svg>
+            <span class="wordmark">Speech Made Simple<small>Paediatric speech · Vic</small></span>
+          </div>
+          <div class="footer-tag">"Their turn to pop is coming."</div>
+        </div>
+        <div class="footer-col">
+          <h5>The practice</h5>
+          <ul>
+            <li><a href="#site-services">Services</a></li>
+            <li><a href="#site-schools">For schools</a></li>
+            <li><a href="#site-about">About</a></li>
+            <li><a href="#site-fees">Fees</a></li>
+            <li><a href="#site-faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Get in touch</h5>
+          <ul>
+            <li><a href="tel:0422847554">0422 847 554</a></li>
+            <li><a href="mailto:jessica@speechmadesimple.com.au">jessica@<wbr>speechmadesimple.com.au</a></li>
+            <li>Mon–Thu</li>
+            <li>Moonee Valley, VIC</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Belonging to</h5>
+          <ul>
+            <li>Speech Pathology Australia</li>
+            <li>Medicare Australia</li>
+            <li>Hanen-trained</li>
+            <li>Lidcombe-trained</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 Speech Made Simple</div>
+        <div>Privacy · Child-safe policy</div>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /.site-view -->
+
+
+<script>
+(function(){
+  // Mark JS as ready — CSS uses this to swap from no-JS layout
+  // (everything visible) to JS-enhanced layout (proposal vs demo toggle).
+  document.documentElement.classList.add('js-ready');
+
+  const body = document.body;
+  const proposal = document.getElementById('proposal');
+  const siteView = document.getElementById('siteView');
+  const returnBtn = document.getElementById('returnToDeck');
+  const burger = document.getElementById('burger');
+
+  function launchDemo(e){
+    if (e) e.preventDefault();
+    body.classList.add('demo-mode');
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    setTimeout(() => {
+      const h1 = document.getElementById('hero-heading');
+      if (h1) h1.setAttribute('tabindex', '-1'), h1.focus({ preventScroll: true });
+    }, 50);
+  }
+
+  function returnToDeck(){
+    body.classList.remove('demo-mode');
+    body.classList.remove('menu-open');
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+
+  ['launchDemoTop','launchDemoHero','launchDemoMain'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', launchDemo);
+  });
+  if (returnBtn) returnBtn.addEventListener('click', returnToDeck);
+
+  if (burger){
+    burger.addEventListener('click', () => {
+      body.classList.toggle('menu-open');
+      const open = body.classList.contains('menu-open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+  document.querySelectorAll('[data-mm]').forEach(a => {
+    a.addEventListener('click', () => body.classList.remove('menu-open'));
+  });
+
+  // Quiet reveal
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = 1;
+          e.target.style.transform = 'translateY(0)';
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -10% 0px' });
+
+    document.querySelectorAll(
+      '.sms-promise, .sms-services, .sms-schools, .sms-quotes, .sms-steps, .sms-fees, .sms-about, .sms-faq, .sms-contact, .deck-section, .launch-block'
+    ).forEach(el => {
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(10px)';
+      el.style.transition = 'opacity .65s ease, transform .65s ease';
+      observer.observe(el);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -17,14 +17,21 @@
        ============================================================ */
     :root {
       /* TWNY mode (proposal) — default */
-      --bg: #FAFAF8;
-      --surface: #FFFFFF;
-      --ink: #0F1419;
-      --ink-quiet: #5A6168;
-      --caption: #8A8F95;
-      --line: #E6E4DF;
-      --accent: #1B5A8C;
-      --accent-soft: #E8EFF5;
+      --bg: #F8F6F1;
+      --surface: #FFFDF9;
+      --ink: #11171C;
+      --ink-quiet: #5C6267;
+      --caption: #888A86;
+      --line: #E2DDD2;
+      --accent: #225A79;
+      --accent-soft: #E9F0F1;
+      --twny-blue: #225A79;
+      --client-purple: #3B2C5E;
+      --client-gold: #B8924D;
+      --client-ground: #FBF8F2;
+      --client-wash: #EFE9F5;
+      --gold: #B8924D;
+      --gold-soft: #F2EBDA;
 
       /* Typography defaults */
       --font-ui: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -282,6 +289,17 @@
       backdrop-filter: saturate(180%) blur(14px);
       -webkit-backdrop-filter: saturate(180%) blur(14px);
     }
+    .mode-shell::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--twny-blue), var(--client-purple) 62%, var(--client-gold));
+      opacity: 0.32;
+      pointer-events: none;
+    }
     @media (min-width: 768px) { .mode-shell { padding: 10px 48px; } }
     @media (max-width: 640px) {
       :root { --mode-bar-h: 92px; }
@@ -293,14 +311,27 @@
     }
     .mode-brand {
       display: inline-flex;
-      align-items: baseline;
-      gap: 6px;
+      align-items: center;
+      gap: 8px;
       font-weight: 700;
-      letter-spacing: -0.006em;
+      letter-spacing: 0.01em;
       color: var(--ink);
       white-space: nowrap;
+      text-transform: uppercase;
+      font-size: 13px;
     }
-    .mode-brand .dot { color: #1B5A8C; }
+    .mode-brand__client {
+      color: color-mix(in srgb, var(--client-purple) 82%, var(--ink) 18%);
+      text-transform: none;
+      letter-spacing: 0;
+      font-weight: 600;
+    }
+    .mode-separator {
+      width: 1px;
+      height: 16px;
+      background: linear-gradient(180deg, var(--twny-blue), var(--client-gold));
+      opacity: 0.55;
+    }
     .mode-context {
       color: var(--ink-quiet);
       font-size: 12px;
@@ -314,8 +345,8 @@
       padding: 4px;
       border: 1px solid var(--line);
       border-radius: 999px;
-      background: var(--surface);
-      box-shadow: 0 8px 24px rgba(15,20,25,0.04);
+      background: color-mix(in srgb, var(--surface) 92%, var(--client-ground) 8%);
+      box-shadow: 0 8px 24px rgba(31,27,46,0.035);
     }
     .mode-tab {
       min-height: 34px;
@@ -331,6 +362,9 @@
       background: var(--accent);
       color: #fff;
     }
+    body.mode-proposal .mode-tab.is-active {
+      background: var(--twny-blue);
+    }
     @media (max-width: 400px) {
       .mode-tabs { width: 100%; }
       .mode-tab { flex: 1; padding: 8px 10px; }
@@ -339,7 +373,7 @@
     .transition-overlay {
       position: fixed;
       inset: 0;
-      background: var(--accent);
+      background: linear-gradient(90deg, var(--twny-blue), var(--client-purple));
       z-index: 200;
       pointer-events: none;
       opacity: 0;
@@ -380,14 +414,20 @@
     @media (min-width: 768px) { .pframe__inner { padding: 18px 48px; } }
     .pmark {
       font-weight: 600;
-      font-size: 16px;
-      letter-spacing: -0.006em;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       display: inline-flex;
-      align-items: baseline;
-      gap: 2px;
+      align-items: center;
+      gap: 10px;
     }
-    .pmark .dot { color: var(--accent); }
-    .pmark .sub { font-size: 12px; color: var(--ink-quiet); margin-left: 12px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
+    .pmark .bridge {
+      width: 26px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--twny-blue), var(--client-purple));
+      opacity: 0.7;
+    }
+    .pmark .sub { font-size: 12px; color: var(--ink-quiet); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
     @media (max-width: 600px) { .pmark .sub { display: none; } }
 
     .pmeta { font-size: 12px; color: var(--ink-quiet); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
@@ -530,12 +570,12 @@
       font-family: var(--font-serif);
       font-weight: 400;
       font-size: 28px;
-      color: #3B2C5E;
+      color: var(--client-purple);
       letter-spacing: 0;
     }
     .evo-mark-evolved::after {
       content: ".";
-      color: #B8924D;
+      color: var(--client-gold);
       margin-left: 1px;
     }
 
@@ -543,13 +583,15 @@
       margin-top: var(--s-6);
       display: grid;
       gap: var(--s-5);
+      padding-top: var(--s-5);
+      border-top: 1px solid color-mix(in srgb, var(--line) 76%, var(--client-purple) 24%);
     }
     .brand-kit__hero {
       padding: var(--s-5);
-      border: 1px solid var(--line);
+      border: 1px solid color-mix(in srgb, var(--line) 78%, var(--client-purple) 22%);
       border-radius: 16px;
       background:
-        linear-gradient(135deg, #FBF8F2 0%, #FFFFFF 58%, #EFE9F5 100%);
+        linear-gradient(135deg, var(--client-ground) 0%, var(--surface) 56%, var(--client-wash) 100%);
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--s-5);
@@ -565,9 +607,9 @@
       font-size: clamp(38px, 5.2vw, 72px);
       line-height: 1.04;
       letter-spacing: -0.008em;
-      color: #3B2C5E;
+      color: var(--client-purple);
     }
-    .brand-wordmark span { color: #B8924D; }
+    .brand-wordmark span { color: var(--client-gold); }
     .brand-kit__note {
       color: var(--ink-quiet);
       max-width: 48ch;
@@ -629,7 +671,7 @@
       font-weight: 400;
       line-height: 1.22;
       letter-spacing: 0;
-      color: #3B2C5E;
+      color: var(--client-purple);
     }
     .brand-sample__body {
       margin-top: var(--s-3);
@@ -648,12 +690,12 @@
       border-radius: 999px;
       font-size: 13px;
       font-weight: 700;
-      background: #3B2C5E;
+      background: var(--client-purple);
       color: #fff;
     }
     .brand-mini-btn.is-secondary {
       background: #F2EBDA;
-      color: #3B2C5E;
+      color: var(--client-purple);
     }
     .brand-module-row {
       margin-top: var(--s-5);
@@ -666,7 +708,7 @@
       padding: var(--s-4);
       border-radius: 12px;
       border: 1px solid #E8E2D5;
-      background: #FBF8F2;
+      background: var(--client-ground);
     }
     .brand-module strong {
       display: block;
@@ -685,12 +727,15 @@
     /* Section 7 — enter */
     .p-enter {
       padding: var(--s-8) 0;
-      background: linear-gradient(180deg, var(--bg) 0%, var(--accent-soft) 100%);
+      background:
+        linear-gradient(180deg, var(--bg) 0%, color-mix(in srgb, var(--accent-soft) 72%, var(--client-wash) 28%) 100%);
       text-align: center;
     }
     .p-enter .h-1 { max-width: 22ch; margin-left: auto; margin-right: auto; }
     .p-enter .lede { margin: var(--s-4) auto 0; }
     .p-enter .btn-large { margin-top: var(--s-6); }
+    .p-enter .btn-primary { background: var(--client-purple); }
+    .p-enter .btn-primary:hover { background: color-mix(in srgb, var(--client-purple) 88%, #000 12%); }
     .p-enter .small {
       margin-top: var(--s-4);
       font-size: 13px;
@@ -903,7 +948,7 @@
       background:
         linear-gradient(180deg, rgba(31,27,46,0.08), rgba(31,27,46,0.5)),
         radial-gradient(circle at 25% 18%, rgba(248,238,211,0.88), transparent 34%),
-        linear-gradient(135deg, #d6c2a3 0%, #b58e65 42%, #3b2c5e 100%);
+        linear-gradient(135deg, #d6c2a3 0%, #b58e65 42%, var(--client-purple) 100%);
       border: 1px solid color-mix(in srgb, var(--line) 72%, var(--accent) 28%);
       display: flex;
       flex-direction: column;
@@ -1879,12 +1924,16 @@
   <div class="transition-overlay" id="transitionOverlay" aria-hidden="true"></div>
 
   <nav class="mode-shell" aria-label="Experience mode">
-    <a href="#intro" class="mode-brand" id="modeBrand">twny<span class="dot">.</span></a>
+    <a href="#intro" class="mode-brand" id="modeBrand">
+      <span>TWNY</span>
+      <span class="mode-separator" aria-hidden="true"></span>
+      <span class="mode-brand__client">First Finance</span>
+    </a>
     <div class="mode-tabs" role="group" aria-label="Switch between proposal and future-state demo">
       <button class="mode-tab is-active" id="proposalModeBtn" type="button" aria-pressed="true">Proposal</button>
       <button class="mode-tab" id="demoModeBtn" type="button" aria-pressed="false">Future-State Demo</button>
     </div>
-    <span class="mode-context">First Finance · Modernisation review</span>
+    <span class="mode-context">Modernisation review · proposal environment</span>
   </nav>
 
   <!-- ========================================================
@@ -1894,7 +1943,7 @@
 
     <header class="pframe" id="pframe" role="banner">
       <div class="pframe__inner">
-        <a href="#intro" class="pmark">twny<span class="dot">.</span><span class="sub">First Finance · Modernisation Review</span></a>
+        <a href="#intro" class="pmark">TWNY<span class="bridge" aria-hidden="true"></span><span class="sub">First Finance · Modernisation Review</span></a>
         <p class="pmeta"><span>Prepared for Craig &amp; Ben Walker · </span>2026</p>
       </div>
     </header>
@@ -2059,24 +2108,24 @@
                 <p class="section-label">Logo direction</p>
                 <p class="brand-wordmark">first finance<span>.</span></p>
               </div>
-              <p class="brand-kit__note">A cleaner wordmark keeps the name simple and recognisable. The gold remains a small point of emphasis, not a decorative layer.</p>
+              <p class="brand-kit__note">A cleaner wordmark keeps the name simple and recognisable. The existing purple and gold cues are kept, then quietened and applied with more consistency.</p>
             </div>
 
             <div class="brand-swatches" aria-label="Evolved First Finance colours">
-              <div class="brand-swatch" style="background: #3B2C5E;">
-                <strong>Evolved purple</strong>
+              <div class="brand-swatch" style="background: var(--client-purple);">
+                <strong>Deepened purple</strong>
                 <span>#3B2C5E</span>
               </div>
-              <div class="brand-swatch" style="background: #B8924D;">
-                <strong>Warm gold</strong>
+              <div class="brand-swatch" style="background: var(--client-gold);">
+                <strong>Quieter gold</strong>
                 <span>#B8924D</span>
               </div>
-              <div class="brand-swatch is-light" style="background: #FBF8F2;">
-                <strong>Paper ground</strong>
+              <div class="brand-swatch is-light" style="background: var(--client-ground);">
+                <strong>Warm site base</strong>
                 <span>#FBF8F2</span>
               </div>
-              <div class="brand-swatch is-light" style="background: #EFE9F5;">
-                <strong>Purple wash</strong>
+              <div class="brand-swatch is-light" style="background: var(--client-wash);">
+                <strong>Soft identity wash</strong>
                 <span>#EFE9F5</span>
               </div>
             </div>
@@ -2917,7 +2966,7 @@
           demoModeBtn.setAttribute('aria-pressed', demo ? 'true' : 'false');
         }
         if (modeBrand) {
-          modeBrand.innerHTML = demo ? 'first finance<span class="dot">.</span>' : 'twny<span class="dot">.</span>';
+          modeBrand.innerHTML = '<span>TWNY</span><span class="mode-separator" aria-hidden="true"></span><span class="mode-brand__client">First Finance</span>';
           modeBrand.href = demo ? '#' : '#intro';
         }
       }

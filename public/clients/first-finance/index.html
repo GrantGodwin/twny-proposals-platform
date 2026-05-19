@@ -417,53 +417,6 @@
     }
 
     /* ============================================================
-       PROPOSAL MODE — top frame
-       ============================================================ */
-    .pframe {
-      position: sticky;
-      top: var(--mode-bar-h);
-      z-index: 50;
-      background: color-mix(in srgb, var(--twny-panel) 94%, transparent);
-      backdrop-filter: saturate(180%) blur(14px);
-      -webkit-backdrop-filter: saturate(180%) blur(14px);
-      border-bottom: 1px solid rgba(34, 211, 238, 0.12);
-      transition: border-color 220ms var(--ease);
-      color: #F5FFFE;
-    }
-    .pframe.is-scrolled { border-color: rgba(34, 211, 238, 0.26); }
-    .pframe__inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 13px 24px;
-      max-width: 1280px;
-      margin: 0 auto;
-    }
-    @media (min-width: 768px) { .pframe__inner { padding: 13px 48px; } }
-    .pmark {
-      font-weight: 600;
-      font-size: 13px;
-      letter-spacing: 0.01em;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: color 180ms var(--ease);
-    }
-    .pmark:hover { color: #FFFFFF; }
-    .pmark .bridge {
-      width: 26px;
-      height: 1px;
-      background: linear-gradient(90deg, var(--twny-cyan), var(--client-gold));
-      opacity: 0.82;
-    }
-    .pmark .sub { font-size: 12px; color: var(--twny-muted); font-weight: 500; letter-spacing: 0.02em; }
-    @media (max-width: 600px) { .pmark .sub { display: none; } }
-
-    .pmeta { font-size: 12px; color: var(--twny-muted); font-weight: 500; letter-spacing: 0.02em; }
-    .pmeta span { display: none; }
-    @media (min-width: 768px) { .pmeta span { display: inline; } }
-
-    /* ============================================================
        PROPOSAL — sections
        ============================================================ */
     .p-section { padding: var(--s-7) 0; position: relative; }
@@ -1961,7 +1914,7 @@
       <button class="mode-tab is-active" id="proposalModeBtn" type="button" aria-pressed="true">Proposal</button>
       <button class="mode-tab" id="demoModeBtn" type="button" aria-pressed="false">Website demo</button>
     </div>
-    <span class="mode-context">Website and systems update · proposal environment</span>
+    <span class="mode-context">Original site → what changed → working demo</span>
   </nav>
 
   <!-- ========================================================
@@ -1969,19 +1922,12 @@
        ======================================================== -->
   <div id="proposal-app">
 
-    <header class="pframe" id="pframe" role="banner">
-      <div class="pframe__inner">
-        <a href="#intro" class="pmark">twny<span class="bridge" aria-hidden="true"></span><span class="sub">First Finance · Website Update</span></a>
-        <p class="pmeta"><span>Proposal environment · </span>2026</p>
-      </div>
-    </header>
-
     <main>
 
       <!-- Section 1 — twny intro -->
       <section id="intro" class="p-section p-intro">
         <div class="wrap">
-          <p class="eyebrow reveal">A practical website update from twny</p>
+          <p class="eyebrow reveal">Where we are starting</p>
           <h1 class="h-display reveal" data-d="1" style="margin-top: var(--s-4); max-width: 22ch;">
             We built the original First Finance site years ago. It worked well for the business then. The business has grown since.
           </h1>
@@ -1997,7 +1943,7 @@
       <!-- Section 2 — What we observed -->
       <section id="observed" class="p-section">
         <div class="wrap">
-          <p class="section-label reveal">What has changed</p>
+          <p class="section-label reveal">What changed since the first site</p>
           <div class="grid-2-split" style="margin-top: var(--s-4);">
             <h2 class="h-1 reveal" data-d="1">The current site is showing an older version of First Finance.</h2>
             <p class="lede quiet reveal" data-d="2">That happens naturally. Good businesses keep moving; websites usually do not unless we come back to them.</p>
@@ -2036,7 +1982,7 @@
       <!-- Section 3 — Why this matters -->
       <section id="matters" class="p-section">
         <div class="wrap">
-          <p class="section-label reveal">Why it matters</p>
+          <p class="section-label reveal">Why the site should catch up</p>
           <div class="grid-2-split" style="margin-top: var(--s-4);">
             <h2 class="h-1 reveal" data-d="1">The issue is fit, not effort.</h2>
             <div class="stack-l">
@@ -2054,7 +2000,7 @@
       <!-- Section 4 — What's already strong -->
       <section id="strengths" class="p-section">
         <div class="wrap">
-          <p class="section-label reveal">What should carry forward</p>
+          <p class="section-label reveal">What should stay familiar</p>
           <div class="grid-2-split" style="margin-top: var(--s-4);">
             <h2 class="h-1 reveal" data-d="1">The update should protect what clients already trust.</h2>
             <p class="lede quiet reveal" data-d="2">We do not need to make First Finance feel like a different business. We need to make the real business easier to understand.</p>
@@ -2088,7 +2034,7 @@
       <!-- Section 5 — What we'd update -->
       <section id="modernise" class="p-section">
         <div class="wrap">
-          <p class="section-label reveal">What we would update</p>
+          <p class="section-label reveal">What we would make clearer</p>
           <h2 class="h-1 reveal" data-d="1" style="margin-top: var(--s-4); max-width: 22ch;">A clearer site for the business First Finance already is.</h2>
 
           <ol class="item-list" style="list-style: none;">
@@ -2124,7 +2070,7 @@
       <!-- Section 6 — Brand evolution -->
       <section id="evolution" class="p-section">
         <div class="wrap">
-          <p class="section-label reveal">How the identity could be refreshed</p>
+          <p class="section-label reveal">How the identity carries forward</p>
           <div class="grid-2-split" style="margin-top: var(--s-4);">
             <h2 class="h-1 reveal" data-d="1">Keep the recognisable cues. Make them feel current and useful.</h2>
             <p class="lede quiet reveal" data-d="2">The useful move is not to throw away what people recognise. It is to clean it up and use it more consistently.</p>
@@ -2201,7 +2147,7 @@
       <!-- Section 7 — Enter the demo -->
       <section id="enter" class="p-enter">
         <div class="wrap-narrow">
-          <p class="section-label reveal">Website demo</p>
+          <p class="section-label reveal">What the next site could feel like</p>
           <h2 class="h-1 reveal" data-d="1" style="margin-top: var(--s-4);">
             Have a look at what this could feel like.
           </h2>
@@ -2219,7 +2165,7 @@
       <!-- Section 8 — Next steps (after return) -->
       <section id="next" class="p-section p-next">
         <div class="wrap">
-          <p class="section-label reveal">Where we would go from here</p>
+          <p class="section-label reveal">If this feels close</p>
           <h2 class="h-display reveal" data-d="1" style="margin-top: var(--s-4); max-width: 22ch;">
             The useful next step is to talk it through.
           </h2>
@@ -2239,7 +2185,7 @@
 
           <div class="signature">
             <span>First Finance website update</span>
-            <span>twny · 2026</span>
+            <span>twny</span>
           </div>
         </div>
       </section>
@@ -2248,7 +2194,7 @@
   </div>
 
   <!-- ========================================================
-       DEMO APP — Fullscreen First Finance future-state
+       DEMO APP — First Finance website demo
        ======================================================== -->
   <div id="demo-app">
 
@@ -2997,17 +2943,6 @@
           modeBrand.innerHTML = '<span>twny</span><span class="mode-separator" aria-hidden="true"></span><span class="mode-brand__client">First Finance</span>';
           modeBrand.href = demo ? '#' : '#intro';
         }
-      }
-
-      // ---------- Sticky frame border on scroll ----------
-      const pframe = document.getElementById('pframe');
-      if (pframe) {
-        const onScroll = () => {
-          if (window.scrollY > 12) pframe.classList.add('is-scrolled');
-          else pframe.classList.remove('is-scrolled');
-        };
-        window.addEventListener('scroll', onScroll, { passive: true });
-        onScroll();
       }
 
       // ---------- Mode switching ----------

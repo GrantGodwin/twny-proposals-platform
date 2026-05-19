@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>First Finance — A Modernisation Concept by TWNY</title>
-  <meta name="description" content="A modernisation concept and immersive future-state walkthrough for First Finance Solutions, made by TWNY.">
+  <title>First Finance — Modernisation Review by TWNY</title>
+  <meta name="description" content="A practical modernisation review and future-state demo for First Finance Solutions, prepared by TWNY.">
   <meta name="robots" content="noindex">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,6 +47,7 @@
 
       /* Layout */
       --measure: 64ch;
+      --mode-bar-h: 62px;
     }
 
     body.mode-demo {
@@ -266,6 +267,75 @@
     body.mode-demo #proposal-app { display: none; }
     body.mode-demo #demo-app { display: block; }
 
+    .mode-shell {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      min-height: var(--mode-bar-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s-4);
+      padding: 10px 24px;
+      background: color-mix(in srgb, var(--bg) 94%, transparent);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: saturate(180%) blur(14px);
+      -webkit-backdrop-filter: saturate(180%) blur(14px);
+    }
+    @media (min-width: 768px) { .mode-shell { padding: 10px 48px; } }
+    @media (max-width: 640px) {
+      :root { --mode-bar-h: 104px; }
+      .mode-shell {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+    .mode-brand {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .mode-brand .dot { color: #1B5A8C; }
+    .mode-context {
+      color: var(--ink-quiet);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    @media (max-width: 760px) { .mode-context { display: none; } }
+    .mode-tabs {
+      display: inline-flex;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      box-shadow: 0 8px 24px rgba(15,20,25,0.04);
+    }
+    .mode-tab {
+      min-height: 34px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-quiet);
+      transition: background-color 180ms var(--ease), color 180ms var(--ease);
+      white-space: nowrap;
+    }
+    .mode-tab.is-active {
+      background: var(--accent);
+      color: #fff;
+    }
+    @media (max-width: 400px) {
+      .mode-tabs { width: 100%; }
+      .mode-tab { flex: 1; padding: 8px 10px; }
+    }
+
     .transition-overlay {
       position: fixed;
       inset: 0;
@@ -290,7 +360,7 @@
        ============================================================ */
     .pframe {
       position: sticky;
-      top: 0;
+      top: var(--mode-bar-h);
       z-index: 50;
       background: color-mix(in srgb, var(--bg) 92%, transparent);
       backdrop-filter: saturate(180%) blur(14px);
@@ -468,6 +538,149 @@
       margin-left: 1px;
     }
 
+    .brand-kit {
+      margin-top: var(--s-6);
+      display: grid;
+      gap: var(--s-5);
+    }
+    .brand-kit__hero {
+      padding: var(--s-6);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background:
+        linear-gradient(135deg, #FBF8F2 0%, #FFFFFF 58%, #EFE9F5 100%);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-5);
+    }
+    @media (min-width: 900px) {
+      .brand-kit__hero {
+        grid-template-columns: 1fr 1.1fr;
+        align-items: end;
+      }
+    }
+    .brand-wordmark {
+      font-family: var(--font-serif);
+      font-size: clamp(46px, 7vw, 92px);
+      line-height: 0.95;
+      letter-spacing: -0.022em;
+      color: #3B2C5E;
+    }
+    .brand-wordmark span { color: #B8924D; }
+    .brand-kit__note {
+      color: var(--ink-quiet);
+      max-width: 48ch;
+      font-size: 15.5px;
+      line-height: 1.6;
+    }
+    .brand-swatches {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--s-3);
+    }
+    @media (min-width: 720px) { .brand-swatches { grid-template-columns: repeat(4, 1fr); } }
+    .brand-swatch {
+      min-height: 128px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.07);
+      padding: var(--s-4);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      color: #fff;
+    }
+    .brand-swatch.is-light { color: #1F1B2E; }
+    .brand-swatch strong {
+      display: block;
+      font-size: 13px;
+      line-height: 1.3;
+    }
+    .brand-swatch span {
+      display: block;
+      margin-top: 4px;
+      font-family: 'SF Mono', ui-monospace, Menlo, monospace;
+      font-size: 12px;
+      opacity: 0.76;
+    }
+    .brand-samples {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-4);
+    }
+    @media (min-width: 900px) { .brand-samples { grid-template-columns: 1fr 1fr; } }
+    .brand-sample {
+      padding: var(--s-5);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+    .brand-sample__label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--caption);
+      font-weight: 700;
+    }
+    .brand-sample__title {
+      margin-top: var(--s-3);
+      font-family: var(--font-serif);
+      font-size: clamp(24px, 2.4vw, 34px);
+      font-weight: 400;
+      line-height: 1.16;
+      letter-spacing: -0.012em;
+      color: #3B2C5E;
+    }
+    .brand-sample__body {
+      margin-top: var(--s-3);
+      color: var(--ink-quiet);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .brand-button-row {
+      margin-top: var(--s-4);
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .brand-mini-btn {
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      background: #3B2C5E;
+      color: #fff;
+    }
+    .brand-mini-btn.is-secondary {
+      background: #F2EBDA;
+      color: #3B2C5E;
+    }
+    .brand-module-row {
+      margin-top: var(--s-5);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-3);
+    }
+    @media (min-width: 760px) { .brand-module-row { grid-template-columns: repeat(3, 1fr); } }
+    .brand-module {
+      padding: var(--s-4);
+      border-radius: 12px;
+      border: 1px solid #E8E2D5;
+      background: #FBF8F2;
+    }
+    .brand-module strong {
+      display: block;
+      color: #1F1B2E;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+    .brand-module span {
+      display: block;
+      margin-top: 6px;
+      color: #5C5670;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
     /* Section 7 — enter */
     .p-enter {
       padding: var(--s-9) 0;
@@ -507,7 +720,7 @@
        ============================================================ */
     .dnav {
       position: sticky;
-      top: 0;
+      top: var(--mode-bar-h);
       z-index: 50;
       background: color-mix(in srgb, var(--bg) 92%, transparent);
       backdrop-filter: saturate(180%) blur(14px);
@@ -1654,34 +1867,20 @@
       color: var(--caption);
     }
 
-    /* ============================================================
-       CONCEPT BADGE
-       ============================================================ */
-    .concept-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      background: var(--gold-soft);
-      border-radius: 999px;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink-quiet);
-      font-weight: 600;
-    }
-    .concept-badge::before {
-      content: "";
-      width: 5px; height: 5px;
-      background: var(--gold);
-      border-radius: 50%;
-    }
-
   </style>
 </head>
 <body class="mode-proposal">
 
   <div class="transition-overlay" id="transitionOverlay" aria-hidden="true"></div>
+
+  <nav class="mode-shell" aria-label="Experience mode">
+    <a href="#intro" class="mode-brand" id="modeBrand">twny<span class="dot">.</span></a>
+    <div class="mode-tabs" role="group" aria-label="Switch between proposal and future-state demo">
+      <button class="mode-tab is-active" id="proposalModeBtn" type="button" aria-pressed="true">Proposal</button>
+      <button class="mode-tab" id="demoModeBtn" type="button" aria-pressed="false">Future-State Demo</button>
+    </div>
+    <span class="mode-context">First Finance · Modernisation review</span>
+  </nav>
 
   <!-- ========================================================
        PROPOSAL APP
@@ -1690,8 +1889,8 @@
 
     <header class="pframe" id="pframe" role="banner">
       <div class="pframe__inner">
-        <a href="#intro" class="pmark">twny<span class="dot">.</span><span class="sub">First Finance · Modernisation Concept</span></a>
-        <p class="pmeta"><span>Made for Craig &amp; Ben Walker · </span>2026</p>
+        <a href="#intro" class="pmark">twny<span class="dot">.</span><span class="sub">First Finance · Modernisation Review</span></a>
+        <p class="pmeta"><span>Prepared for Craig &amp; Ben Walker · </span>2026</p>
       </div>
     </header>
 
@@ -1700,15 +1899,15 @@
       <!-- Section 1 — TWNY intro -->
       <section id="intro" class="p-section p-intro">
         <div class="wrap">
-          <p class="eyebrow reveal">A modernisation concept by TWNY</p>
+          <p class="eyebrow reveal">A practical modernisation review by TWNY</p>
           <h1 class="h-display reveal" data-d="1" style="margin-top: var(--s-4); max-width: 18ch;">
-            We help businesses modernise the way they show up online.
+            The site we built then did its job. First Finance has grown beyond what it was built to say.
           </h1>
           <p class="lede reveal" data-d="2" style="margin-top: var(--s-5);">
-            We're TWNY — a Melbourne technology practice. For most of the last decade we've helped businesses modernise their cloud, their tools, and the way their teams work. Increasingly, we've found that the part of a business clients see first — the website — is the part most in need of catching up. So we made it part of what we do.
+            TWNY built the current First Finance website years ago. It served the business well for the stage it was in: a clear online presence, a simple explanation of services, and a place for referred clients to confirm they were in the right hands.
           </p>
           <p class="lede reveal quiet" data-d="3" style="margin-top: var(--s-4);">
-            This is a modernisation concept for First Finance Solutions. It's exploratory, not a formal proposal yet. The first part is a short walkthrough of what we observed and what we'd change. The second part is the future-state site itself — built far enough that you can step into it and walk around.
+            The business has moved on. Craig and Ben now represent a stronger story than the original site was designed to carry: family continuity, long client relationships, industry recognition, and a practice that feels more established than its digital surface currently suggests. This review is about bringing the website up to the business, not replacing the relationship behind it.
           </p>
         </div>
       </section>
@@ -1716,37 +1915,37 @@
       <!-- Section 2 — What we observed -->
       <section id="observed" class="p-section">
         <div class="wrap">
-          <p class="section-label reveal">What we observed</p>
+          <p class="section-label reveal">What has changed</p>
           <div class="grid-2-split" style="margin-top: var(--s-4);">
-            <h2 class="h-1 reveal" data-d="1">A small set of observations from time spent inside the current site.</h2>
-            <p class="lede quiet reveal" data-d="2">Not a critique — just what's there, plainly stated. Five things stood out.</p>
+            <h2 class="h-1 reveal" data-d="1">The current site is telling an older version of a stronger business.</h2>
+            <p class="lede quiet reveal" data-d="2">This is the natural problem good businesses create when they keep growing. The original site stayed still while the practice kept earning trust.</p>
           </div>
 
           <ol class="item-list" style="list-style: none;">
             <li class="item reveal">
               <span class="item__num">01</span>
-              <h3 class="item__title">A 2017-era theme is carrying a 33-year practice.</h3>
-              <p class="item__body">The current site is a WordPress theme built before First Finance had won most of its current awards or done most of its current work. It hasn't kept up with the practice.</p>
+              <h3 class="item__title">The business has outgrown the original brief.</h3>
+              <p class="item__body">The existing site was right for a simpler online presence. It now needs to carry a more mature story: thirty-three years in practice, a mixed residential and commercial book, and a client base that has stayed for decades.</p>
             </li>
             <li class="item reveal">
               <span class="item__num">02</span>
-              <h3 class="item__title">The strongest writing on the site sits half-buried.</h3>
-              <p class="item__body">Craig's bio — Blackburn Vikings basketball, the beach house on the Peninsula, the line about doing business for clients' kids — is excellent. It's the most human writing on the page. It deserves a better frame.</p>
+              <h3 class="item__title">The next generation is now part of the trust story.</h3>
+              <p class="item__body">Ben joining Craig is not just an internal succession detail. It is a client promise: the relationship can continue past one person and into the next generation of families and business owners.</p>
             </li>
             <li class="item reveal">
               <span class="item__num">03</span>
-              <h3 class="item__title">Long-term testimonials are paired with generic avatars.</h3>
-              <p class="item__body">Five real testimonials, two describing 15- and 20-year relationships explicitly. All paired with the same grey placeholder face. The substance is strong; the presentation undersells it.</p>
+              <h3 class="item__title">Referral clients now do more online checking.</h3>
+              <p class="item__body">The referral still matters most. But even referred clients look online before they call, and sometimes after. The site should quietly confirm the trust they have already been given.</p>
             </li>
             <li class="item reveal">
               <span class="item__num">04</span>
-              <h3 class="item__title">Industry recognition is invisible.</h3>
-              <p class="item__body">Craig's Elite Broker profile in <em>The Adviser</em> (Aug 2024). Ben's Buyers Choice Asset Finance Broker of the Year, MFAA Young Professional state finalist, Australian Mortgage Excellence Award, Buyers Choice MD Award. None of this appears anywhere visible on the current site.</p>
+              <h3 class="item__title">The credibility is stronger than the surface shows.</h3>
+              <p class="item__body">Craig's Elite Broker recognition, Ben's award shelf, the lender panel, and the long-term testimonials are all real. They do not need hype. They just need to be visible at the right weight.</p>
             </li>
             <li class="item reveal">
               <span class="item__num">05</span>
-              <h3 class="item__title">Every visitor lands on the same button.</h3>
-              <p class="item__body">"GET STARTED." But a first-home buyer, a multi-property investor, and a business owner financing a commercial purchase all need different things from the first scroll. The site treats them identically.</p>
+              <h3 class="item__title">Clients arrive with specific situations.</h3>
+              <p class="item__body">A refinancing family, a portfolio investor, and a business owner buying premises all need different reassurance. The site can be clearer without becoming complicated.</p>
             </li>
           </ol>
         </div>
@@ -1755,15 +1954,15 @@
       <!-- Section 3 — Why this matters -->
       <section id="matters" class="p-section">
         <div class="wrap">
-          <p class="section-label reveal">Why this matters</p>
+          <p class="section-label reveal">Why it matters</p>
           <div class="grid-2-split" style="margin-top: var(--s-4);">
-            <h2 class="h-1 reveal" data-d="1">The website is telling a smaller story than the business.</h2>
+            <h2 class="h-1 reveal" data-d="1">This is not a problem of effort. It is a problem of fit.</h2>
             <div class="stack-l">
               <p class="body-l reveal quiet" data-d="1">
-                First Finance has thirty-three years of practice, two named principals, an industry-recognised award shelf, a multi-decade client book, and a referral network that turns each engagement into a coordinated financial conversation. The current website tells the story of a generic Melbourne broker established in 2017.
+                The current website does not fail because it was poorly made. It reflects the stage it was built for. First Finance now needs a digital presence that shows the business as it is today: established, family-led, commercially capable, and still personal.
               </p>
               <p class="body-l reveal quiet" data-d="2">
-                Sophisticated clients pattern-match instantly on visual quality. When the presentation undersells what's behind it, trust leaks at the top of the funnel — quietly, every week, without showing up anywhere measurable. The modernisation is closing that gap so the website tells the truth about the business.
+                That matters because the website sits inside a relationship-led buying process. It will not replace referrals, phone calls, accountant introductions, or long-standing client trust. It should support them, remove doubt, and make the next conversation easier.
               </p>
             </div>
           </div>
@@ -1773,32 +1972,32 @@
       <!-- Section 4 — What's already strong -->
       <section id="strengths" class="p-section">
         <div class="wrap">
-          <p class="section-label reveal">What's already strong</p>
+          <p class="section-label reveal">What should carry forward</p>
           <div class="grid-2-split" style="margin-top: var(--s-4);">
-            <h2 class="h-1 reveal" data-d="1">The substance is there. The brand has more equity than the current site uses.</h2>
-            <p class="lede quiet reveal" data-d="2">Before talking about what to change, a clearer view of what's already working — and worth keeping.</p>
+            <h2 class="h-1 reveal" data-d="1">The modernisation should protect what clients already trust.</h2>
+            <p class="lede quiet reveal" data-d="2">This is not a reinvention exercise. The value is in making the existing business easier to understand, not making it feel like someone else.</p>
           </div>
 
           <div class="strength-grid">
             <div class="strength reveal">
               <p class="strength__lbl">Strength · 01</p>
               <h3 class="strength__title">Thirty-three years of practice.</h3>
-              <p class="strength__body">Craig established First Finance in 1992 after eleven years at ANZ. The practice has operated continuously since. Most direct Melbourne competitors are a decade or two younger.</p>
+              <p class="strength__body">Craig established First Finance in 1992 after eleven years at ANZ. The continuity is real and should feel present without being overplayed.</p>
             </div>
             <div class="strength reveal" data-d="1">
               <p class="strength__lbl">Strength · 02</p>
               <h3 class="strength__title">A genuine family-led handover.</h3>
-              <p class="strength__body">Ben joined in 2015 — deliberately — to extend the practice past either individual broker. Rare in boutique broking. A real strategic asset: the next ten years of relationships are already underwritten.</p>
+              <p class="strength__body">Ben joined in 2015 to extend the practice. That gives clients confidence that the relationship has a future, not just a history.</p>
             </div>
             <div class="strength reveal">
               <p class="strength__lbl">Strength · 03</p>
               <h3 class="strength__title">A real award shelf.</h3>
-              <p class="strength__body">Craig's Elite Broker recognition from <em>The Adviser</em>. Ben's Buyers Choice Asset Finance Broker of the Year, his Australian Mortgage Excellence Award, MFAA Young Professional state finalist nomination, Buyers Choice Managing Director Award. Most boutique practices would lead with half of this.</p>
+              <p class="strength__body">Craig's Elite Broker recognition and Ben's awards deserve clearer placement. Presented plainly, they add confidence without making the site feel self-congratulatory.</p>
             </div>
             <div class="strength reveal" data-d="1">
               <p class="strength__lbl">Strength · 04</p>
               <h3 class="strength__title">A purple-and-gold identity already in place.</h3>
-              <p class="strength__body">The current visual identity uses purple as primary with gold as accent. That's a real foundation. The modernisation doesn't propose throwing it out — it proposes evolving it.</p>
+              <p class="strength__body">The existing purple and gold already belong to the business. The modernisation should refine that equity, not walk away from it.</p>
             </div>
           </div>
         </div>
@@ -1807,34 +2006,34 @@
       <!-- Section 5 — What we'd modernise -->
       <section id="modernise" class="p-section">
         <div class="wrap">
-          <p class="section-label reveal">What we'd modernise</p>
-          <h2 class="h-1 reveal" data-d="1" style="margin-top: var(--s-4); max-width: 18ch;">Five concrete moves.</h2>
+          <p class="section-label reveal">What we would update</p>
+          <h2 class="h-1 reveal" data-d="1" style="margin-top: var(--s-4); max-width: 18ch;">A clearer site for the business First Finance already is.</h2>
 
           <ol class="item-list" style="list-style: none;">
             <li class="item reveal">
               <span class="item__num">01</span>
-              <h3 class="item__title">Make the family-led continuity the centre of the brand.</h3>
-              <p class="item__body">It sits in a paragraph today. Move it to the top of the conversation. <em>Advisor for life, across generations</em> is true, evidenced over three decades, and unmatched by direct competitors. It should be the headline of the practice.</p>
+              <h3 class="item__title">Bring Craig and Ben forward.</h3>
+              <p class="item__body">The father-and-son continuity should be visible early because it explains why clients can trust the relationship to keep going.</p>
             </li>
             <li class="item reveal">
               <span class="item__num">02</span>
-              <h3 class="item__title">Surface the credentials.</h3>
-              <p class="item__body">Not a logo wall, not a glossy "awards" page — an honest acknowledgement of recognition, presented at the weight it deserves. Craig's industry profile and Ben's award shelf should be visible within thirty seconds of arrival.</p>
+              <h3 class="item__title">Show the credentials simply.</h3>
+              <p class="item__body">Recognition, licences, lender breadth, and experience should be easy to find. They should feel like proof points, not decoration.</p>
             </li>
             <li class="item reveal">
               <span class="item__num">03</span>
-              <h3 class="item__title">Reframe the testimonials as relationships.</h3>
-              <p class="item__body">Same clients, same words, but with timeframes and context. <em>Rob Lamers, Park Orchards, client since the early 2000s.</em> The product the practice sells is multi-decade trust. The testimonials should be the evidence the product works.</p>
+              <h3 class="item__title">Treat testimonials as relationships.</h3>
+              <p class="item__body">The existing client words are strong. Adding timeframes and context makes them feel like evidence of long-term trust, not generic social proof.</p>
             </li>
             <li class="item reveal">
               <span class="item__num">04</span>
-              <h3 class="item__title">Build three honest entry points for the real audience.</h3>
-              <p class="item__body"><em>I'm refinancing or upgrading my home. I'm building a property portfolio. I'm financing a business, commercial property, or major asset.</em> Three situations, three paths. Replaces a one-size-fits-all "Get Started" button.</p>
+              <h3 class="item__title">Organise services around real situations.</h3>
+              <p class="item__body">Home finance, portfolio finance, and business finance each need a different first answer. The site should help people recognise themselves quickly.</p>
             </li>
             <li class="item reveal">
               <span class="item__num">05</span>
-              <h3 class="item__title">Add tools and insights that earn their keep.</h3>
-              <p class="item__body">A real borrowing-capacity calculator. A refinance health-check. A quarterly note from Craig or Ben on shifts in lender appetite. Small surfaces, but each signals an active, current practice.</p>
+              <h3 class="item__title">Add useful working surfaces.</h3>
+              <p class="item__body">A borrowing estimate, refinance health check, process guide, and occasional market note all make the site feel active and practical.</p>
             </li>
           </ol>
         </div>
@@ -1843,104 +2042,74 @@
       <!-- Section 6 — Brand evolution -->
       <section id="evolution" class="p-section">
         <div class="wrap">
-          <p class="section-label reveal">The brand evolution</p>
+          <p class="section-label reveal">How the identity could evolve</p>
           <div class="grid-2-split" style="margin-top: var(--s-4);">
-            <h2 class="h-1 reveal" data-d="1">Aggressive evolution, not reinvention.</h2>
-            <p class="lede quiet reveal" data-d="2">What stays, what shifts, and why. The aim is for long-time clients to still recognise the brand, and for new ones to see a current practice.</p>
+            <h2 class="h-1 reveal" data-d="1">Keep the recognisable cues. Make them feel current and useful.</h2>
+            <p class="lede quiet reveal" data-d="2">The quickest way to show the shift is to apply it. Same business, same colours, same family-led trust — presented with more clarity.</p>
           </div>
 
-          <div class="evolution-block reveal">
-            <div class="evo-row">
-              <p class="evo-label">Preserved</p>
-              <div class="evo-current">
-                <p class="evo-tag">Kept as-is</p>
-                <p style="font-size: 15px; color: var(--ink-quiet); line-height: 1.55;">The First Finance name. The Walker family identity. The existing voice — Craig's About-page bio is some of the best writing on the current site and survives intact. The "client for life" ethos.</p>
+          <div class="brand-kit reveal">
+            <div class="brand-kit__hero">
+              <div>
+                <p class="section-label">Logo direction</p>
+                <p class="brand-wordmark">first finance<span>.</span></p>
               </div>
-              <div class="evo-evolved"></div>
+              <p class="brand-kit__note">A cleaner wordmark keeps the name simple and recognisable. The gold remains a small point of emphasis, not a decorative layer.</p>
             </div>
 
-            <div class="evo-row">
-              <p class="evo-label">Colour — Purple</p>
-              <div class="evo-current">
-                <p class="evo-tag">Current</p>
-                <div class="evo-swatches">
-                  <span class="swatch" style="background: #6B4E92;"></span>
-                  <span class="swatch-code">≈ #6B4E92</span>
+            <div class="brand-swatches" aria-label="Evolved First Finance colours">
+              <div class="brand-swatch" style="background: #3B2C5E;">
+                <strong>Evolved purple</strong>
+                <span>#3B2C5E</span>
+              </div>
+              <div class="brand-swatch" style="background: #B8924D;">
+                <strong>Warm gold</strong>
+                <span>#B8924D</span>
+              </div>
+              <div class="brand-swatch is-light" style="background: #FBF8F2;">
+                <strong>Paper ground</strong>
+                <span>#FBF8F2</span>
+              </div>
+              <div class="brand-swatch is-light" style="background: #EFE9F5;">
+                <strong>Purple wash</strong>
+                <span>#EFE9F5</span>
+              </div>
+            </div>
+
+            <div class="brand-samples">
+              <article class="brand-sample">
+                <p class="brand-sample__label">Homepage module</p>
+                <h3 class="brand-sample__title">Advisor for life. Across generations.</h3>
+                <p class="brand-sample__body">A warm introduction for referred clients who want to know who Craig and Ben are before making contact.</p>
+                <div class="brand-button-row">
+                  <span class="brand-mini-btn">Talk to us</span>
+                  <span class="brand-mini-btn is-secondary">See services</span>
                 </div>
-                <p style="font-size: 14px; color: var(--ink-quiet);">Saturated, bright, dated.</p>
-              </div>
-              <div class="evo-evolved">
-                <p class="evo-tag">Evolved</p>
-                <div class="evo-swatches">
-                  <span class="swatch" style="background: #3B2C5E;"></span>
-                  <span class="swatch-code">#3B2C5E</span>
+              </article>
+
+              <article class="brand-sample">
+                <p class="brand-sample__label">Proof module</p>
+                <h3 class="brand-sample__title">33 years, 35+ lenders, two generations.</h3>
+                <p class="brand-sample__body">Short, factual surfaces help the site feel credible without asking the visitor to read a long case for the business.</p>
+                <div class="brand-button-row">
+                  <span class="brand-mini-btn is-secondary">Craig Walker · Elite Broker</span>
+                  <span class="brand-mini-btn is-secondary">Ben Walker · CRN 480233</span>
                 </div>
-                <p style="font-size: 14px; color: var(--ink-quiet);">Deeper, more confident, contemporary.</p>
-              </div>
+              </article>
             </div>
 
-            <div class="evo-row">
-              <p class="evo-label">Colour — Gold</p>
-              <div class="evo-current">
-                <p class="evo-tag">Current</p>
-                <div class="evo-swatches">
-                  <span class="swatch" style="background: #D4AF37;"></span>
-                  <span class="swatch-code">≈ #D4AF37</span>
-                </div>
-                <p style="font-size: 14px; color: var(--ink-quiet);">Bright, used as highlight.</p>
+            <div class="brand-module-row">
+              <div class="brand-module">
+                <strong>Client situation card</strong>
+                <span>Refinancing, investing, or business finance paths in the first screen.</span>
               </div>
-              <div class="evo-evolved">
-                <p class="evo-tag">Evolved</p>
-                <div class="evo-swatches">
-                  <span class="swatch" style="background: #B8924D;"></span>
-                  <span class="swatch-code">#B8924D</span>
-                </div>
-                <p style="font-size: 14px; color: var(--ink-quiet);">Restrained, warm, used as punctuation only.</p>
+              <div class="brand-module">
+                <strong>Relationship story card</strong>
+                <span>Real client names, timeframes, and the situation behind each quote.</span>
               </div>
-            </div>
-
-            <div class="evo-row">
-              <p class="evo-label">Wordmark</p>
-              <div class="evo-current">
-                <p class="evo-tag">Current</p>
-                <p class="evo-mark-current">First Finance Solutions</p>
-                <p style="font-size: 14px; color: var(--ink-quiet);">JPG file, italic serif, mid-2010s execution.</p>
-              </div>
-              <div class="evo-evolved">
-                <p class="evo-tag">Evolved</p>
-                <p class="evo-mark-evolved">first finance</p>
-                <p style="font-size: 14px; color: var(--ink-quiet);">Clean modern setting, lowercase, with a single gold accent.</p>
-              </div>
-            </div>
-
-            <div class="evo-row">
-              <p class="evo-label">Typography</p>
-              <div class="evo-current">
-                <p class="evo-tag">Current</p>
-                <p style="font-size: 14px; color: var(--ink-quiet);">WordPress theme defaults.</p>
-              </div>
-              <div class="evo-evolved">
-                <p class="evo-tag">Evolved</p>
-                <p style="font-size: 14px; color: var(--ink-quiet);">A clear two-face system: a warm modern serif for headings and human moments, a clean sans for body and interface. Friendly. Premium. Practical.</p>
-              </div>
-            </div>
-
-            <div class="evo-row">
-              <p class="evo-label">Architecture</p>
-              <div class="evo-current">
-                <p class="evo-tag">Current</p>
-                <p style="font-size: 14px; color: var(--ink-quiet);">A single page with three anchored sections.</p>
-              </div>
-              <div class="evo-evolved">
-                <p class="evo-tag">Evolved</p>
-                <p style="font-size: 14px; color: var(--ink-quiet);">A believable multi-page site: Home, About, Services, Stories, Process, Tools, Insights, Contact.</p>
-              </div>
-            </div>
-
-            <div class="evo-row">
-              <p class="evo-label">Why it matters</p>
-              <div style="grid-column: 2 / -1; max-width: 64ch;">
-                <p style="font-size: 15.5px; color: var(--ink-quiet); line-height: 1.6;">Long-time clients should still recognise the practice. New clients should see one ahead of, not behind, the category. The visual equity is real and worth carrying — it just needs to grow up.</p>
+              <div class="brand-module">
+                <strong>Practical tool surface</strong>
+                <span>Borrowing estimate, refinance check, process guide and contact flow.</span>
               </div>
             </div>
           </div>
@@ -1950,35 +2119,35 @@
       <!-- Section 7 — Enter the demo -->
       <section id="enter" class="p-enter">
         <div class="wrap-narrow">
-          <p class="section-label reveal">The future state</p>
+          <p class="section-label reveal">Future-State Demo</p>
           <h2 class="h-1 reveal" data-d="1" style="margin-top: var(--s-4);">
-            Rather than describe what it could feel like, we built it.
+            Step into the next version of First Finance.
           </h2>
           <p class="lede reveal quiet" data-d="2">
-            The next part isn't more proposal. It's a walkthrough of the future-state First Finance — built far enough to feel like a real implemented site. Eight pages, real navigation, working tools, the modernised brand applied. You'll be able to walk around in it.
+            Use the switch above or the button below to open the working demo. It is still a prototype, but it is structured like a real site so the direction can be judged properly.
           </p>
           <button class="btn btn-primary btn-large reveal" data-d="3" id="enterDemoBtn" type="button">
-            Enter the future-state experience
+            Open future-state demo
             <span class="arrow" aria-hidden="true">→</span>
           </button>
-          <p class="small reveal" data-d="3">A small note: this is a concept. The words and numbers are real; photography is suggested, not commissioned. We mark concept moments clearly. You can return to the proposal at any time.</p>
+          <p class="small reveal" data-d="3">The proposal tab remains available at all times.</p>
         </div>
       </section>
 
       <!-- Section 8 — Next steps (after return) -->
       <section id="next" class="p-section p-next">
         <div class="wrap">
-          <p class="section-label reveal">Now that you've seen it</p>
+          <p class="section-label reveal">Next conversation</p>
           <h2 class="h-display reveal" data-d="1" style="margin-top: var(--s-4); max-width: 18ch;">
-            That's the concept. The next step is small.
+            The useful next step is a conversation.
           </h2>
           <p class="lede reveal quiet" data-d="2" style="margin-top: var(--s-5);">
-            This is a concept, not a built site — yet. The natural next step is a twenty-minute conversation about what would change, what would stay, what a real engagement would actually involve, and how we'd scope it. No commitment beyond the conversation.
+            This is not a finished site. It is a working direction. The next step would be a short conversation about what feels right, what should change, and what a real engagement would need to include.
           </p>
 
           <div class="reveal" data-d="3" style="margin-top: var(--s-6);">
-            <a href="mailto:hello@twny.com.au?subject=First%20Finance%20—%20modernisation%20concept" class="btn btn-primary btn-large">
-              Reply to start the conversation
+            <a href="mailto:hello@twny.com.au?subject=First%20Finance%20—%20modernisation%20review" class="btn btn-primary btn-large">
+              Start that conversation
               <span class="arrow" aria-hidden="true">→</span>
             </a>
             <p class="small reveal" data-d="3" style="margin-top: var(--s-4); color: var(--ink-quiet); font-size: 14px;">
@@ -2728,6 +2897,25 @@
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const body = document.body;
       const overlay = document.getElementById('transitionOverlay');
+      const proposalModeBtn = document.getElementById('proposalModeBtn');
+      const demoModeBtn = document.getElementById('demoModeBtn');
+      const modeBrand = document.getElementById('modeBrand');
+
+      function setModeTabs(mode) {
+        const demo = mode === 'demo';
+        if (proposalModeBtn) {
+          proposalModeBtn.classList.toggle('is-active', !demo);
+          proposalModeBtn.setAttribute('aria-pressed', demo ? 'false' : 'true');
+        }
+        if (demoModeBtn) {
+          demoModeBtn.classList.toggle('is-active', demo);
+          demoModeBtn.setAttribute('aria-pressed', demo ? 'true' : 'false');
+        }
+        if (modeBrand) {
+          modeBrand.innerHTML = demo ? 'first finance<span class="dot">.</span>' : 'twny<span class="dot">.</span>';
+          modeBrand.href = demo ? '#' : '#intro';
+        }
+      }
 
       // ---------- Sticky frame border on scroll ----------
       const pframe = document.getElementById('pframe');
@@ -2755,31 +2943,52 @@
 
       if (enterDemoBtn) {
         enterDemoBtn.addEventListener('click', () => {
-          fadeOverlay(() => {
-            body.classList.remove('mode-proposal');
-            body.classList.add('mode-demo');
-            window.scrollTo(0, 0);
-            switchPage('home', false);
-          });
+          openDemo();
         });
       }
 
       if (returnBtn) {
         returnBtn.addEventListener('click', () => {
-          fadeOverlay(() => {
-            body.classList.remove('mode-demo');
-            body.classList.add('mode-proposal');
-            // Scroll to Next Steps section
-            const next = document.getElementById('next');
-            if (next) {
-              const top = next.getBoundingClientRect().top + window.pageYOffset - 24;
-              window.scrollTo({ top, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
-            } else {
-              window.scrollTo(0, 0);
-            }
-          });
+          openProposal('next');
         });
       }
+
+      function openDemo(pageName = 'home') {
+        fadeOverlay(() => {
+          body.classList.remove('mode-proposal');
+          body.classList.add('mode-demo');
+          setModeTabs('demo');
+          window.scrollTo(0, 0);
+          switchPage(pageName, false);
+        });
+      }
+
+      function openProposal(targetId = 'enter') {
+        fadeOverlay(() => {
+          body.classList.remove('mode-demo');
+          body.classList.add('mode-proposal');
+          setModeTabs('proposal');
+          const target = document.getElementById(targetId);
+          if (target) {
+            const top = target.getBoundingClientRect().top + window.pageYOffset - 24;
+            window.scrollTo({ top, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+          } else {
+            window.scrollTo(0, 0);
+          }
+        });
+      }
+
+      if (demoModeBtn) demoModeBtn.addEventListener('click', () => openDemo());
+      if (proposalModeBtn) proposalModeBtn.addEventListener('click', () => openProposal('enter'));
+      if (modeBrand) {
+        modeBrand.addEventListener('click', (e) => {
+          if (body.classList.contains('mode-demo')) {
+            e.preventDefault();
+            switchPage('home');
+          }
+        });
+      }
+      setModeTabs(body.classList.contains('mode-demo') ? 'demo' : 'proposal');
 
       // ---------- Demo internal page switching ----------
       const pages = document.querySelectorAll('.dpage');

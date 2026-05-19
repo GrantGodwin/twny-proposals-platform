@@ -3,9 +3,9 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
 export const metadata: Metadata = {
-  title: "First Finance Solutions Proposal | TWNY",
+  title: "First Finance Modernisation Review | TWNY",
   description:
-    "A TWNY modernisation proposal and immersive future-state website experience for First Finance Solutions.",
+    "A practical TWNY modernisation review and future-state website demo for First Finance Solutions.",
   robots: {
     index: false,
     follow: false,

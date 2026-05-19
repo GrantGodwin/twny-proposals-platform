@@ -87,7 +87,7 @@
     button { font-family: inherit; cursor: pointer; border: 0; background: transparent; color: inherit; padding: 0; }
     input, textarea, select { font-family: inherit; font-size: inherit; }
     p { margin: 0; }
-    h1, h2, h3, h4, h5 { margin: 0; font-weight: 500; line-height: 1.2; letter-spacing: -0.012em; }
+    h1, h2, h3, h4, h5 { margin: 0; font-weight: 500; line-height: 1.2; letter-spacing: 0; }
     ul, ol { margin: 0; padding: 0; }
 
     ::selection { background: var(--accent); color: #fff; }
@@ -121,8 +121,8 @@
     @media (min-width: 900px) { .grid-2 { grid-template-columns: 1fr 1fr; gap: var(--s-7); } }
 
     .grid-2-split { display: grid; grid-template-columns: 1fr; gap: var(--s-5); }
-    @media (min-width: 900px) {
-      .grid-2-split { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: var(--s-7); }
+    @media (min-width: 1080px) {
+      .grid-2-split { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: var(--s-6); }
     }
 
     .grid-3 { display: grid; grid-template-columns: 1fr; gap: var(--s-5); }
@@ -157,38 +157,38 @@
     }
 
     .h-display {
-      font-size: clamp(40px, 6.2vw, 84px);
-      line-height: 1.02;
-      letter-spacing: -0.028em;
+      font-size: clamp(34px, 4.8vw, 62px);
+      line-height: 1.1;
+      letter-spacing: -0.006em;
       font-weight: 600;
     }
     .h-1 {
-      font-size: clamp(32px, 4.2vw, 56px);
-      line-height: 1.05;
-      letter-spacing: -0.022em;
+      font-size: clamp(28px, 3.2vw, 42px);
+      line-height: 1.14;
+      letter-spacing: -0.006em;
       font-weight: 600;
     }
     .h-2 {
-      font-size: clamp(26px, 3vw, 38px);
-      line-height: 1.1;
-      letter-spacing: -0.016em;
+      font-size: clamp(24px, 2.4vw, 32px);
+      line-height: 1.18;
+      letter-spacing: 0;
       font-weight: 600;
     }
     .h-3 {
-      font-size: clamp(20px, 1.8vw, 24px);
-      line-height: 1.2;
-      letter-spacing: -0.01em;
+      font-size: clamp(19px, 1.4vw, 22px);
+      line-height: 1.26;
+      letter-spacing: 0;
       font-weight: 600;
     }
     .lede {
-      font-size: clamp(19px, 1.8vw, 23px);
-      line-height: 1.45;
-      max-width: 56ch;
+      font-size: clamp(18px, 1.35vw, 21px);
+      line-height: 1.55;
+      max-width: 62ch;
       color: var(--ink);
       font-weight: 400;
     }
     .body { max-width: var(--measure); line-height: 1.62; }
-    .body-l { font-size: clamp(16px, 1.2vw, 18px); line-height: 1.6; max-width: var(--measure); }
+    .body-l { font-size: clamp(16px, 1.05vw, 17.5px); line-height: 1.66; max-width: var(--measure); }
     .quiet { color: var(--ink-quiet); }
     .caption { font-size: 14px; color: var(--caption); line-height: 1.5; }
 
@@ -198,11 +198,11 @@
     body.mode-demo .h-2 {
       font-family: var(--font-serif);
       font-weight: 400;
-      letter-spacing: -0.018em;
+      letter-spacing: -0.006em;
     }
     body.mode-demo .h-display {
-      font-size: clamp(36px, 4.8vw, 68px);
-      line-height: 1.06;
+      font-size: clamp(32px, 4.2vw, 56px);
+      line-height: 1.12;
     }
     body.mode-demo .lede { font-weight: 400; }
 
@@ -241,8 +241,8 @@
     .btn-ghost:hover { border-color: var(--ink); }
 
     .btn-large {
-      padding: 20px 32px;
-      font-size: 17px;
+      padding: 17px 26px;
+      font-size: 16px;
       font-weight: 500;
     }
 
@@ -284,7 +284,7 @@
     }
     @media (min-width: 768px) { .mode-shell { padding: 10px 48px; } }
     @media (max-width: 640px) {
-      :root { --mode-bar-h: 104px; }
+      :root { --mode-bar-h: 92px; }
       .mode-shell {
         align-items: flex-start;
         flex-direction: column;
@@ -296,7 +296,7 @@
       align-items: baseline;
       gap: 6px;
       font-weight: 700;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.006em;
       color: var(--ink);
       white-space: nowrap;
     }
@@ -381,7 +381,7 @@
     .pmark {
       font-weight: 600;
       font-size: 16px;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.006em;
       display: inline-flex;
       align-items: baseline;
       gap: 2px;
@@ -397,16 +397,17 @@
     /* ============================================================
        PROPOSAL — sections
        ============================================================ */
-    .p-section { padding: var(--s-8) 0; position: relative; }
-    @media (max-width: 767px) { .p-section { padding: var(--s-7) 0; } }
+    .p-section { padding: var(--s-7) 0; position: relative; }
+    @media (max-width: 767px) { .p-section { padding: var(--s-6) 0; } }
 
     .p-section + .p-section { border-top: 1px solid var(--line); }
 
     .p-intro {
-      min-height: 90vh;
+      min-height: auto;
       display: flex;
-      align-items: center;
-      padding-top: 120px;
+      align-items: flex-start;
+      padding-top: var(--s-8);
+      padding-bottom: var(--s-7);
     }
 
     /* Observation / strength / opportunity blocks */
@@ -419,11 +420,11 @@
       padding: var(--s-5) 0;
       border-top: 1px solid var(--line);
       display: grid;
-      grid-template-columns: 56px 1fr;
-      gap: var(--s-4);
+      grid-template-columns: 48px 1fr;
+      gap: var(--s-3) var(--s-4);
     }
     .item:last-child { border-bottom: 1px solid var(--line); }
-    @media (min-width: 768px) {
+    @media (min-width: 960px) {
       .item { grid-template-columns: 80px 1fr 1.2fr; gap: var(--s-6); align-items: start; }
     }
     .item__num {
@@ -433,11 +434,11 @@
       letter-spacing: 0.05em;
       color: var(--accent);
     }
-    .item__title { font-size: clamp(19px, 1.6vw, 22px); font-weight: 600; line-height: 1.25; letter-spacing: -0.01em; }
-    .item__body { color: var(--ink-quiet); font-size: 16px; line-height: 1.6; max-width: 50ch; }
+    .item__title { font-size: clamp(18px, 1.35vw, 21px); font-weight: 600; line-height: 1.32; letter-spacing: 0; }
+    .item__body { grid-column: 2; color: var(--ink-quiet); font-size: 16px; line-height: 1.64; max-width: 56ch; }
     .item__body strong { color: var(--ink); font-weight: 600; }
-    @media (max-width: 767px) {
-      .item__title { margin-top: -2px; }
+    @media (min-width: 960px) {
+      .item__body { grid-column: auto; }
     }
 
     /* Strengths cards */
@@ -447,7 +448,7 @@
       grid-template-columns: 1fr;
       gap: var(--s-4);
     }
-    @media (min-width: 768px) {
+    @media (min-width: 900px) {
       .strength-grid { grid-template-columns: 1fr 1fr; gap: var(--s-5); }
     }
     .strength {
@@ -457,8 +458,8 @@
       border-radius: 12px;
     }
     .strength__lbl { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
-    .strength__title { margin-top: var(--s-3); font-size: 19px; line-height: 1.3; font-weight: 600; letter-spacing: -0.012em; }
-    .strength__body { margin-top: var(--s-3); color: var(--ink-quiet); font-size: 15.5px; line-height: 1.55; }
+    .strength__title { margin-top: var(--s-3); font-size: 18px; line-height: 1.34; font-weight: 600; letter-spacing: 0; }
+    .strength__body { margin-top: var(--s-3); color: var(--ink-quiet); font-size: 15.5px; line-height: 1.62; }
 
     /* Brand evolution visual */
     .evolution-block {
@@ -530,7 +531,7 @@
       font-weight: 400;
       font-size: 28px;
       color: #3B2C5E;
-      letter-spacing: -0.01em;
+      letter-spacing: 0;
     }
     .evo-mark-evolved::after {
       content: ".";
@@ -544,7 +545,7 @@
       gap: var(--s-5);
     }
     .brand-kit__hero {
-      padding: var(--s-6);
+      padding: var(--s-5);
       border: 1px solid var(--line);
       border-radius: 16px;
       background:
@@ -561,9 +562,9 @@
     }
     .brand-wordmark {
       font-family: var(--font-serif);
-      font-size: clamp(46px, 7vw, 92px);
-      line-height: 0.95;
-      letter-spacing: -0.022em;
+      font-size: clamp(38px, 5.2vw, 72px);
+      line-height: 1.04;
+      letter-spacing: -0.008em;
       color: #3B2C5E;
     }
     .brand-wordmark span { color: #B8924D; }
@@ -580,7 +581,7 @@
     }
     @media (min-width: 720px) { .brand-swatches { grid-template-columns: repeat(4, 1fr); } }
     .brand-swatch {
-      min-height: 128px;
+      min-height: 112px;
       border-radius: 14px;
       border: 1px solid rgba(0,0,0,0.07);
       padding: var(--s-4);
@@ -624,10 +625,10 @@
     .brand-sample__title {
       margin-top: var(--s-3);
       font-family: var(--font-serif);
-      font-size: clamp(24px, 2.4vw, 34px);
+      font-size: clamp(22px, 2vw, 30px);
       font-weight: 400;
-      line-height: 1.16;
-      letter-spacing: -0.012em;
+      line-height: 1.22;
+      letter-spacing: 0;
       color: #3B2C5E;
     }
     .brand-sample__body {
@@ -683,7 +684,7 @@
 
     /* Section 7 — enter */
     .p-enter {
-      padding: var(--s-9) 0;
+      padding: var(--s-8) 0;
       background: linear-gradient(180deg, var(--bg) 0%, var(--accent-soft) 100%);
       text-align: center;
     }
@@ -698,7 +699,7 @@
 
     /* Section 8 — next steps (post-return) */
     .p-next {
-      padding: var(--s-9) 0 var(--s-8);
+      padding: var(--s-8) 0 var(--s-7);
     }
     .p-next .signature {
       margin-top: var(--s-7);
@@ -742,7 +743,7 @@
       font-family: var(--font-serif);
       font-size: 22px;
       font-weight: 400;
-      letter-spacing: -0.012em;
+      letter-spacing: 0;
       display: inline-flex;
       align-items: baseline;
       color: var(--ink);
@@ -839,9 +840,10 @@
     }
     .dmenu-sheet a {
       font-family: var(--font-serif);
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 400;
-      letter-spacing: -0.012em;
+      letter-spacing: 0;
+      line-height: 1.25;
       color: var(--ink);
     }
     .dmenu-sheet .close {
@@ -858,18 +860,18 @@
        ============================================================ */
     .dpage {
       display: none;
-      padding: var(--s-7) 0 var(--s-8);
+      padding: var(--s-6) 0 var(--s-7);
     }
     .dpage.is-active { display: block; }
 
-    .dhero { padding: var(--s-7) 0 var(--s-6); }
+    .dhero { padding: var(--s-6) 0 var(--s-5); }
     .dhero .eyebrow::before { background: var(--gold); }
     .dhero h1 {
       margin-top: var(--s-4);
-      max-width: 18ch;
+      max-width: 22ch;
     }
     .dhero .lede {
-      margin-top: var(--s-5);
+      margin-top: var(--s-4);
       color: var(--ink-quiet);
     }
     .dhero .cta-row {
@@ -884,7 +886,7 @@
       grid-template-columns: 1fr;
       gap: var(--s-6);
       align-items: stretch;
-      padding: var(--s-7) 0 var(--s-6);
+      padding: var(--s-6) 0 var(--s-5);
     }
     @media (min-width: 980px) {
       .home-hero-grid {
@@ -895,7 +897,7 @@
     }
 
     .home-photo-card {
-      min-height: 420px;
+      min-height: 360px;
       border-radius: 18px;
       overflow: hidden;
       background:
@@ -941,10 +943,10 @@
     .photo-caption strong {
       display: block;
       font-family: var(--font-serif);
-      font-size: clamp(24px, 2.4vw, 34px);
+      font-size: clamp(22px, 2vw, 30px);
       font-weight: 400;
-      line-height: 1.12;
-      letter-spacing: -0.012em;
+      line-height: 1.18;
+      letter-spacing: 0;
     }
     .photo-caption span {
       display: block;
@@ -984,7 +986,7 @@
 
     /* Entry points (situation taxonomy) */
     .situation-grid {
-      margin-top: var(--s-7);
+      margin-top: var(--s-6);
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--s-4);
@@ -1017,10 +1019,10 @@
     }
     .situation-card__title {
       font-family: var(--font-serif);
-      font-size: clamp(22px, 2vw, 28px);
+      font-size: clamp(21px, 1.7vw, 25px);
       font-weight: 400;
-      line-height: 1.16;
-      letter-spacing: -0.012em;
+      line-height: 1.24;
+      letter-spacing: 0;
     }
     .situation-card__body {
       color: var(--ink-quiet);
@@ -1055,7 +1057,7 @@
       font-family: var(--font-serif);
       font-size: clamp(20px, 1.9vw, 26px);
       font-weight: 400;
-      letter-spacing: -0.012em;
+      letter-spacing: 0;
       line-height: 1.25;
     }
     .entry__arrow {
@@ -1067,7 +1069,7 @@
 
     /* Trust strip */
     .trust-strip {
-      margin-top: var(--s-7);
+      margin-top: var(--s-6);
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: var(--s-4);
@@ -1080,9 +1082,9 @@
     }
     .trust__num {
       font-family: var(--font-serif);
-      font-size: clamp(28px, 3.4vw, 40px);
+      font-size: clamp(26px, 2.8vw, 34px);
       font-weight: 400;
-      letter-spacing: -0.018em;
+      letter-spacing: 0;
       line-height: 1;
     }
     .trust__num .small {
@@ -1100,7 +1102,7 @@
 
     /* Pulled previews on Home */
     .preview-row {
-      margin-top: var(--s-7);
+      margin-top: var(--s-6);
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--s-5);
@@ -1128,13 +1130,13 @@
       font-family: var(--font-serif);
       font-size: 20px;
       font-weight: 400;
-      letter-spacing: -0.01em;
+      letter-spacing: 0;
       line-height: 1.3;
     }
     .preview .body { color: var(--ink-quiet); font-size: 15px; line-height: 1.55; }
 
     .operations-grid {
-      margin-top: var(--s-7);
+      margin-top: var(--s-6);
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--s-5);
@@ -1161,10 +1163,10 @@
     .operation-card__title {
       margin-top: var(--s-3);
       font-family: var(--font-serif);
-      font-size: clamp(24px, 2.2vw, 32px);
-      line-height: 1.14;
+      font-size: clamp(22px, 1.9vw, 28px);
+      line-height: 1.22;
       font-weight: 400;
-      letter-spacing: -0.012em;
+      letter-spacing: 0;
     }
     .operation-card__body {
       margin-top: var(--s-3);
@@ -1199,7 +1201,7 @@
        DEMO — About page
        ============================================================ */
     .team-grid {
-      margin-top: var(--s-7);
+      margin-top: var(--s-6);
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--s-6);
@@ -1241,7 +1243,7 @@
     }
     .team__photo .initials {
       font-family: var(--font-serif);
-      font-size: 84px;
+      font-size: 68px;
       color: var(--accent);
       font-weight: 400;
       line-height: 0.8;
@@ -1250,9 +1252,9 @@
     .team__name {
       margin-top: var(--s-4);
       font-family: var(--font-serif);
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 400;
-      letter-spacing: -0.012em;
+      letter-spacing: 0;
     }
     .team__role {
       margin-top: 4px;
@@ -1274,7 +1276,7 @@
     .team__contact a { color: var(--accent); border-bottom: 1px solid currentColor; padding-bottom: 1px; }
 
     .principles {
-      margin-top: var(--s-7);
+      margin-top: var(--s-6);
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--s-4);
@@ -1286,9 +1288,9 @@
     }
     .principle__title {
       font-family: var(--font-serif);
-      font-size: 22px;
+      font-size: 21px;
       font-weight: 400;
-      letter-spacing: -0.012em;
+      letter-spacing: 0;
     }
     .principle__body { margin-top: var(--s-3); color: var(--ink-quiet); font-size: 15px; line-height: 1.55; }
 
@@ -1296,7 +1298,7 @@
        DEMO — Services
        ============================================================ */
     .service-block {
-      padding: var(--s-7) 0;
+      padding: var(--s-6) 0;
       border-top: 1px solid var(--line);
     }
     .service-block:first-of-type { border-top: 0; }
@@ -1307,7 +1309,7 @@
       font-weight: 500;
       letter-spacing: 0.06em;
     }
-    .service-block h2 { margin-top: var(--s-2); max-width: 18ch; }
+    .service-block h2 { margin-top: var(--s-2); max-width: 24ch; }
     .service-block .body { margin-top: var(--s-4); color: var(--ink-quiet); }
     .service-list {
       margin-top: var(--s-5);
@@ -1316,13 +1318,16 @@
       gap: var(--s-3);
       list-style: none;
     }
-    @media (min-width: 768px) { .service-list { grid-template-columns: 1fr 1fr; gap: var(--s-3) var(--s-5); } }
+    @media (min-width: 860px) { .service-list { grid-template-columns: 1fr 1fr; gap: var(--s-3) var(--s-5); } }
     .service-item {
       padding: var(--s-3) 0;
       border-bottom: 1px solid var(--line);
       display: flex;
       justify-content: space-between;
       gap: var(--s-3);
+    }
+    @media (max-width: 640px) {
+      .service-item { flex-direction: column; gap: 4px; }
     }
     .service-item__title { font-weight: 500; }
     .service-item__note { font-size: 13.5px; color: var(--ink-quiet); }
@@ -1371,7 +1376,7 @@
     /* ============================================================
        DEMO — Stories (relationships)
        ============================================================ */
-    .stories-list { margin-top: var(--s-7); }
+    .stories-list { margin-top: var(--s-6); }
     .story {
       padding: var(--s-6) 0;
       border-top: 1px solid var(--line);
@@ -1381,14 +1386,14 @@
     }
     .story:last-child { border-bottom: 1px solid var(--line); }
     @media (min-width: 900px) {
-      .story { grid-template-columns: 280px 1fr; gap: var(--s-7); align-items: start; }
+      .story { grid-template-columns: 240px 1fr; gap: var(--s-6); align-items: start; }
     }
     .story__meta { font-size: 14px; line-height: 1.55; color: var(--ink-quiet); }
     .story__name {
       font-family: var(--font-serif);
       font-size: 22px;
       font-weight: 400;
-      letter-spacing: -0.012em;
+      letter-spacing: 0;
       color: var(--ink);
       display: block;
     }
@@ -1405,9 +1410,9 @@
     .story__quote {
       font-family: var(--font-serif);
       font-style: italic;
-      font-size: clamp(17px, 1.5vw, 21px);
-      line-height: 1.5;
-      letter-spacing: -0.008em;
+      font-size: clamp(16.5px, 1.25vw, 19px);
+      line-height: 1.58;
+      letter-spacing: 0;
       color: var(--ink);
     }
     .stories-closing {
@@ -1421,7 +1426,7 @@
     /* ============================================================
        DEMO — Process
        ============================================================ */
-    .process-list { margin-top: var(--s-7); display: grid; gap: 0; }
+    .process-list { margin-top: var(--s-6); display: grid; gap: 0; }
     .process-step {
       padding: var(--s-6) 0;
       border-top: 1px solid var(--line);
@@ -1430,23 +1435,23 @@
       gap: var(--s-3);
     }
     .process-step:last-child { border-bottom: 1px solid var(--line); }
-    @media (min-width: 900px) {
-      .process-step { grid-template-columns: 100px 1fr 1.4fr; gap: var(--s-6); align-items: start; }
+    @media (min-width: 960px) {
+      .process-step { grid-template-columns: 80px 1fr 1.4fr; gap: var(--s-6); align-items: start; }
     }
     .process-step__num {
       font-family: var(--font-serif);
-      font-size: 44px;
+      font-size: 36px;
       font-weight: 400;
       color: var(--accent);
-      letter-spacing: -0.02em;
+      letter-spacing: 0;
       line-height: 0.9;
     }
     .process-step__title {
       font-family: var(--font-serif);
-      font-size: clamp(20px, 1.8vw, 24px);
+      font-size: clamp(19px, 1.45vw, 22px);
       font-weight: 400;
-      letter-spacing: -0.012em;
-      line-height: 1.25;
+      letter-spacing: 0;
+      line-height: 1.32;
     }
     .process-step__body { color: var(--ink-quiet); font-size: 15.5px; line-height: 1.6; }
 
@@ -1476,10 +1481,10 @@
     }
     .document-panel__title {
       font-family: var(--font-serif);
-      font-size: clamp(23px, 2vw, 30px);
+      font-size: clamp(21px, 1.7vw, 26px);
       font-weight: 400;
-      line-height: 1.16;
-      letter-spacing: -0.012em;
+      line-height: 1.24;
+      letter-spacing: 0;
     }
     .document-panel__body {
       margin-top: var(--s-3);
@@ -1492,8 +1497,8 @@
        DEMO — Tools (Calculator)
        ============================================================ */
     .tool-block {
-      margin-top: var(--s-7);
-      padding: var(--s-6);
+      margin-top: var(--s-6);
+      padding: var(--s-5);
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: 16px;
@@ -1517,7 +1522,7 @@
       gap: var(--s-6);
     }
     @media (min-width: 900px) {
-      .calc-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s-7); }
+      .calc-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: var(--s-6); }
     }
 
     .calc-input { display: flex; flex-direction: column; gap: 10px; margin-bottom: var(--s-4); }
@@ -1591,10 +1596,10 @@
     .calc-output__num {
       margin-top: var(--s-3);
       font-family: var(--font-serif);
-      font-size: clamp(36px, 4.6vw, 56px);
+      font-size: clamp(32px, 3.6vw, 44px);
       font-weight: 400;
       color: var(--accent);
-      letter-spacing: -0.024em;
+      letter-spacing: 0;
       line-height: 1;
     }
     .calc-output__range {
@@ -1617,7 +1622,7 @@
     /* Health check (second tool) */
     .health-check {
       margin-top: var(--s-6);
-      padding: var(--s-6);
+      padding: var(--s-5);
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: 16px;
@@ -1669,7 +1674,7 @@
        DEMO — Insights
        ============================================================ */
     .insight-grid {
-      margin-top: var(--s-7);
+      margin-top: var(--s-6);
       display: grid;
       gap: var(--s-4);
     }
@@ -1694,10 +1699,10 @@
     }
     .insight-card__title {
       font-family: var(--font-serif);
-      font-size: clamp(20px, 1.8vw, 24px);
+      font-size: clamp(19px, 1.45vw, 22px);
       font-weight: 400;
-      letter-spacing: -0.012em;
-      line-height: 1.3;
+      letter-spacing: 0;
+      line-height: 1.36;
     }
     .insight-card__author {
       margin-top: var(--s-2);
@@ -1733,7 +1738,7 @@
        DEMO — Contact
        ============================================================ */
     .contact-grid {
-      margin-top: var(--s-7);
+      margin-top: var(--s-6);
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--s-6);
@@ -1848,7 +1853,7 @@
       font-family: var(--font-serif);
       font-size: 22px;
       font-weight: 400;
-      letter-spacing: -0.012em;
+      letter-spacing: 0;
       color: var(--ink);
       line-height: 1.4;
       max-width: 30ch;
@@ -1900,7 +1905,7 @@
       <section id="intro" class="p-section p-intro">
         <div class="wrap">
           <p class="eyebrow reveal">A practical modernisation review by TWNY</p>
-          <h1 class="h-display reveal" data-d="1" style="margin-top: var(--s-4); max-width: 18ch;">
+          <h1 class="h-display reveal" data-d="1" style="margin-top: var(--s-4); max-width: 22ch;">
             The site we built then did its job. First Finance has grown beyond what it was built to say.
           </h1>
           <p class="lede reveal" data-d="2" style="margin-top: var(--s-5);">
@@ -2007,7 +2012,7 @@
       <section id="modernise" class="p-section">
         <div class="wrap">
           <p class="section-label reveal">What we would update</p>
-          <h2 class="h-1 reveal" data-d="1" style="margin-top: var(--s-4); max-width: 18ch;">A clearer site for the business First Finance already is.</h2>
+          <h2 class="h-1 reveal" data-d="1" style="margin-top: var(--s-4); max-width: 22ch;">A clearer site for the business First Finance already is.</h2>
 
           <ol class="item-list" style="list-style: none;">
             <li class="item reveal">
@@ -2138,7 +2143,7 @@
       <section id="next" class="p-section p-next">
         <div class="wrap">
           <p class="section-label reveal">Next conversation</p>
-          <h2 class="h-display reveal" data-d="1" style="margin-top: var(--s-4); max-width: 18ch;">
+          <h2 class="h-display reveal" data-d="1" style="margin-top: var(--s-4); max-width: 22ch;">
             The useful next step is a conversation.
           </h2>
           <p class="lede reveal quiet" data-d="2" style="margin-top: var(--s-5);">

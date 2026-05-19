@@ -10,7 +10,7 @@ export default function SpeechMadeSimplePage() {
   return (
     <main className="bg-white">
       <iframe
-        src="/clients/speechmadesimple/"
+        src="/clients/speechmadesimple/index.html"
         title="Speech Made Simple Proposal"
         className="block h-[100svh] w-full border-0"
       />

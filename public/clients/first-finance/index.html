@@ -1,0 +1,3000 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>First Finance — A Modernisation Concept by TWNY</title>
+  <meta name="description" content="A modernisation concept and immersive future-state walkthrough for First Finance Solutions, made by TWNY.">
+  <meta name="robots" content="noindex">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..600&display=swap">
+
+  <style>
+    /* ============================================================
+       TOKENS
+       ============================================================ */
+    :root {
+      /* TWNY mode (proposal) — default */
+      --bg: #FAFAF8;
+      --surface: #FFFFFF;
+      --ink: #0F1419;
+      --ink-quiet: #5A6168;
+      --caption: #8A8F95;
+      --line: #E6E4DF;
+      --accent: #1B5A8C;
+      --accent-soft: #E8EFF5;
+
+      /* Typography defaults */
+      --font-ui: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-serif: "Source Serif 4", Georgia, serif;
+
+      /* Spacing scale */
+      --s-1: 4px;
+      --s-2: 8px;
+      --s-3: 12px;
+      --s-4: 20px;
+      --s-5: 32px;
+      --s-6: 48px;
+      --s-7: 72px;
+      --s-8: 104px;
+      --s-9: 144px;
+
+      /* Easing */
+      --ease: cubic-bezier(0.2, 0.65, 0.3, 1);
+      --ease-firm: cubic-bezier(0.65, 0, 0.35, 1);
+
+      /* Layout */
+      --measure: 64ch;
+    }
+
+    body.mode-demo {
+      /* First Finance evolved mode */
+      --bg: #FBF8F2;
+      --surface: #FFFFFF;
+      --ink: #1F1B2E;
+      --ink-quiet: #5C5670;
+      --caption: #8C8598;
+      --line: #E8E2D5;
+      --accent: #3B2C5E;          /* evolved purple */
+      --accent-soft: #EFE9F5;
+      --gold: #B8924D;            /* evolved restrained gold */
+      --gold-soft: #F2EBDA;
+    }
+
+    /* ============================================================
+       RESET + BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-ui);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      transition: background-color 350ms var(--ease), color 350ms var(--ease);
+    }
+    @media (min-width: 768px) { body { font-size: 17px; } }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: 0; background: transparent; color: inherit; padding: 0; }
+    input, textarea, select { font-family: inherit; font-size: inherit; }
+    p { margin: 0; }
+    h1, h2, h3, h4, h5 { margin: 0; font-weight: 500; line-height: 1.2; letter-spacing: -0.012em; }
+    ul, ol { margin: 0; padding: 0; }
+
+    ::selection { background: var(--accent); color: #fff; }
+
+    a:focus-visible, button:focus-visible, [tabindex]:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    /* ============================================================
+       LAYOUT PRIMITIVES
+       ============================================================ */
+    .wrap {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    @media (min-width: 768px) { .wrap { padding: 0 48px; } }
+    @media (min-width: 1200px) { .wrap { padding: 0 64px; } }
+
+    .wrap-narrow { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+    @media (min-width: 768px) { .wrap-narrow { padding: 0 48px; } }
+
+    .stack > * + * { margin-top: var(--s-4); }
+    .stack-l > * + * { margin-top: var(--s-5); }
+    .stack-xl > * + * { margin-top: var(--s-6); }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr; gap: var(--s-6); }
+    @media (min-width: 900px) { .grid-2 { grid-template-columns: 1fr 1fr; gap: var(--s-7); } }
+
+    .grid-2-split { display: grid; grid-template-columns: 1fr; gap: var(--s-5); }
+    @media (min-width: 900px) {
+      .grid-2-split { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: var(--s-7); }
+    }
+
+    .grid-3 { display: grid; grid-template-columns: 1fr; gap: var(--s-5); }
+    @media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(3, 1fr); gap: var(--s-5); } }
+
+    /* ============================================================
+       TYPOGRAPHY UTILITIES
+       ============================================================ */
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-quiet);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .section-label {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-quiet);
+      font-weight: 600;
+    }
+
+    .h-display {
+      font-size: clamp(40px, 6.2vw, 84px);
+      line-height: 1.02;
+      letter-spacing: -0.028em;
+      font-weight: 600;
+    }
+    .h-1 {
+      font-size: clamp(32px, 4.2vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.022em;
+      font-weight: 600;
+    }
+    .h-2 {
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.1;
+      letter-spacing: -0.016em;
+      font-weight: 600;
+    }
+    .h-3 {
+      font-size: clamp(20px, 1.8vw, 24px);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      font-weight: 600;
+    }
+    .lede {
+      font-size: clamp(19px, 1.8vw, 23px);
+      line-height: 1.45;
+      max-width: 56ch;
+      color: var(--ink);
+      font-weight: 400;
+    }
+    .body { max-width: var(--measure); line-height: 1.62; }
+    .body-l { font-size: clamp(16px, 1.2vw, 18px); line-height: 1.6; max-width: var(--measure); }
+    .quiet { color: var(--ink-quiet); }
+    .caption { font-size: 14px; color: var(--caption); line-height: 1.5; }
+
+    /* In demo mode, use serif for display moments */
+    body.mode-demo .h-display,
+    body.mode-demo .h-1,
+    body.mode-demo .h-2 {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      letter-spacing: -0.018em;
+    }
+    body.mode-demo .h-display {
+      font-size: clamp(36px, 4.8vw, 68px);
+      line-height: 1.06;
+    }
+    body.mode-demo .lede { font-weight: 400; }
+
+    /* Accent dot used in the FF wordmark */
+    .gold-dot { color: var(--gold); }
+
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 22px;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.005em;
+      border-radius: 999px;
+      transition: background-color 220ms var(--ease), color 220ms var(--ease), transform 220ms var(--ease), border-color 220ms var(--ease), gap 220ms var(--ease);
+      line-height: 1;
+    }
+    .btn .arrow { transition: transform 220ms var(--ease); }
+    .btn:hover .arrow { transform: translateX(4px); }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: color-mix(in srgb, var(--accent) 88%, #000 12%); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+    .btn-ghost:hover { border-color: var(--ink); }
+
+    .btn-large {
+      padding: 20px 32px;
+      font-size: 17px;
+      font-weight: 500;
+    }
+
+    .btn-text {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--accent);
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 2px;
+      transition: gap 220ms var(--ease);
+    }
+    .btn-text:hover { gap: 12px; }
+
+    /* ============================================================
+       MODE SWITCHING + TRANSITION
+       ============================================================ */
+    #proposal-app { display: block; }
+    #demo-app { display: none; }
+    body.mode-demo #proposal-app { display: none; }
+    body.mode-demo #demo-app { display: block; }
+
+    .transition-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--accent);
+      z-index: 200;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 280ms var(--ease-firm);
+    }
+    .transition-overlay.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ============================================================
+       REVEAL ANIMATION
+       ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 600ms var(--ease), transform 600ms var(--ease);
+    }
+    .reveal.is-in { opacity: 1; transform: translateY(0); }
+    .reveal[data-d="1"] { transition-delay: 60ms; }
+    .reveal[data-d="2"] { transition-delay: 130ms; }
+    .reveal[data-d="3"] { transition-delay: 200ms; }
+    .reveal[data-d="4"] { transition-delay: 270ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .transition-overlay { transition: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ============================================================
+       PROPOSAL MODE — top frame
+       ============================================================ */
+    .pframe {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: color-mix(in srgb, var(--bg) 92%, transparent);
+      backdrop-filter: saturate(180%) blur(14px);
+      -webkit-backdrop-filter: saturate(180%) blur(14px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 220ms var(--ease);
+    }
+    .pframe.is-scrolled { border-color: var(--line); }
+    .pframe__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) { .pframe__inner { padding: 18px 48px; } }
+    .pmark {
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 2px;
+    }
+    .pmark .dot { color: var(--accent); }
+    .pmark .sub { font-size: 12px; color: var(--ink-quiet); margin-left: 12px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
+    @media (max-width: 600px) { .pmark .sub { display: none; } }
+
+    .pmeta { font-size: 12px; color: var(--ink-quiet); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
+    .pmeta span { display: none; }
+    @media (min-width: 768px) { .pmeta span { display: inline; } }
+
+    /* ============================================================
+       PROPOSAL — sections
+       ============================================================ */
+    .p-section { padding: var(--s-8) 0; position: relative; }
+    @media (max-width: 767px) { .p-section { padding: var(--s-7) 0; } }
+
+    .p-section + .p-section { border-top: 1px solid var(--line); }
+
+    .p-intro {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding-top: 120px;
+    }
+
+    /* Observation / strength / opportunity blocks */
+    .item-list {
+      margin-top: var(--s-6);
+      display: grid;
+      gap: 0;
+    }
+    .item {
+      padding: var(--s-5) 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: var(--s-4);
+    }
+    .item:last-child { border-bottom: 1px solid var(--line); }
+    @media (min-width: 768px) {
+      .item { grid-template-columns: 80px 1fr 1.2fr; gap: var(--s-6); align-items: start; }
+    }
+    .item__num {
+      font-feature-settings: "tnum";
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+    }
+    .item__title { font-size: clamp(19px, 1.6vw, 22px); font-weight: 600; line-height: 1.25; letter-spacing: -0.01em; }
+    .item__body { color: var(--ink-quiet); font-size: 16px; line-height: 1.6; max-width: 50ch; }
+    .item__body strong { color: var(--ink); font-weight: 600; }
+    @media (max-width: 767px) {
+      .item__title { margin-top: -2px; }
+    }
+
+    /* Strengths cards */
+    .strength-grid {
+      margin-top: var(--s-6);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-4);
+    }
+    @media (min-width: 768px) {
+      .strength-grid { grid-template-columns: 1fr 1fr; gap: var(--s-5); }
+    }
+    .strength {
+      padding: var(--s-5);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .strength__lbl { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+    .strength__title { margin-top: var(--s-3); font-size: 19px; line-height: 1.3; font-weight: 600; letter-spacing: -0.012em; }
+    .strength__body { margin-top: var(--s-3); color: var(--ink-quiet); font-size: 15.5px; line-height: 1.55; }
+
+    /* Brand evolution visual */
+    .evolution-block {
+      margin-top: var(--s-6);
+      padding: var(--s-6);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+    @media (max-width: 767px) {
+      .evolution-block { padding: var(--s-5); }
+    }
+    .evo-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-4);
+      padding: var(--s-5) 0;
+      border-top: 1px solid var(--line);
+    }
+    .evo-row:first-child { border-top: 0; padding-top: 0; }
+    .evo-row:last-child { padding-bottom: 0; }
+    @media (min-width: 768px) {
+      .evo-row { grid-template-columns: 200px 1fr 1fr; gap: var(--s-6); align-items: center; }
+    }
+    .evo-label {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink-quiet);
+    }
+    .evo-current, .evo-evolved {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .evo-tag {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--caption);
+      font-weight: 600;
+    }
+    .evo-swatches {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .swatch {
+      width: 44px; height: 44px;
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .swatch-code {
+      font-family: 'SF Mono', ui-monospace, Menlo, monospace;
+      font-size: 12px;
+      color: var(--ink-quiet);
+    }
+    .evo-mark-current {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 22px;
+      color: #6B4E92; /* approximation of current bright FF purple */
+      letter-spacing: 0;
+    }
+    .evo-mark-evolved {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: 28px;
+      color: #3B2C5E;
+      letter-spacing: -0.01em;
+    }
+    .evo-mark-evolved::after {
+      content: ".";
+      color: #B8924D;
+      margin-left: 1px;
+    }
+
+    /* Section 7 — enter */
+    .p-enter {
+      padding: var(--s-9) 0;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--accent-soft) 100%);
+      text-align: center;
+    }
+    .p-enter .h-1 { max-width: 22ch; margin-left: auto; margin-right: auto; }
+    .p-enter .lede { margin: var(--s-4) auto 0; }
+    .p-enter .btn-large { margin-top: var(--s-6); }
+    .p-enter .small {
+      margin-top: var(--s-4);
+      font-size: 13px;
+      color: var(--ink-quiet);
+    }
+
+    /* Section 8 — next steps (post-return) */
+    .p-next {
+      padding: var(--s-9) 0 var(--s-8);
+    }
+    .p-next .signature {
+      margin-top: var(--s-7);
+      padding-top: var(--s-4);
+      border-top: 1px solid var(--line);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--caption);
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--s-3);
+    }
+
+    /* ============================================================
+       DEMO MODE — top nav
+       ============================================================ */
+    .dnav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: color-mix(in srgb, var(--bg) 92%, transparent);
+      backdrop-filter: saturate(180%) blur(14px);
+      -webkit-backdrop-filter: saturate(180%) blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .dnav__inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s-5);
+    }
+    @media (min-width: 768px) { .dnav__inner { padding: 16px 48px; } }
+
+    .dnav__mark {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.012em;
+      display: inline-flex;
+      align-items: baseline;
+      color: var(--ink);
+    }
+    .dnav__mark .dot { color: var(--gold); margin-left: 1px; }
+
+    .dnav__links {
+      display: none;
+      align-items: center;
+      gap: var(--s-4);
+      list-style: none;
+    }
+    @media (min-width: 1024px) { .dnav__links { display: flex; } }
+    .dnav__link {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-quiet);
+      padding: 8px 6px;
+      letter-spacing: -0.005em;
+      transition: color 200ms var(--ease);
+      position: relative;
+    }
+    .dnav__link:hover { color: var(--ink); }
+    .dnav__link.is-active { color: var(--accent); }
+    .dnav__link.is-active::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 6px;
+      right: 6px;
+      height: 1.5px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .dnav__right {
+      display: flex;
+      align-items: center;
+      gap: var(--s-3);
+    }
+    .return-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-quiet);
+      border: 1px solid var(--line);
+      transition: all 200ms var(--ease);
+    }
+    .return-btn:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    .return-btn .arrow {
+      transition: transform 200ms var(--ease);
+    }
+    .return-btn:hover .arrow { transform: translateX(-4px); }
+    @media (max-width: 600px) {
+      .return-btn span { display: none; }
+      .return-btn { padding: 8px 12px; }
+    }
+
+    .dnav__menu-btn {
+      display: inline-flex;
+      width: 40px; height: 40px;
+      align-items: center; justify-content: center;
+      border-radius: 8px;
+      color: var(--ink);
+      transition: background 200ms var(--ease);
+    }
+    .dnav__menu-btn:hover { background: var(--accent-soft); }
+    @media (min-width: 1024px) { .dnav__menu-btn { display: none; } }
+    .dnav__menu-btn svg { width: 22px; height: 22px; }
+
+    /* Mobile menu sheet */
+    .dmenu-sheet {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 60;
+      padding: 80px 32px 32px;
+      transform: translateY(-100%);
+      transition: transform 300ms var(--ease-firm);
+      overflow-y: auto;
+    }
+    .dmenu-sheet.is-open { transform: translateY(0); }
+    .dmenu-sheet ul { list-style: none; }
+    .dmenu-sheet li {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .dmenu-sheet a {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: -0.012em;
+      color: var(--ink);
+    }
+    .dmenu-sheet .close {
+      position: absolute;
+      top: 22px;
+      right: 24px;
+      width: 40px; height: 40px;
+      display: inline-flex;
+      align-items: center; justify-content: center;
+    }
+
+    /* ============================================================
+       DEMO MODE — pages
+       ============================================================ */
+    .dpage {
+      display: none;
+      animation: pageFade 360ms var(--ease) both;
+      padding: var(--s-7) 0 var(--s-8);
+    }
+    .dpage.is-active { display: block; }
+
+    @keyframes pageFade {
+      0% { opacity: 0; transform: translateY(8px); }
+      100% { opacity: 1; transform: none; }
+    }
+
+    .dhero { padding: var(--s-7) 0 var(--s-6); }
+    .dhero .eyebrow::before { background: var(--gold); }
+    .dhero h1 {
+      margin-top: var(--s-4);
+      max-width: 18ch;
+    }
+    .dhero .lede {
+      margin-top: var(--s-5);
+      color: var(--ink-quiet);
+    }
+    .dhero .cta-row {
+      margin-top: var(--s-5);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s-3);
+    }
+
+    .home-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-6);
+      align-items: stretch;
+      padding: var(--s-7) 0 var(--s-6);
+    }
+    @media (min-width: 980px) {
+      .home-hero-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(340px, 0.72fr);
+        gap: var(--s-7);
+      }
+      .home-hero-grid .dhero { padding: var(--s-5) 0; }
+    }
+
+    .home-photo-card {
+      min-height: 420px;
+      border-radius: 18px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(31,27,46,0.08), rgba(31,27,46,0.5)),
+        radial-gradient(circle at 25% 18%, rgba(248,238,211,0.88), transparent 34%),
+        linear-gradient(135deg, #d6c2a3 0%, #b58e65 42%, #3b2c5e 100%);
+      border: 1px solid color-mix(in srgb, var(--line) 72%, var(--accent) 28%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: var(--s-5);
+      position: relative;
+      isolation: isolate;
+    }
+    .home-photo-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.14) 0 1px, transparent 1px 100%),
+        linear-gradient(0deg, rgba(255,255,255,0.12) 0 1px, transparent 1px 100%);
+      background-size: 46px 46px;
+      opacity: 0.22;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .photo-pill {
+      align-self: flex-start;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: rgba(251,248,242,0.88);
+      color: var(--ink-quiet);
+      font-size: 10.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .photo-caption {
+      max-width: 30ch;
+      color: #fff;
+      text-shadow: 0 1px 18px rgba(31,27,46,0.24);
+    }
+    .photo-caption strong {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: clamp(24px, 2.4vw, 34px);
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: -0.012em;
+    }
+    .photo-caption span {
+      display: block;
+      margin-top: var(--s-3);
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.86);
+    }
+
+    .hero-facts {
+      margin-top: var(--s-5);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      max-width: 680px;
+    }
+    @media (min-width: 720px) { .hero-facts { grid-template-columns: repeat(3, 1fr); } }
+    .hero-fact {
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--surface) 72%, var(--bg) 28%);
+      border-radius: 10px;
+    }
+    .hero-fact strong {
+      display: block;
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+    .hero-fact span {
+      display: block;
+      margin-top: 3px;
+      font-size: 12.5px;
+      color: var(--ink-quiet);
+      line-height: 1.35;
+    }
+
+    /* Entry points (situation taxonomy) */
+    .situation-grid {
+      margin-top: var(--s-7);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-4);
+    }
+    @media (min-width: 860px) {
+      .situation-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .situation-card {
+      min-height: 100%;
+      padding: var(--s-5);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-3);
+      transition: transform 220ms var(--ease), border-color 220ms var(--ease), box-shadow 220ms var(--ease);
+    }
+    .situation-card:hover {
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--line) 55%);
+      box-shadow: 0 16px 36px rgba(31,27,46,0.08);
+    }
+    .situation-card__kicker {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .situation-card__title {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 2vw, 28px);
+      font-weight: 400;
+      line-height: 1.16;
+      letter-spacing: -0.012em;
+    }
+    .situation-card__body {
+      color: var(--ink-quiet);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .situation-card__meta {
+      margin-top: auto;
+      padding-top: var(--s-3);
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+      color: var(--ink-quiet);
+      line-height: 1.4;
+    }
+
+    .entry-list {
+      margin-top: var(--s-7);
+      border-top: 1px solid var(--line);
+    }
+    .entry-list .entry {
+      padding: var(--s-5) 0;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--s-4);
+      transition: padding-left 320ms var(--ease);
+      cursor: pointer;
+    }
+    .entry-list .entry:hover { padding-left: var(--s-3); }
+    .entry__title {
+      font-family: var(--font-serif);
+      font-size: clamp(20px, 1.9vw, 26px);
+      font-weight: 400;
+      letter-spacing: -0.012em;
+      line-height: 1.25;
+    }
+    .entry__arrow {
+      color: var(--gold);
+      font-size: 22px;
+      transition: transform 320ms var(--ease);
+    }
+    .entry-list .entry:hover .entry__arrow { transform: translateX(8px); }
+
+    /* Trust strip */
+    .trust-strip {
+      margin-top: var(--s-7);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--s-4);
+      padding: var(--s-5) 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    @media (min-width: 768px) {
+      .trust-strip { grid-template-columns: repeat(4, 1fr); }
+    }
+    .trust__num {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3.4vw, 40px);
+      font-weight: 400;
+      letter-spacing: -0.018em;
+      line-height: 1;
+    }
+    .trust__num .small {
+      font-size: 0.55em;
+      color: var(--ink-quiet);
+      margin-left: 4px;
+    }
+    .trust__lbl {
+      margin-top: var(--s-2);
+      font-size: 13px;
+      color: var(--ink-quiet);
+      line-height: 1.4;
+      max-width: 22ch;
+    }
+
+    /* Pulled previews on Home */
+    .preview-row {
+      margin-top: var(--s-7);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-5);
+    }
+    @media (min-width: 900px) {
+      .preview-row { grid-template-columns: 1fr 1fr; gap: var(--s-6); }
+    }
+    .preview {
+      padding: var(--s-5);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-3);
+    }
+    .preview .lbl {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .preview .title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+    .preview .body { color: var(--ink-quiet); font-size: 15px; line-height: 1.55; }
+
+    .operations-grid {
+      margin-top: var(--s-7);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-5);
+    }
+    @media (min-width: 900px) {
+      .operations-grid { grid-template-columns: 1fr 1fr; gap: var(--s-6); }
+    }
+    .operation-card {
+      padding: var(--s-5);
+      background: color-mix(in srgb, var(--gold-soft) 58%, var(--surface) 42%);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    .operation-card.is-plain {
+      background: var(--surface);
+    }
+    .operation-card__label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .operation-card__title {
+      margin-top: var(--s-3);
+      font-family: var(--font-serif);
+      font-size: clamp(24px, 2.2vw, 32px);
+      line-height: 1.14;
+      font-weight: 400;
+      letter-spacing: -0.012em;
+    }
+    .operation-card__body {
+      margin-top: var(--s-3);
+      color: var(--ink-quiet);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .check-list {
+      margin-top: var(--s-4);
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+    .check-list li {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 10px;
+      color: var(--ink-quiet);
+      font-size: 14.5px;
+      line-height: 1.45;
+    }
+    .check-list li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-top: 8px;
+    }
+
+    /* ============================================================
+       DEMO — About page
+       ============================================================ */
+    .team-grid {
+      margin-top: var(--s-7);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-6);
+    }
+    @media (min-width: 900px) {
+      .team-grid { grid-template-columns: 1fr 1fr; gap: var(--s-7); }
+    }
+    .team {
+      padding: var(--s-5);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+    .team__photo {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: linear-gradient(135deg, var(--accent-soft) 0%, var(--gold-soft) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: var(--s-4);
+      position: relative;
+      overflow: hidden;
+    }
+    .team__photo::before {
+      content: "Concept photograph";
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font-size: 10.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-quiet);
+      background: var(--bg);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+    .team__photo .initials {
+      font-family: var(--font-serif);
+      font-size: 84px;
+      color: var(--accent);
+      font-weight: 400;
+      line-height: 0.8;
+      opacity: 0.35;
+    }
+    .team__name {
+      margin-top: var(--s-4);
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: -0.012em;
+    }
+    .team__role {
+      margin-top: 4px;
+      font-size: 13px;
+      color: var(--ink-quiet);
+      letter-spacing: 0.04em;
+    }
+    .team__bio { margin-top: var(--s-4); color: var(--ink-quiet); font-size: 15.5px; line-height: 1.6; }
+    .team__contact {
+      margin-top: var(--s-4);
+      padding-top: var(--s-4);
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+      color: var(--ink-quiet);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px var(--s-4);
+    }
+    .team__contact a { color: var(--accent); border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+
+    .principles {
+      margin-top: var(--s-7);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-4);
+    }
+    @media (min-width: 768px) { .principles { grid-template-columns: repeat(3, 1fr); gap: var(--s-5); } }
+    .principle {
+      padding: var(--s-4) 0;
+      border-top: 2px solid var(--accent);
+    }
+    .principle__title {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.012em;
+    }
+    .principle__body { margin-top: var(--s-3); color: var(--ink-quiet); font-size: 15px; line-height: 1.55; }
+
+    /* ============================================================
+       DEMO — Services
+       ============================================================ */
+    .service-block {
+      padding: var(--s-7) 0;
+      border-top: 1px solid var(--line);
+    }
+    .service-block:first-of-type { border-top: 0; }
+    .service-block .lead-num {
+      font-family: var(--font-serif);
+      font-size: 14px;
+      color: var(--gold);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+    }
+    .service-block h2 { margin-top: var(--s-2); max-width: 18ch; }
+    .service-block .body { margin-top: var(--s-4); color: var(--ink-quiet); }
+    .service-list {
+      margin-top: var(--s-5);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-3);
+      list-style: none;
+    }
+    @media (min-width: 768px) { .service-list { grid-template-columns: 1fr 1fr; gap: var(--s-3) var(--s-5); } }
+    .service-item {
+      padding: var(--s-3) 0;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: var(--s-3);
+    }
+    .service-item__title { font-weight: 500; }
+    .service-item__note { font-size: 13.5px; color: var(--ink-quiet); }
+    .service-block .btn-text { margin-top: var(--s-5); }
+
+    .service-scenarios {
+      margin-top: var(--s-5);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-3);
+    }
+    @media (min-width: 780px) {
+      .service-scenarios { grid-template-columns: repeat(3, 1fr); }
+    }
+    .service-scenario {
+      padding: var(--s-4);
+      background: color-mix(in srgb, var(--surface) 78%, var(--bg) 22%);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+    .service-scenario strong {
+      display: block;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+    .service-scenario span {
+      display: block;
+      margin-top: 6px;
+      color: var(--ink-quiet);
+      font-size: 13.5px;
+      line-height: 1.45;
+    }
+
+    .lender-note {
+      margin-top: var(--s-6);
+      padding: var(--s-5);
+      background: var(--accent-soft);
+      border-radius: 12px;
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .lender-note strong { color: var(--accent); }
+
+    /* ============================================================
+       DEMO — Stories (relationships)
+       ============================================================ */
+    .stories-list { margin-top: var(--s-7); }
+    .story {
+      padding: var(--s-6) 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-4);
+    }
+    .story:last-child { border-bottom: 1px solid var(--line); }
+    @media (min-width: 900px) {
+      .story { grid-template-columns: 280px 1fr; gap: var(--s-7); align-items: start; }
+    }
+    .story__meta { font-size: 14px; line-height: 1.55; color: var(--ink-quiet); }
+    .story__name {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.012em;
+      color: var(--ink);
+      display: block;
+    }
+    .story__where { margin-top: 4px; display: block; }
+    .story__time {
+      margin-top: 8px;
+      display: inline-block;
+      font-size: 11.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .story__quote {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(17px, 1.5vw, 21px);
+      line-height: 1.5;
+      letter-spacing: -0.008em;
+      color: var(--ink);
+    }
+    .stories-closing {
+      margin-top: var(--s-6);
+      padding-top: var(--s-5);
+      border-top: 1px solid var(--line);
+      color: var(--ink-quiet);
+      font-size: 15.5px;
+    }
+
+    /* ============================================================
+       DEMO — Process
+       ============================================================ */
+    .process-list { margin-top: var(--s-7); display: grid; gap: 0; }
+    .process-step {
+      padding: var(--s-6) 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-3);
+    }
+    .process-step:last-child { border-bottom: 1px solid var(--line); }
+    @media (min-width: 900px) {
+      .process-step { grid-template-columns: 100px 1fr 1.4fr; gap: var(--s-6); align-items: start; }
+    }
+    .process-step__num {
+      font-family: var(--font-serif);
+      font-size: 44px;
+      font-weight: 400;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      line-height: 0.9;
+    }
+    .process-step__title {
+      font-family: var(--font-serif);
+      font-size: clamp(20px, 1.8vw, 24px);
+      font-weight: 400;
+      letter-spacing: -0.012em;
+      line-height: 1.25;
+    }
+    .process-step__body { color: var(--ink-quiet); font-size: 15.5px; line-height: 1.6; }
+
+    .timing-note {
+      margin-top: var(--s-6);
+      padding: var(--s-5);
+      background: var(--gold-soft);
+      border-radius: 12px;
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+    .timing-note strong { color: var(--accent); }
+
+    .document-panel {
+      margin-top: var(--s-6);
+      padding: var(--s-5);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-5);
+    }
+    @media (min-width: 900px) {
+      .document-panel { grid-template-columns: 0.85fr 1.15fr; align-items: start; }
+    }
+    .document-panel__title {
+      font-family: var(--font-serif);
+      font-size: clamp(23px, 2vw, 30px);
+      font-weight: 400;
+      line-height: 1.16;
+      letter-spacing: -0.012em;
+    }
+    .document-panel__body {
+      margin-top: var(--s-3);
+      color: var(--ink-quiet);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    /* ============================================================
+       DEMO — Tools (Calculator)
+       ============================================================ */
+    .tool-block {
+      margin-top: var(--s-7);
+      padding: var(--s-6);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+    @media (max-width: 767px) { .tool-block { padding: var(--s-5); } }
+
+    .tool-block h2 {
+      max-width: 22ch;
+    }
+    .tool-block .sub {
+      margin-top: var(--s-3);
+      color: var(--ink-quiet);
+      font-size: 15.5px;
+      max-width: 56ch;
+    }
+
+    .calc-grid {
+      margin-top: var(--s-6);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-6);
+    }
+    @media (min-width: 900px) {
+      .calc-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s-7); }
+    }
+
+    .calc-input { display: flex; flex-direction: column; gap: 10px; margin-bottom: var(--s-4); }
+    .calc-input label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .calc-input label .val {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--accent);
+      letter-spacing: -0.008em;
+    }
+    .calc-input input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 4px;
+      background: var(--line);
+      border-radius: 999px;
+      outline: none;
+    }
+    .calc-input input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      border: 3px solid var(--surface);
+      box-shadow: 0 0 0 1px var(--line);
+      transition: transform 200ms var(--ease);
+    }
+    .calc-input input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
+    .calc-input input[type="range"]::-moz-range-thumb {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      border: 3px solid var(--surface);
+      box-shadow: 0 0 0 1px var(--line);
+    }
+    .calc-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--caption);
+    }
+
+    .calc-output {
+      padding: var(--s-5);
+      background: var(--accent-soft);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 240px;
+    }
+    .calc-output__lbl {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .calc-output__num {
+      margin-top: var(--s-3);
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 4.6vw, 56px);
+      font-weight: 400;
+      color: var(--accent);
+      letter-spacing: -0.024em;
+      line-height: 1;
+    }
+    .calc-output__range {
+      margin-top: var(--s-2);
+      font-size: 15px;
+      color: var(--ink-quiet);
+    }
+    .calc-output__cta { margin-top: var(--s-5); }
+
+    .calc-disclaimer {
+      margin-top: var(--s-5);
+      padding-top: var(--s-4);
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+      color: var(--caption);
+      line-height: 1.6;
+      max-width: 70ch;
+    }
+
+    /* Health check (second tool) */
+    .health-check {
+      margin-top: var(--s-6);
+      padding: var(--s-6);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+    @media (max-width: 767px) { .health-check { padding: var(--s-5); } }
+    .hc-q {
+      padding: var(--s-4) 0;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-3);
+    }
+    @media (min-width: 768px) {
+      .hc-q { grid-template-columns: 1fr 1fr; gap: var(--s-5); align-items: center; }
+    }
+    .hc-q:last-child { border-bottom: 0; }
+    .hc-q__title { font-weight: 500; }
+    .hc-q__opts { display: flex; gap: 8px; flex-wrap: wrap; }
+    .hc-opt {
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--ink-quiet);
+      cursor: pointer;
+      transition: all 180ms var(--ease);
+    }
+    .hc-opt:hover { color: var(--ink); }
+    .hc-opt.is-on {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .hc-output {
+      margin-top: var(--s-5);
+      padding: var(--s-4);
+      background: var(--gold-soft);
+      border-radius: 10px;
+      font-size: 15px;
+      color: var(--ink);
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+    }
+    .hc-output strong { color: var(--accent); }
+
+    /* ============================================================
+       DEMO — Insights
+       ============================================================ */
+    .insight-grid {
+      margin-top: var(--s-7);
+      display: grid;
+      gap: var(--s-4);
+    }
+    .insight-card {
+      padding: var(--s-5);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-3);
+    }
+    @media (min-width: 900px) {
+      .insight-card { grid-template-columns: 100px 1fr; gap: var(--s-5); padding: var(--s-6); }
+    }
+    .insight-card__date {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .insight-card__title {
+      font-family: var(--font-serif);
+      font-size: clamp(20px, 1.8vw, 24px);
+      font-weight: 400;
+      letter-spacing: -0.012em;
+      line-height: 1.3;
+    }
+    .insight-card__author {
+      margin-top: var(--s-2);
+      font-size: 13px;
+      color: var(--ink-quiet);
+    }
+    .insight-card__preview {
+      margin-top: var(--s-3);
+      color: var(--ink-quiet);
+      font-size: 15.5px;
+      line-height: 1.6;
+    }
+    .insight-card__more {
+      margin-top: var(--s-3);
+      color: var(--ink-quiet);
+      font-size: 15.5px;
+      line-height: 1.6;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 400ms var(--ease);
+    }
+    .insight-card.is-expanded .insight-card__more { max-height: 600px; }
+    .insight-toggle {
+      margin-top: var(--s-3);
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 500;
+      align-self: start;
+    }
+    .insight-toggle:hover { text-decoration: underline; }
+
+    /* ============================================================
+       DEMO — Contact
+       ============================================================ */
+    .contact-grid {
+      margin-top: var(--s-7);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-6);
+    }
+    @media (min-width: 900px) {
+      .contact-grid { grid-template-columns: 1.2fr 1fr; gap: var(--s-7); }
+    }
+
+    .contact-form {
+      padding: var(--s-6);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      display: grid;
+      gap: var(--s-4);
+    }
+    .contact-field { display: flex; flex-direction: column; gap: 6px; }
+    .contact-field label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .contact-field input,
+    .contact-field select,
+    .contact-field textarea {
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--ink);
+      transition: border-color 200ms var(--ease);
+    }
+    .contact-field textarea { min-height: 140px; resize: vertical; line-height: 1.5; }
+    .contact-field input:focus, .contact-field select:focus, .contact-field textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .contact-help { font-size: 13px; color: var(--ink-quiet); line-height: 1.5; }
+    .contact-submit { justify-self: start; }
+
+    .contact-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-5);
+    }
+    .contact-line {
+      padding-bottom: var(--s-4);
+      border-bottom: 1px solid var(--line);
+    }
+    .contact-line__lbl {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .contact-line__val {
+      margin-top: var(--s-3);
+      font-family: var(--font-serif);
+      font-size: 19px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+    .contact-line__sub {
+      margin-top: 6px;
+      font-size: 14px;
+      color: var(--ink-quiet);
+    }
+
+    .contact-success {
+      padding: var(--s-5);
+      background: var(--gold-soft);
+      border-radius: 12px;
+      font-size: 15px;
+      color: var(--ink);
+      display: none;
+    }
+    .contact-success.is-shown { display: block; }
+
+    /* ============================================================
+       DEMO — Footer
+       ============================================================ */
+    .dfooter {
+      margin-top: var(--s-8);
+      padding: var(--s-7) 0 var(--s-5);
+      border-top: 1px solid var(--line);
+    }
+    .dfooter__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-5);
+    }
+    @media (min-width: 768px) {
+      .dfooter__grid {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: var(--s-6);
+      }
+    }
+    .dfooter__col h4 {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-quiet);
+      font-weight: 600;
+      margin-bottom: var(--s-3);
+    }
+    .dfooter__col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .dfooter__col a { color: var(--ink); font-size: 15px; transition: color 200ms var(--ease); }
+    .dfooter__col a:hover { color: var(--accent); }
+    .dfooter__about {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.012em;
+      color: var(--ink);
+      line-height: 1.4;
+      max-width: 30ch;
+    }
+    .dfooter__about .dot { color: var(--gold); }
+    .dfooter__about-body { margin-top: var(--s-3); color: var(--ink-quiet); font-size: 14.5px; line-height: 1.55; max-width: 38ch; }
+    .dfooter__bottom {
+      margin-top: var(--s-7);
+      padding-top: var(--s-4);
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--s-3);
+      font-size: 12.5px;
+      color: var(--caption);
+    }
+
+    /* ============================================================
+       CONCEPT BADGE
+       ============================================================ */
+    .concept-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      background: var(--gold-soft);
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-quiet);
+      font-weight: 600;
+    }
+    .concept-badge::before {
+      content: "";
+      width: 5px; height: 5px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+  </style>
+</head>
+<body class="mode-proposal">
+
+  <div class="transition-overlay" id="transitionOverlay" aria-hidden="true"></div>
+
+  <!-- ========================================================
+       PROPOSAL APP
+       ======================================================== -->
+  <div id="proposal-app">
+
+    <header class="pframe" id="pframe" role="banner">
+      <div class="pframe__inner">
+        <a href="#intro" class="pmark">twny<span class="dot">.</span><span class="sub">First Finance · Modernisation Concept</span></a>
+        <p class="pmeta"><span>Made for Craig &amp; Ben Walker · </span>2026</p>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- Section 1 — TWNY intro -->
+      <section id="intro" class="p-section p-intro">
+        <div class="wrap">
+          <p class="eyebrow reveal">A modernisation concept by TWNY</p>
+          <h1 class="h-display reveal" data-d="1" style="margin-top: var(--s-4); max-width: 18ch;">
+            We help businesses modernise the way they show up online.
+          </h1>
+          <p class="lede reveal" data-d="2" style="margin-top: var(--s-5);">
+            We're TWNY — a Melbourne technology practice. For most of the last decade we've helped businesses modernise their cloud, their tools, and the way their teams work. Increasingly, we've found that the part of a business clients see first — the website — is the part most in need of catching up. So we made it part of what we do.
+          </p>
+          <p class="lede reveal quiet" data-d="3" style="margin-top: var(--s-4);">
+            This is a modernisation concept for First Finance Solutions. It's exploratory, not a formal proposal yet. The first part is a short walkthrough of what we observed and what we'd change. The second part is the future-state site itself — built far enough that you can step into it and walk around.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 2 — What we observed -->
+      <section id="observed" class="p-section">
+        <div class="wrap">
+          <p class="section-label reveal">What we observed</p>
+          <div class="grid-2-split" style="margin-top: var(--s-4);">
+            <h2 class="h-1 reveal" data-d="1">A small set of observations from time spent inside the current site.</h2>
+            <p class="lede quiet reveal" data-d="2">Not a critique — just what's there, plainly stated. Five things stood out.</p>
+          </div>
+
+          <ol class="item-list" style="list-style: none;">
+            <li class="item reveal">
+              <span class="item__num">01</span>
+              <h3 class="item__title">A 2017-era theme is carrying a 33-year practice.</h3>
+              <p class="item__body">The current site is a WordPress theme built before First Finance had won most of its current awards or done most of its current work. It hasn't kept up with the practice.</p>
+            </li>
+            <li class="item reveal">
+              <span class="item__num">02</span>
+              <h3 class="item__title">The strongest writing on the site sits half-buried.</h3>
+              <p class="item__body">Craig's bio — Blackburn Vikings basketball, the beach house on the Peninsula, the line about doing business for clients' kids — is excellent. It's the most human writing on the page. It deserves a better frame.</p>
+            </li>
+            <li class="item reveal">
+              <span class="item__num">03</span>
+              <h3 class="item__title">Long-term testimonials are paired with generic avatars.</h3>
+              <p class="item__body">Five real testimonials, two describing 15- and 20-year relationships explicitly. All paired with the same grey placeholder face. The substance is strong; the presentation undersells it.</p>
+            </li>
+            <li class="item reveal">
+              <span class="item__num">04</span>
+              <h3 class="item__title">Industry recognition is invisible.</h3>
+              <p class="item__body">Craig's Elite Broker profile in <em>The Adviser</em> (Aug 2024). Ben's Buyers Choice Asset Finance Broker of the Year, MFAA Young Professional state finalist, Australian Mortgage Excellence Award, Buyers Choice MD Award. None of this appears anywhere visible on the current site.</p>
+            </li>
+            <li class="item reveal">
+              <span class="item__num">05</span>
+              <h3 class="item__title">Every visitor lands on the same button.</h3>
+              <p class="item__body">"GET STARTED." But a first-home buyer, a multi-property investor, and a business owner financing a commercial purchase all need different things from the first scroll. The site treats them identically.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Section 3 — Why this matters -->
+      <section id="matters" class="p-section">
+        <div class="wrap">
+          <p class="section-label reveal">Why this matters</p>
+          <div class="grid-2-split" style="margin-top: var(--s-4);">
+            <h2 class="h-1 reveal" data-d="1">The website is telling a smaller story than the business.</h2>
+            <div class="stack-l">
+              <p class="body-l reveal quiet" data-d="1">
+                First Finance has thirty-three years of practice, two named principals, an industry-recognised award shelf, a multi-decade client book, and a referral network that turns each engagement into a coordinated financial conversation. The current website tells the story of a generic Melbourne broker established in 2017.
+              </p>
+              <p class="body-l reveal quiet" data-d="2">
+                Sophisticated clients pattern-match instantly on visual quality. When the presentation undersells what's behind it, trust leaks at the top of the funnel — quietly, every week, without showing up anywhere measurable. The modernisation is closing that gap so the website tells the truth about the business.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4 — What's already strong -->
+      <section id="strengths" class="p-section">
+        <div class="wrap">
+          <p class="section-label reveal">What's already strong</p>
+          <div class="grid-2-split" style="margin-top: var(--s-4);">
+            <h2 class="h-1 reveal" data-d="1">The substance is there. The brand has more equity than the current site uses.</h2>
+            <p class="lede quiet reveal" data-d="2">Before talking about what to change, a clearer view of what's already working — and worth keeping.</p>
+          </div>
+
+          <div class="strength-grid">
+            <div class="strength reveal">
+              <p class="strength__lbl">Strength · 01</p>
+              <h3 class="strength__title">Thirty-three years of practice.</h3>
+              <p class="strength__body">Craig established First Finance in 1992 after eleven years at ANZ. The practice has operated continuously since. Most direct Melbourne competitors are a decade or two younger.</p>
+            </div>
+            <div class="strength reveal" data-d="1">
+              <p class="strength__lbl">Strength · 02</p>
+              <h3 class="strength__title">A genuine family-led handover.</h3>
+              <p class="strength__body">Ben joined in 2015 — deliberately — to extend the practice past either individual broker. Rare in boutique broking. A real strategic asset: the next ten years of relationships are already underwritten.</p>
+            </div>
+            <div class="strength reveal">
+              <p class="strength__lbl">Strength · 03</p>
+              <h3 class="strength__title">A real award shelf.</h3>
+              <p class="strength__body">Craig's Elite Broker recognition from <em>The Adviser</em>. Ben's Buyers Choice Asset Finance Broker of the Year, his Australian Mortgage Excellence Award, MFAA Young Professional state finalist nomination, Buyers Choice Managing Director Award. Most boutique practices would lead with half of this.</p>
+            </div>
+            <div class="strength reveal" data-d="1">
+              <p class="strength__lbl">Strength · 04</p>
+              <h3 class="strength__title">A purple-and-gold identity already in place.</h3>
+              <p class="strength__body">The current visual identity uses purple as primary with gold as accent. That's a real foundation. The modernisation doesn't propose throwing it out — it proposes evolving it.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5 — What we'd modernise -->
+      <section id="modernise" class="p-section">
+        <div class="wrap">
+          <p class="section-label reveal">What we'd modernise</p>
+          <h2 class="h-1 reveal" data-d="1" style="margin-top: var(--s-4); max-width: 18ch;">Five concrete moves.</h2>
+
+          <ol class="item-list" style="list-style: none;">
+            <li class="item reveal">
+              <span class="item__num">01</span>
+              <h3 class="item__title">Make the family-led continuity the centre of the brand.</h3>
+              <p class="item__body">It sits in a paragraph today. Move it to the top of the conversation. <em>Advisor for life, across generations</em> is true, evidenced over three decades, and unmatched by direct competitors. It should be the headline of the practice.</p>
+            </li>
+            <li class="item reveal">
+              <span class="item__num">02</span>
+              <h3 class="item__title">Surface the credentials.</h3>
+              <p class="item__body">Not a logo wall, not a glossy "awards" page — an honest acknowledgement of recognition, presented at the weight it deserves. Craig's industry profile and Ben's award shelf should be visible within thirty seconds of arrival.</p>
+            </li>
+            <li class="item reveal">
+              <span class="item__num">03</span>
+              <h3 class="item__title">Reframe the testimonials as relationships.</h3>
+              <p class="item__body">Same clients, same words, but with timeframes and context. <em>Rob Lamers, Park Orchards, client since the early 2000s.</em> The product the practice sells is multi-decade trust. The testimonials should be the evidence the product works.</p>
+            </li>
+            <li class="item reveal">
+              <span class="item__num">04</span>
+              <h3 class="item__title">Build three honest entry points for the real audience.</h3>
+              <p class="item__body"><em>I'm refinancing or upgrading my home. I'm building a property portfolio. I'm financing a business, commercial property, or major asset.</em> Three situations, three paths. Replaces a one-size-fits-all "Get Started" button.</p>
+            </li>
+            <li class="item reveal">
+              <span class="item__num">05</span>
+              <h3 class="item__title">Add tools and insights that earn their keep.</h3>
+              <p class="item__body">A real borrowing-capacity calculator. A refinance health-check. A quarterly note from Craig or Ben on shifts in lender appetite. Small surfaces, but each signals an active, current practice.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Section 6 — Brand evolution -->
+      <section id="evolution" class="p-section">
+        <div class="wrap">
+          <p class="section-label reveal">The brand evolution</p>
+          <div class="grid-2-split" style="margin-top: var(--s-4);">
+            <h2 class="h-1 reveal" data-d="1">Aggressive evolution, not reinvention.</h2>
+            <p class="lede quiet reveal" data-d="2">What stays, what shifts, and why. The aim is for long-time clients to still recognise the brand, and for new ones to see a current practice.</p>
+          </div>
+
+          <div class="evolution-block reveal">
+            <div class="evo-row">
+              <p class="evo-label">Preserved</p>
+              <div class="evo-current">
+                <p class="evo-tag">Kept as-is</p>
+                <p style="font-size: 15px; color: var(--ink-quiet); line-height: 1.55;">The First Finance name. The Walker family identity. The existing voice — Craig's About-page bio is some of the best writing on the current site and survives intact. The "client for life" ethos.</p>
+              </div>
+              <div class="evo-evolved"></div>
+            </div>
+
+            <div class="evo-row">
+              <p class="evo-label">Colour — Purple</p>
+              <div class="evo-current">
+                <p class="evo-tag">Current</p>
+                <div class="evo-swatches">
+                  <span class="swatch" style="background: #6B4E92;"></span>
+                  <span class="swatch-code">≈ #6B4E92</span>
+                </div>
+                <p style="font-size: 14px; color: var(--ink-quiet);">Saturated, bright, dated.</p>
+              </div>
+              <div class="evo-evolved">
+                <p class="evo-tag">Evolved</p>
+                <div class="evo-swatches">
+                  <span class="swatch" style="background: #3B2C5E;"></span>
+                  <span class="swatch-code">#3B2C5E</span>
+                </div>
+                <p style="font-size: 14px; color: var(--ink-quiet);">Deeper, more confident, contemporary.</p>
+              </div>
+            </div>
+
+            <div class="evo-row">
+              <p class="evo-label">Colour — Gold</p>
+              <div class="evo-current">
+                <p class="evo-tag">Current</p>
+                <div class="evo-swatches">
+                  <span class="swatch" style="background: #D4AF37;"></span>
+                  <span class="swatch-code">≈ #D4AF37</span>
+                </div>
+                <p style="font-size: 14px; color: var(--ink-quiet);">Bright, used as highlight.</p>
+              </div>
+              <div class="evo-evolved">
+                <p class="evo-tag">Evolved</p>
+                <div class="evo-swatches">
+                  <span class="swatch" style="background: #B8924D;"></span>
+                  <span class="swatch-code">#B8924D</span>
+                </div>
+                <p style="font-size: 14px; color: var(--ink-quiet);">Restrained, warm, used as punctuation only.</p>
+              </div>
+            </div>
+
+            <div class="evo-row">
+              <p class="evo-label">Wordmark</p>
+              <div class="evo-current">
+                <p class="evo-tag">Current</p>
+                <p class="evo-mark-current">First Finance Solutions</p>
+                <p style="font-size: 14px; color: var(--ink-quiet);">JPG file, italic serif, mid-2010s execution.</p>
+              </div>
+              <div class="evo-evolved">
+                <p class="evo-tag">Evolved</p>
+                <p class="evo-mark-evolved">first finance</p>
+                <p style="font-size: 14px; color: var(--ink-quiet);">Clean modern setting, lowercase, with a single gold accent.</p>
+              </div>
+            </div>
+
+            <div class="evo-row">
+              <p class="evo-label">Typography</p>
+              <div class="evo-current">
+                <p class="evo-tag">Current</p>
+                <p style="font-size: 14px; color: var(--ink-quiet);">WordPress theme defaults.</p>
+              </div>
+              <div class="evo-evolved">
+                <p class="evo-tag">Evolved</p>
+                <p style="font-size: 14px; color: var(--ink-quiet);">A clear two-face system: a warm modern serif for headings and human moments, a clean sans for body and interface. Friendly. Premium. Practical.</p>
+              </div>
+            </div>
+
+            <div class="evo-row">
+              <p class="evo-label">Architecture</p>
+              <div class="evo-current">
+                <p class="evo-tag">Current</p>
+                <p style="font-size: 14px; color: var(--ink-quiet);">A single page with three anchored sections.</p>
+              </div>
+              <div class="evo-evolved">
+                <p class="evo-tag">Evolved</p>
+                <p style="font-size: 14px; color: var(--ink-quiet);">A believable multi-page site: Home, About, Services, Stories, Process, Tools, Insights, Contact.</p>
+              </div>
+            </div>
+
+            <div class="evo-row">
+              <p class="evo-label">Why it matters</p>
+              <div style="grid-column: 2 / -1; max-width: 64ch;">
+                <p style="font-size: 15.5px; color: var(--ink-quiet); line-height: 1.6;">Long-time clients should still recognise the practice. New clients should see one ahead of, not behind, the category. The visual equity is real and worth carrying — it just needs to grow up.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 7 — Enter the demo -->
+      <section id="enter" class="p-enter">
+        <div class="wrap-narrow">
+          <p class="section-label reveal">The future state</p>
+          <h2 class="h-1 reveal" data-d="1" style="margin-top: var(--s-4);">
+            Rather than describe what it could feel like, we built it.
+          </h2>
+          <p class="lede reveal quiet" data-d="2">
+            The next part isn't more proposal. It's a walkthrough of the future-state First Finance — built far enough to feel like a real implemented site. Eight pages, real navigation, working tools, the modernised brand applied. You'll be able to walk around in it.
+          </p>
+          <button class="btn btn-primary btn-large reveal" data-d="3" id="enterDemoBtn" type="button">
+            Enter the future-state experience
+            <span class="arrow" aria-hidden="true">→</span>
+          </button>
+          <p class="small reveal" data-d="3">A small note: this is a concept. The words and numbers are real; photography is suggested, not commissioned. We mark concept moments clearly. You can return to the proposal at any time.</p>
+        </div>
+      </section>
+
+      <!-- Section 8 — Next steps (after return) -->
+      <section id="next" class="p-section p-next">
+        <div class="wrap">
+          <p class="section-label reveal">Now that you've seen it</p>
+          <h2 class="h-display reveal" data-d="1" style="margin-top: var(--s-4); max-width: 18ch;">
+            That's the concept. The next step is small.
+          </h2>
+          <p class="lede reveal quiet" data-d="2" style="margin-top: var(--s-5);">
+            This is a concept, not a built site — yet. The natural next step is a twenty-minute conversation about what would change, what would stay, what a real engagement would actually involve, and how we'd scope it. No commitment beyond the conversation.
+          </p>
+
+          <div class="reveal" data-d="3" style="margin-top: var(--s-6);">
+            <a href="mailto:hello@twny.com.au?subject=First%20Finance%20—%20modernisation%20concept" class="btn btn-primary btn-large">
+              Reply to start the conversation
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+            <p class="small reveal" data-d="3" style="margin-top: var(--s-4); color: var(--ink-quiet); font-size: 14px;">
+              Or sit with it for a few days. We don't chase.
+            </p>
+          </div>
+
+          <div class="signature">
+            <span>Made for Craig and Ben Walker</span>
+            <span>TWNY · 2026</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ========================================================
+       DEMO APP — Fullscreen First Finance future-state
+       ======================================================== -->
+  <div id="demo-app">
+
+    <!-- Persistent nav -->
+    <header class="dnav" role="banner">
+      <div class="dnav__inner">
+        <a href="#" class="dnav__mark" data-page="home">first finance<span class="dot">.</span></a>
+        <nav aria-label="Primary">
+          <ul class="dnav__links">
+            <li><a href="#" class="dnav__link is-active" data-page="home">Home</a></li>
+            <li><a href="#" class="dnav__link" data-page="about">About</a></li>
+            <li><a href="#" class="dnav__link" data-page="services">Services</a></li>
+            <li><a href="#" class="dnav__link" data-page="stories">Stories</a></li>
+            <li><a href="#" class="dnav__link" data-page="process">Process</a></li>
+            <li><a href="#" class="dnav__link" data-page="tools">Tools</a></li>
+            <li><a href="#" class="dnav__link" data-page="insights">Insights</a></li>
+            <li><a href="#" class="dnav__link" data-page="contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="dnav__right">
+          <button class="return-btn" id="returnBtn" type="button" title="Return to the TWNY proposal">
+            <span class="arrow" aria-hidden="true">←</span>
+            <span>Back to proposal</span>
+          </button>
+          <button class="dnav__menu-btn" id="menuBtn" type="button" aria-label="Open menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile menu sheet -->
+    <div class="dmenu-sheet" id="menuSheet" aria-hidden="true">
+      <button class="close" id="menuClose" type="button" aria-label="Close menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+      </button>
+      <ul>
+        <li><a href="#" data-page="home">Home</a></li>
+        <li><a href="#" data-page="about">About</a></li>
+        <li><a href="#" data-page="services">Services</a></li>
+        <li><a href="#" data-page="stories">Stories</a></li>
+        <li><a href="#" data-page="process">Process</a></li>
+        <li><a href="#" data-page="tools">Tools</a></li>
+        <li><a href="#" data-page="insights">Insights</a></li>
+        <li><a href="#" data-page="contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <main>
+      <!-- HOME -->
+      <section class="dpage is-active" data-page="home">
+        <div class="wrap">
+          <div class="home-hero-grid">
+            <div class="dhero">
+              <p class="eyebrow">First Finance Solutions · Est. 1992</p>
+              <h1 class="h-display">Advisor <em>for life.</em><br>Across generations.</h1>
+              <p class="lede">A Melbourne finance broking practice, family-led since 1992. Craig and Ben Walker, thirty-five lender relationships, and three decades of clients still on the books.</p>
+              <div class="hero-facts" aria-label="Practice highlights">
+                <div class="hero-fact">
+                  <strong>Residential and commercial</strong>
+                  <span>Home loans, portfolios, business and asset finance.</span>
+                </div>
+                <div class="hero-fact">
+                  <strong>Direct broker access</strong>
+                  <span>You speak with Craig or Ben, not a call centre.</span>
+                </div>
+                <div class="hero-fact">
+                  <strong>Coordinated advice</strong>
+                  <span>We work with accountants, planners and lawyers where useful.</span>
+                </div>
+              </div>
+              <div class="cta-row">
+                <a href="#" class="btn btn-primary" data-page="contact">Talk to us about your situation <span class="arrow" aria-hidden="true">→</span></a>
+                <a href="#" class="btn btn-ghost" data-page="tools">Check borrowing capacity</a>
+              </div>
+            </div>
+
+            <aside class="home-photo-card" aria-label="Concept photography direction">
+              <span class="photo-pill">Concept photography direction</span>
+              <p class="photo-caption">
+                <strong>Craig and Ben in the Mitcham office, not a stock-finance backdrop.</strong>
+                <span>Warm working portraits, documents on the desk, real conversations, the everyday practice visible.</span>
+              </p>
+            </aside>
+          </div>
+
+          <div class="situation-grid" aria-label="Common client situations">
+            <a href="#" class="situation-card" data-page="services">
+              <span class="situation-card__kicker">Home finance</span>
+              <span class="situation-card__title">I'm refinancing, upgrading, renovating or bridging.</span>
+              <span class="situation-card__body">We look at rate, structure, timing, equity, repayment comfort and whether the current lender still deserves the loan.</span>
+              <span class="situation-card__meta">Typical first step: 20-minute position check.</span>
+            </a>
+            <a href="#" class="situation-card" data-page="services">
+              <span class="situation-card__kicker">Property investors</span>
+              <span class="situation-card__title">I'm planning the next property in the portfolio.</span>
+              <span class="situation-card__body">We map serviceability, equity release, lender spread and accountant coordination before the next purchase becomes urgent.</span>
+              <span class="situation-card__meta">Typical first step: borrowing and structure review.</span>
+            </a>
+            <a href="#" class="situation-card" data-page="services">
+              <span class="situation-card__kicker">Business owners</span>
+              <span class="situation-card__title">I'm financing a business, commercial property or major asset.</span>
+              <span class="situation-card__body">We help compare commercial property, asset, working-capital and SMSF pathways across lender policies that are rarely obvious.</span>
+              <span class="situation-card__meta">Typical first step: security and cash-flow conversation.</span>
+            </a>
+          </div>
+
+          <div class="operations-grid">
+            <article class="operation-card">
+              <p class="operation-card__label">What happens after you call</p>
+              <h2 class="operation-card__title">A first conversation that feels like advice, not intake.</h2>
+              <p class="operation-card__body">Craig or Ben asks about timing, property, income, existing loans and what prompted the conversation. If it is too early, they say so. If the lender path is obvious, they say that too.</p>
+              <ul class="check-list">
+                <li>Quick read on whether the opportunity is worth pursuing now.</li>
+                <li>Clear view of what information is needed before lender selection.</li>
+                <li>No pressure to lodge an application before the structure makes sense.</li>
+              </ul>
+            </article>
+            <article class="operation-card is-plain">
+              <p class="operation-card__label">Usually helpful to have nearby</p>
+              <h2 class="operation-card__title">The practical documents that make the first review useful.</h2>
+              <ul class="check-list">
+                <li>Recent payslips or business income summary.</li>
+                <li>Current loan statements and repayment amounts.</li>
+                <li>Property details, purchase contract or refinance objective.</li>
+                <li>Accountant details where investment, SMSF or business structure matters.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="trust-strip">
+            <div>
+              <div class="trust__num">33<span class="small">yrs</span></div>
+              <p class="trust__lbl">Practising in Melbourne</p>
+            </div>
+            <div>
+              <div class="trust__num">35<span class="small">+</span></div>
+              <p class="trust__lbl">Lender relationships</p>
+            </div>
+            <div>
+              <div class="trust__num">2</div>
+              <p class="trust__lbl">Generations of brokers</p>
+            </div>
+            <div>
+              <div class="trust__num">2024</div>
+              <p class="trust__lbl">Featured by <em>The Adviser</em>, Elite Broker</p>
+            </div>
+          </div>
+
+          <div class="preview-row">
+            <a href="#" class="preview" data-page="stories">
+              <p class="lbl">A relationship · 20+ years</p>
+              <h3 class="title">Rob Lamers — Park Orchards.</h3>
+              <p class="body">"I have been dealing with Craig Walker at First Finance Solutions for over 20 years. During that time I have utilised Craig for all my personal finance needs. I have also referred my friends and family."</p>
+              <span class="btn-text" style="color: var(--accent);">See all relationships <span aria-hidden="true">→</span></span>
+            </a>
+            <a href="#" class="preview" data-page="insights">
+              <p class="lbl">Insights · Q2 2026</p>
+              <h3 class="title">What lender appetite has actually looked like through the first half of 2026.</h3>
+              <p class="body">A quarterly note from Ben on where the major banks have quietly become more competitive, where second-tier lenders are tightening, and what investment lending policy is doing.</p>
+              <span class="btn-text" style="color: var(--accent);">Read the latest note <span aria-hidden="true">→</span></span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="dpage" data-page="about">
+        <div class="wrap">
+          <div class="dhero">
+            <p class="eyebrow">About</p>
+            <h1 class="h-display">Two brokers. One client book. <em>Thirty-three years.</em></h1>
+            <p class="lede">First Finance was established in 1992. Ben joined in 2015. The practice is built to outlast either of us — by design.</p>
+          </div>
+
+          <div class="wrap-narrow" style="padding: 0;">
+            <div class="stack-l">
+              <p class="body-l">In 1990, in the middle of the "recession we had to have," Craig Walker left ANZ after eleven years in business and commercial banking. He'd planned to move into private enterprise. Within two years he'd started First Finance, joining a small handful of Melbourne brokers operating before the industry had front and trail commissions, before residential broking was structured at all, before most of the lenders First Finance now works with existed.</p>
+              <p class="body-l">For most of the '90s and early 2000s the focus shifted toward residential — the trail book was the security. The commercial work stayed, then grew. By the 2010s, First Finance had become the kind of practice that didn't need to market: clients came back, and then sent their kids. Ben joined in 2015 with a Bachelor of Business and a Diploma of Finance and Mortgage Broking. He spent the decade since building his own award shelf — Buyers Choice Asset Finance Broker of the Year 2021, an Australian Mortgage Excellence Award for Productivity, an MFAA Young Professional state finalist nomination in 2022, the Buyers Choice MD Award.</p>
+              <p class="body-l">In August 2024 Craig was profiled by <em>The Adviser</em> as an Elite Broker — a six-minute feature and a podcast appearance on what it takes to run a full-service brokerage. He's now in his thirty-sixth year in finance, his twenty-fifth as a broker, and gradually transitioning the day-to-day client work to Ben while staying full-time in commercial.</p>
+            </div>
+          </div>
+
+          <div class="operations-grid">
+            <article class="operation-card is-plain">
+              <p class="operation-card__label">The working practice</p>
+              <h2 class="operation-card__title">Mitcham base, Melbourne clients, long-running referral relationships.</h2>
+              <p class="operation-card__body">The future site should make the practice feel findable and real: Craig and Ben named, office location visible, phone numbers plain, compliance present, and the relationship with accountants and planners described without overclaiming it.</p>
+            </article>
+            <article class="operation-card">
+              <p class="operation-card__label">Photography direction</p>
+              <h2 class="operation-card__title">Commissioned working portraits, not finance stock imagery.</h2>
+              <p class="operation-card__body">Environmental photography would show the office, the people, the desk work, the calls, the review meetings and the small signs of a practice that has been doing this for decades.</p>
+            </article>
+          </div>
+
+          <div class="team-grid">
+            <article class="team">
+              <div class="team__photo"><span class="initials">CW</span></div>
+              <h3 class="team__name">Craig Walker</h3>
+              <p class="team__role">Managing Director · CRN 400601</p>
+              <p class="team__bio">Established First Finance Solutions in 1992 after eleven years at ANZ Bank, mostly in business and commercial banking. Now in his thirty-sixth year in finance, his twenty-fifth as a broker. Featured by <em>The Adviser</em> as an Elite Broker, August 2024. Specialises in commercial property, business lending and long-relationship residential.</p>
+              <p class="team__bio">Outside the office: retired Treasurer of the Blackburn Vikings after fifteen years, still plays in the local master's basketball competition. Two grandchildren and a beach house on the Mornington Peninsula.</p>
+              <div class="team__contact">
+                <a href="mailto:craig@firstfinance.com.au">craig@firstfinance.com.au</a>
+                <span>0412 316 176</span>
+              </div>
+            </article>
+
+            <article class="team">
+              <div class="team__photo"><span class="initials">BW</span></div>
+              <h3 class="team__name">Ben Walker</h3>
+              <p class="team__role">Director · BBus, DipFMBM · CRN 480233</p>
+              <p class="team__bio">Joined First Finance in 2015. Bachelor of Business, Diploma of Finance and Mortgage Broking. Started at Commonwealth Bank in customer service and lending before moving into broking. Won Buyers Choice Asset Finance Broker of the Year 2021, an Australian Mortgage Excellence Award (Productivity), and the Buyers Choice Managing Director Award 2022. State finalist, MFAA Young Professional 2022.</p>
+              <p class="team__bio">Spends time helping clients structure accounts to reduce loan term, work alongside their accountants, and think about tax minimisation as part of the broader plan — not just product selection. Plays in the same basketball team as Craig.</p>
+              <div class="team__contact">
+                <a href="mailto:ben@firstfinance.com.au">ben@firstfinance.com.au</a>
+                <span>0423 044 641</span>
+              </div>
+            </article>
+          </div>
+
+          <div class="principles">
+            <div class="principle">
+              <h3 class="principle__title">Independent.</h3>
+              <p class="principle__body">We hold our own Credit Representative status. Thirty-five-plus lender relationships. The recommendation is the one that fits your situation, not the one that suits the relationship.</p>
+            </div>
+            <div class="principle">
+              <h3 class="principle__title">Long-term.</h3>
+              <p class="principle__body">We don't optimise for the transaction in front of us. We optimise for being your broker in ten years. That changes how we structure things now.</p>
+            </div>
+            <div class="principle">
+              <h3 class="principle__title">Coordinated.</h3>
+              <p class="principle__body">We work alongside a small preferred network of accountants, financial planners and lawyers. Where it helps, we coordinate the conversation rather than ask you to.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section class="dpage" data-page="services">
+        <div class="wrap">
+          <div class="dhero">
+            <p class="eyebrow">Services</p>
+            <h1 class="h-display">Finance for the situations <em>our clients actually live in.</em></h1>
+            <p class="lede">We organise our work around three things — homes, portfolios, and businesses. Below, what's in each.</p>
+          </div>
+
+          <div class="service-block">
+            <p class="lead-num">01 · Homes</p>
+            <h2 class="h-1">Buying, refinancing, building, bridging.</h2>
+            <p class="body body-l">The work most clients arrive for first. We handle the structure, the application, and the bank conversation. The first home, the second home, the upgrade, the renovation, the bridge between sale and settlement.</p>
+            <ul class="service-list">
+              <li class="service-item"><span class="service-item__title">Purchases</span><span class="service-item__note">First home, second home, upgrade.</span></li>
+              <li class="service-item"><span class="service-item__title">Refinancing</span><span class="service-item__note">Rate, structure, lender change.</span></li>
+              <li class="service-item"><span class="service-item__title">Construction loans</span><span class="service-item__note">New builds and major renovations.</span></li>
+              <li class="service-item"><span class="service-item__title">Bridging</span><span class="service-item__note">Buying before selling.</span></li>
+              <li class="service-item"><span class="service-item__title">Debt consolidation</span><span class="service-item__note">Restructuring across products.</span></li>
+              <li class="service-item"><span class="service-item__title">Top-ups</span><span class="service-item__note">Drawing on equity, where it fits.</span></li>
+            </ul>
+            <div class="service-scenarios">
+              <div class="service-scenario">
+                <strong>When the fixed rate is ending.</strong>
+                <span>We compare lender retention offers, refinance costs, cashback offers and whether the loan should be restructured before rollover.</span>
+              </div>
+              <div class="service-scenario">
+                <strong>When the family is upgrading.</strong>
+                <span>We model sale timing, bridging risk, deposit movement and the repayment position after settlement.</span>
+              </div>
+              <div class="service-scenario">
+                <strong>When the current loan is messy.</strong>
+                <span>We separate rate problems from structure problems, then decide whether a refinance actually solves the issue.</span>
+              </div>
+            </div>
+            <a href="#" class="btn-text" data-page="contact">Talk to us about a home loan <span aria-hidden="true">→</span></a>
+          </div>
+
+          <div class="service-block">
+            <p class="lead-num">02 · Portfolios</p>
+            <h2 class="h-1">Investment finance, structured for the long game.</h2>
+            <p class="body body-l">The work where structure matters most. We work alongside your accountant on serviceability, equity release, and ownership structure — so a third or fourth property doesn't get harder than it should.</p>
+            <ul class="service-list">
+              <li class="service-item"><span class="service-item__title">Investment loans</span><span class="service-item__note">Owner-occupier or interest-only.</span></li>
+              <li class="service-item"><span class="service-item__title">Equity release</span><span class="service-item__note">Using your current properties as the base.</span></li>
+              <li class="service-item"><span class="service-item__title">SMSF property finance</span><span class="service-item__note">Limited-recourse borrowing arrangements.</span></li>
+              <li class="service-item"><span class="service-item__title">Portfolio refinance</span><span class="service-item__note">Restructuring across multiple lenders.</span></li>
+              <li class="service-item"><span class="service-item__title">Cross-collateralisation</span><span class="service-item__note">When to do it. When not to.</span></li>
+              <li class="service-item"><span class="service-item__title">Structure with your accountant</span><span class="service-item__note">Coordinated tax-aware planning.</span></li>
+            </ul>
+            <div class="service-scenarios">
+              <div class="service-scenario">
+                <strong>When the next purchase depends on equity.</strong>
+                <span>We check usable equity, lender concentration, valuations, buffers and whether the next lender should be different.</span>
+              </div>
+              <div class="service-scenario">
+                <strong>When tax structure matters.</strong>
+                <span>We bring the accountant into the sequence before application, not after settlement.</span>
+              </div>
+              <div class="service-scenario">
+                <strong>When serviceability is tight.</strong>
+                <span>We test lender policy before you spend weekends inspecting properties that the bank will not support.</span>
+              </div>
+            </div>
+            <a href="#" class="btn-text" data-page="contact">Talk to us about a portfolio <span aria-hidden="true">→</span></a>
+          </div>
+
+          <div class="service-block">
+            <p class="lead-num">03 · Businesses</p>
+            <h2 class="h-1">Commercial property, businesses, equipment, assets.</h2>
+            <p class="body body-l">Craig's home ground for thirty-three years. Business loans, commercial property purchases, development finance, asset and equipment finance — all the things a growing business needs that the major banks make harder than they should be.</p>
+            <ul class="service-list">
+              <li class="service-item"><span class="service-item__title">Business loans</span><span class="service-item__note">Working capital, acquisition, expansion.</span></li>
+              <li class="service-item"><span class="service-item__title">Commercial property</span><span class="service-item__note">Owner-occupier or investment.</span></li>
+              <li class="service-item"><span class="service-item__title">Development finance</span><span class="service-item__note">Small-to-mid scale residential or commercial.</span></li>
+              <li class="service-item"><span class="service-item__title">Asset finance</span><span class="service-item__note">Vehicles, equipment, fit-outs.</span></li>
+              <li class="service-item"><span class="service-item__title">SMSF commercial</span><span class="service-item__note">For business owners with their own property.</span></li>
+              <li class="service-item"><span class="service-item__title">Refinance / restructure</span><span class="service-item__note">When the structure no longer fits.</span></li>
+            </ul>
+            <div class="service-scenarios">
+              <div class="service-scenario">
+                <strong>When the business is buying premises.</strong>
+                <span>We look at trading history, security position, GST timing, cash-flow comfort and lender appetite.</span>
+              </div>
+              <div class="service-scenario">
+                <strong>When an asset needs funding.</strong>
+                <span>We compare asset finance, chattel mortgage, lease and working-capital implications before the quote expires.</span>
+              </div>
+              <div class="service-scenario">
+                <strong>When a deal has a deadline.</strong>
+                <span>We identify the lender path that can move at the speed the transaction actually needs.</span>
+              </div>
+            </div>
+            <a href="#" class="btn-text" data-page="contact">Talk to us about a business loan <span aria-hidden="true">→</span></a>
+          </div>
+
+          <div class="lender-note">
+            <strong>Lender panel.</strong> We work with thirty-five-plus lenders, including the major banks, second-tier banks, and specialist lenders for situations the majors don't write. The right lender for your situation isn't always the most obvious one — that's most of what we do.
+          </div>
+        </div>
+      </section>
+
+      <!-- STORIES -->
+      <section class="dpage" data-page="stories">
+        <div class="wrap">
+          <div class="dhero">
+            <p class="eyebrow">Relationships</p>
+            <h1 class="h-display">What "client for life" <em>actually looks like.</em></h1>
+            <p class="lede">Five relationships, in their own words. Real names, real timeframes, real situations.</p>
+          </div>
+
+          <div class="stories-list">
+            <article class="story">
+              <div class="story__meta">
+                <span class="story__name">Rob Lamers</span>
+                <span class="story__where">Park Orchards</span>
+                <span class="story__time">Client since the early 2000s · 20+ years</span>
+              </div>
+              <p class="story__quote">"I have been dealing with Craig Walker at First Finance Solutions for over 20 years. During that time I have utilised Craig for all my personal finance needs. I have also referred my friends and family. I have worked for various lenders in the business lending field for over 25 years, and have been fortunate to receive numerous referrals from First Finance Solutions. It is a true two-way referral relationship."</p>
+            </article>
+
+            <article class="story">
+              <div class="story__meta">
+                <span class="story__name">Bill Munro</span>
+                <span class="story__where">Styling Services, Collingwood</span>
+                <span class="story__time">Client for 15 years · Commercial, residential, SMSF</span>
+              </div>
+              <p class="story__quote">"First Finance has been an absolute pleasure to work with over the past 15 years. No matter how challenging the project the service level is second to none. Commercial, residential, superannuation funds — nothing is too hard, and the advice has saved us thousands."</p>
+            </article>
+
+            <article class="story">
+              <div class="story__meta">
+                <span class="story__name">Matt Cannon</span>
+                <span class="story__where">Focus Financial Group, East Ringwood</span>
+                <span class="story__time">Business acquisition financing · Worked with Ben</span>
+              </div>
+              <p class="story__quote">"Purchasing a business is a challenging exercise which requires total focus and commitment. The appropriate financing of my business purchase was integral to a successful transaction so I was keen to engage someone with experience in this area. Ben and the FFS team were very professional and thorough with their proposal and negotiations to achieve the desired outcome."</p>
+            </article>
+
+            <article class="story">
+              <div class="story__meta">
+                <span class="story__name">Andrew Cameron</span>
+                <span class="story__where">North Melbourne</span>
+                <span class="story__time">Investment property financing · Multiple properties</span>
+              </div>
+              <p class="story__quote">"Craig has been of great assistance to me in financing two investment properties. One investment in particular needed a very fast turnaround which Craig was happily able to accommodate. Dealing directly with the banks has been painful, from experience with my home loan. Using First Finance Solutions has been a real advantage — not only to get a competitive home loan rate, but to take the hassle out of the whole process."</p>
+            </article>
+
+            <article class="story">
+              <div class="story__meta">
+                <span class="story__name">Cihan &amp; Tully Demirel</span>
+                <span class="story__where">Macleod</span>
+                <span class="story__time">First-home buyers, 2024 · Worked with Ben</span>
+              </div>
+              <p class="story__quote">"When we first began looking into home loans and purchasing a property, both my husband and I felt overwhelmed by the amount of information we had to navigate. Ben was a wonderful support to us during the process. He was able to present us with all of our options in a way that was comprehensive and easy to digest. What could have been a stressful process was streamlined and simplified. Ben is friendly and approachable and we felt very comfortable negotiating big decisions with his guidance."</p>
+            </article>
+          </div>
+
+          <p class="stories-closing">If you'd like to be introduced to one of these clients before engaging us, we can arrange it.</p>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section class="dpage" data-page="process">
+        <div class="wrap">
+          <div class="dhero">
+            <p class="eyebrow">Process</p>
+            <h1 class="h-display">What working with us <em>actually looks like.</em></h1>
+            <p class="lede">Five steps. Honest about timing. Honest about who does what.</p>
+          </div>
+
+          <div class="process-list">
+            <article class="process-step">
+              <span class="process-step__num">01</span>
+              <h3 class="process-step__title">An initial conversation.</h3>
+              <p class="process-step__body">Twenty to thirty minutes. We listen, you talk. We confirm whether we're the right fit before either of us spends more time. No paperwork, no commitment, no rush — most of our long-term clients start here.</p>
+            </article>
+            <article class="process-step">
+              <span class="process-step__num">02</span>
+              <h3 class="process-step__title">A picture of your position.</h3>
+              <p class="process-step__body">We gather your numbers — income, expenses, existing debt, assets — and give you a realistic picture of your borrowing position. If something needs to change before lenders will take it seriously, we tell you now, not later.</p>
+            </article>
+            <article class="process-step">
+              <span class="process-step__num">03</span>
+              <h3 class="process-step__title">A short list of lenders.</h3>
+              <p class="process-step__body">We narrow 35+ lender options down to the two or three that genuinely suit your situation. We tell you why. We're not optimising for the highest commission — we're optimising for the loan you'll still be happy with in three years.</p>
+            </article>
+            <article class="process-step">
+              <span class="process-step__num">04</span>
+              <h3 class="process-step__title">Application and approval.</h3>
+              <p class="process-step__body">We prepare and submit. We chase the bank, not you. If a condition comes back that we should have spotted in step two, that's on us — and we deal with it.</p>
+            </article>
+            <article class="process-step">
+              <span class="process-step__num">05</span>
+              <h3 class="process-step__title">Settlement and after.</h3>
+              <p class="process-step__body">We coordinate settlement. We stay your broker after — including the conversation about whether to refinance two or three years from now. Most of our clients first met us a decade or more ago. That's the work.</p>
+            </article>
+          </div>
+
+          <div class="document-panel">
+            <div>
+              <h2 class="document-panel__title">A realistic document path, without making the website feel like a portal.</h2>
+              <p class="document-panel__body">The production version would give clients a clear sense of what comes next before they speak with Craig or Ben. It does not need a heavy login system to feel useful; it needs plain guidance, sensible sequencing and a secure upload pathway if scoped.</p>
+            </div>
+            <ul class="check-list">
+              <li>Home loans: payslips, loan statements, savings history, contract or property estimate.</li>
+              <li>Investors: current debt schedule, rental income, accountant contact, ownership structure.</li>
+              <li>Business clients: financials, BAS, asset quote, purchase terms or lease details.</li>
+              <li>After the first call: only the documents relevant to the actual lender pathway.</li>
+            </ul>
+          </div>
+
+          <div class="timing-note">
+            <strong>On timing:</strong> Most home loans settle four to eight weeks from first conversation. Commercial timelines vary more — typically four to twelve weeks. Bridging finance can move faster when it needs to. We're upfront about timing from the first call, and if something will be tight we say so before you commit.
+          </div>
+        </div>
+      </section>
+
+      <!-- TOOLS -->
+      <section class="dpage" data-page="tools">
+        <div class="wrap">
+          <div class="dhero">
+            <p class="eyebrow">Tools</p>
+            <h1 class="h-display">A few useful things.</h1>
+            <p class="lede">Not a calculator wall. Two things that actually help.</p>
+          </div>
+
+          <div class="tool-block">
+            <h2 class="h-2">Borrowing capacity estimator.</h2>
+            <p class="sub">A starting-point estimate of what you might be able to borrow. Drag the sliders to your situation. The result updates as you go.</p>
+
+            <div class="calc-grid">
+              <div>
+                <div class="calc-input">
+                  <label>Annual household income (before tax) <span class="val" id="incomeVal">$120,000</span></label>
+                  <input type="range" id="income" min="60000" max="500000" step="5000" value="120000">
+                  <div class="calc-meta"><span>$60k</span><span>$500k</span></div>
+                </div>
+                <div class="calc-input">
+                  <label>Existing monthly debt repayments <span class="val" id="debtVal">$0</span></label>
+                  <input type="range" id="debt" min="0" max="6000" step="100" value="0">
+                  <div class="calc-meta"><span>$0</span><span>$6,000</span></div>
+                </div>
+                <div class="calc-input">
+                  <label>Dependants <span class="val" id="depsVal">0</span></label>
+                  <input type="range" id="deps" min="0" max="5" step="1" value="0">
+                  <div class="calc-meta"><span>0</span><span>5+</span></div>
+                </div>
+                <div class="calc-input">
+                  <label>Loan term <span class="val" id="termVal">30 years</span></label>
+                  <input type="range" id="term" min="15" max="30" step="1" value="30">
+                  <div class="calc-meta"><span>15 yrs</span><span>30 yrs</span></div>
+                </div>
+              </div>
+
+              <div class="calc-output">
+                <p class="calc-output__lbl">Estimated borrowing capacity</p>
+                <p class="calc-output__num" id="calcResult">$650,000</p>
+                <p class="calc-output__range" id="calcRange">Approximately $620k – $680k</p>
+                <a href="#" class="btn btn-primary calc-output__cta" data-page="contact">Talk to us about a real assessment <span class="arrow" aria-hidden="true">→</span></a>
+              </div>
+            </div>
+
+            <p class="calc-disclaimer"><strong>About this estimate.</strong> This is a starting-point estimate using simplified serviceability assumptions (3% buffer over a sample rate, household expense benchmarks based on dependants, principal-and-interest repayments). Real lender assessments include additional factors — employment type, credit history, deposit, lender-specific policy — that vary substantially. Use this as a starting point for the conversation, not a commitment from any lender.</p>
+          </div>
+
+          <div class="health-check">
+            <h2 class="h-2">Refinance health check.</h2>
+            <p class="sub" style="margin-top: var(--s-3); color: var(--ink-quiet);">Three quick questions. We'll suggest whether it's worth a conversation.</p>
+
+            <div class="hc-q">
+              <p class="hc-q__title">When did you last refinance or take out your loan?</p>
+              <div class="hc-q__opts" data-q="last">
+                <button class="hc-opt" data-v="0">Within 12 months</button>
+                <button class="hc-opt" data-v="1">1–3 years ago</button>
+                <button class="hc-opt" data-v="2">3+ years ago</button>
+              </div>
+            </div>
+            <div class="hc-q">
+              <p class="hc-q__title">Where do you think your current rate sits?</p>
+              <div class="hc-q__opts" data-q="rate">
+                <button class="hc-opt" data-v="0">Under 5.5%</button>
+                <button class="hc-opt" data-v="1">5.5% – 6.5%</button>
+                <button class="hc-opt" data-v="2">Above 6.5% or not sure</button>
+              </div>
+            </div>
+            <div class="hc-q">
+              <p class="hc-q__title">Are you currently on a fixed rate ending soon?</p>
+              <div class="hc-q__opts" data-q="fixed">
+                <button class="hc-opt" data-v="0">No, on variable</button>
+                <button class="hc-opt" data-v="1">Fixed, ends in 6+ months</button>
+                <button class="hc-opt" data-v="2">Fixed, ends within 6 months</button>
+              </div>
+            </div>
+
+            <div class="hc-output" id="hcOutput">Pick an answer to each question and we'll give you a quick read.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INSIGHTS -->
+      <section class="dpage" data-page="insights">
+        <div class="wrap">
+          <div class="dhero">
+            <p class="eyebrow">Insights</p>
+            <h1 class="h-display">A quarterly note from us.</h1>
+            <p class="lede">Not a marketing blog. A short piece of writing every three months on what lender appetite or policy is actually doing.</p>
+          </div>
+
+          <div class="insight-grid">
+            <article class="insight-card">
+              <p class="insight-card__date">Q2 · 2026</p>
+              <div>
+                <h3 class="insight-card__title">What lender appetite has actually looked like through the first half of 2026.</h3>
+                <p class="insight-card__author">— Ben Walker</p>
+                <p class="insight-card__preview">Through the first six months of 2026, lender appetite for owner-occupier refinance has tightened from the second-tier banks while the majors have quietly become more competitive on cashback. Investment lending policy remains stricter than most borrowers expect, particularly around rental yield assumptions.</p>
+                <div class="insight-card__more">
+                  <p style="margin-top: 12px;">The shift to watch is the major banks reintroducing structured cashbacks for refinance — $2,000 to $4,000 range — without the policy tightening that accompanied the last round in 2023. For clients with clean serviceability the math is again worth running.</p>
+                  <p style="margin-top: 12px;">On the investment side, three lenders have pulled back from high-LVR investment lending in the past quarter. Two have come back in cautiously. Anyone planning a third or fourth property purchase in the next six months should run serviceability before assuming what was possible twelve months ago is still possible now.</p>
+                  <p style="margin-top: 12px;">Worth a short conversation if you're either refinancing in the next quarter or sitting on a fixed rate that ends in 2026.</p>
+                </div>
+                <button class="insight-toggle" type="button">Read more</button>
+              </div>
+            </article>
+
+            <article class="insight-card">
+              <p class="insight-card__date">Q1 · 2026</p>
+              <div>
+                <h3 class="insight-card__title">Why business-purchase financing is easier than it was twelve months ago, and harder than it looks.</h3>
+                <p class="insight-card__author">— Craig Walker</p>
+                <p class="insight-card__preview">Twelve months ago, business-purchase financing was difficult to write outside the major bank business divisions. That has changed — second-tier and specialist lenders are back in the market. But the structuring requirements have quietly become more important.</p>
+                <div class="insight-card__more">
+                  <p style="margin-top: 12px;">The misread I see most often is treating a business purchase like a property purchase. The financing structure is different, the assessment lens is different, and the security position is different. Get those right early — usually before signing the heads of agreement — and the rest is straightforward.</p>
+                  <p style="margin-top: 12px;">For anyone seriously evaluating an acquisition in the next six months: budget a conversation with us before you commit to the structure. It's the one piece of work that gets harder the later it's started.</p>
+                </div>
+                <button class="insight-toggle" type="button">Read more</button>
+              </div>
+            </article>
+
+            <article class="insight-card">
+              <p class="insight-card__date">Q4 · 2025</p>
+              <div>
+                <h3 class="insight-card__title">The conversation most refinancers are not having with their accountant.</h3>
+                <p class="insight-card__author">— Ben Walker</p>
+                <p class="insight-card__preview">Most refinances are organised between the borrower and the broker. The accountant gets a notification at the end. There's a better order, especially for anyone with investment property or who has restructured ownership in the last few years.</p>
+                <div class="insight-card__more">
+                  <p style="margin-top: 12px;">Three things to flag with your accountant <em>before</em> the refinance, not after: the interest deductibility implications of any loan splits, whether the timing of the refinance affects current-year tax position, and whether the new structure changes anything for an SMSF property if you have one.</p>
+                  <p style="margin-top: 12px;">Where we work coordinated, we usually save the client one or two structural decisions they would have spent a year working around. It's not a big change. It just needs to happen in the right order.</p>
+                </div>
+                <button class="insight-toggle" type="button">Read more</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="dpage" data-page="contact">
+        <div class="wrap">
+          <div class="dhero">
+            <p class="eyebrow">Contact</p>
+            <h1 class="h-display">Tell us about <em>your situation.</em></h1>
+            <p class="lede">A short conversation first. No commitment.</p>
+          </div>
+
+          <div class="contact-grid">
+            <form class="contact-form" id="contactForm" novalidate>
+              <p class="contact-help">Tell us about the property, the situation, or the question that prompted you to get in touch. No need to format it — Craig and Ben read everything that comes in.</p>
+              <div class="contact-field">
+                <label for="cSituation">What best describes the conversation?</label>
+                <select id="cSituation" name="situation">
+                  <option value="">Select one</option>
+                  <option>Buying or upgrading a home</option>
+                  <option>Refinancing an existing loan</option>
+                  <option>Investment property or portfolio structure</option>
+                  <option>Business, commercial property or asset finance</option>
+                  <option>Not sure yet</option>
+                </select>
+              </div>
+              <div class="contact-field">
+                <label for="cName">Name</label>
+                <input type="text" id="cName" name="name" required>
+              </div>
+              <div class="contact-field">
+                <label for="cEmail">Email</label>
+                <input type="email" id="cEmail" name="email" required>
+              </div>
+              <div class="contact-field">
+                <label for="cPhone">Phone (optional)</label>
+                <input type="tel" id="cPhone" name="phone">
+              </div>
+              <div class="contact-field">
+                <label for="cTiming">Preferred contact time</label>
+                <select id="cTiming" name="timing">
+                  <option>Any time during business hours</option>
+                  <option>Morning</option>
+                  <option>Afternoon</option>
+                  <option>After 5pm if possible</option>
+                </select>
+              </div>
+              <div class="contact-field">
+                <label for="cMsg">What are you thinking about?</label>
+                <textarea id="cMsg" name="message" required></textarea>
+              </div>
+              <button class="btn btn-primary contact-submit" type="submit">
+                Send to Craig and Ben
+                <span class="arrow" aria-hidden="true">→</span>
+              </button>
+              <div class="contact-success" id="contactSuccess">
+                <strong>Thanks — we've got it.</strong> One of us will reply within a business day. If it's urgent, call Craig on 0412 316 176 or Ben on 0423 044 641.
+              </div>
+            </form>
+
+            <div class="contact-sidebar">
+              <div class="contact-line">
+                <p class="contact-line__lbl">Or call us directly</p>
+                <p class="contact-line__val">Craig — 0412 316 176</p>
+                <p class="contact-line__val" style="margin-top: 4px;">Ben — 0423 044 641</p>
+                <p class="contact-line__sub">We answer our own phones.</p>
+              </div>
+              <div class="contact-line">
+                <p class="contact-line__lbl">Office</p>
+                <p class="contact-line__val">Mitcham, VIC</p>
+                <p class="contact-line__sub">PO Box 1277, Mitcham North VIC 3132</p>
+              </div>
+              <div class="contact-line">
+                <p class="contact-line__lbl">Email</p>
+                <p class="contact-line__val" style="font-size: 16px;">info@firstfinance.com.au</p>
+              </div>
+              <div class="contact-line" style="border-bottom: 0;">
+                <p class="contact-line__lbl">Compliance</p>
+                <p class="contact-line__sub" style="margin-top: var(--s-3); line-height: 1.6;">Bennick Pty Ltd T/A First Finance Solutions is a Credit Representative (CRN 400601) of Buyers Choice Licencing Pty Ltd ACN 626 172 281 (Australian Credit Licence No. 509484).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Demo footer -->
+    <footer class="dfooter">
+      <div class="wrap">
+        <div class="dfooter__grid">
+          <div class="dfooter__col">
+            <p class="dfooter__about">first finance<span class="dot">.</span></p>
+            <p class="dfooter__about-body">A Melbourne finance broking practice. Family-led since 1992. Advisor for life, across generations.</p>
+          </div>
+          <div class="dfooter__col">
+            <h4>Visit</h4>
+            <ul>
+              <li><a href="#" data-page="home">Home</a></li>
+              <li><a href="#" data-page="about">About</a></li>
+              <li><a href="#" data-page="services">Services</a></li>
+              <li><a href="#" data-page="stories">Stories</a></li>
+            </ul>
+          </div>
+          <div class="dfooter__col">
+            <h4>Useful</h4>
+            <ul>
+              <li><a href="#" data-page="process">Process</a></li>
+              <li><a href="#" data-page="tools">Tools</a></li>
+              <li><a href="#" data-page="insights">Insights</a></li>
+              <li><a href="#" data-page="contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="dfooter__col">
+            <h4>Contact</h4>
+            <ul>
+              <li>03 9873 3369</li>
+              <li>info@firstfinance.com.au</li>
+              <li>Mitcham, VIC</li>
+            </ul>
+          </div>
+        </div>
+        <div class="dfooter__bottom">
+          <span>© First Finance Solutions · Est. 1992</span>
+          <span>ACL 509484 · CRN 400601 &amp; 480233</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ========================================================
+       BEHAVIOUR
+       ======================================================== -->
+  <script>
+    (() => {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const body = document.body;
+      const overlay = document.getElementById('transitionOverlay');
+
+      // ---------- Reveal on scroll ----------
+      const revealEls = document.querySelectorAll('.reveal');
+      if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        revealEls.forEach(el => el.classList.add('is-in'));
+      } else {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-in');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+        revealEls.forEach(el => observer.observe(el));
+      }
+
+      // ---------- Sticky frame border on scroll ----------
+      const pframe = document.getElementById('pframe');
+      if (pframe) {
+        const onScroll = () => {
+          if (window.scrollY > 12) pframe.classList.add('is-scrolled');
+          else pframe.classList.remove('is-scrolled');
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      }
+
+      // ---------- Mode switching ----------
+      const enterDemoBtn = document.getElementById('enterDemoBtn');
+      const returnBtn = document.getElementById('returnBtn');
+
+      const fadeOverlay = (cb) => {
+        if (prefersReducedMotion) { cb(); return; }
+        overlay.classList.add('is-active');
+        setTimeout(() => {
+          cb();
+          setTimeout(() => overlay.classList.remove('is-active'), 60);
+        }, 280);
+      };
+
+      if (enterDemoBtn) {
+        enterDemoBtn.addEventListener('click', () => {
+          fadeOverlay(() => {
+            body.classList.remove('mode-proposal');
+            body.classList.add('mode-demo');
+            window.scrollTo(0, 0);
+            switchPage('home', false);
+          });
+        });
+      }
+
+      if (returnBtn) {
+        returnBtn.addEventListener('click', () => {
+          fadeOverlay(() => {
+            body.classList.remove('mode-demo');
+            body.classList.add('mode-proposal');
+            // Scroll to Next Steps section
+            const next = document.getElementById('next');
+            if (next) {
+              const top = next.getBoundingClientRect().top + window.pageYOffset - 24;
+              window.scrollTo({ top, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+            } else {
+              window.scrollTo(0, 0);
+            }
+          });
+        });
+      }
+
+      // ---------- Demo internal page switching ----------
+      const pages = document.querySelectorAll('.dpage');
+      const navLinks = document.querySelectorAll('.dnav__link');
+
+      function switchPage(pageName, scrollToTop = true) {
+        pages.forEach(p => {
+          if (p.getAttribute('data-page') === pageName) p.classList.add('is-active');
+          else p.classList.remove('is-active');
+        });
+        navLinks.forEach(l => {
+          if (l.getAttribute('data-page') === pageName) l.classList.add('is-active');
+          else l.classList.remove('is-active');
+        });
+        if (scrollToTop) {
+          window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        }
+        // Close mobile menu if open
+        const sheet = document.getElementById('menuSheet');
+        if (sheet) sheet.classList.remove('is-open');
+      }
+
+      // Attach to all elements with data-page
+      document.querySelectorAll('[data-page]').forEach(el => {
+        el.addEventListener('click', (e) => {
+          if (el.tagName === 'A' || el.tagName === 'BUTTON') e.preventDefault();
+          const page = el.getAttribute('data-page');
+          if (page) switchPage(page);
+        });
+      });
+
+      // ---------- Mobile menu ----------
+      const menuBtn = document.getElementById('menuBtn');
+      const menuClose = document.getElementById('menuClose');
+      const menuSheet = document.getElementById('menuSheet');
+      if (menuBtn && menuSheet) {
+        menuBtn.addEventListener('click', () => menuSheet.classList.add('is-open'));
+      }
+      if (menuClose && menuSheet) {
+        menuClose.addEventListener('click', () => menuSheet.classList.remove('is-open'));
+      }
+
+      // ---------- Borrowing capacity calculator ----------
+      const income = document.getElementById('income');
+      const debt = document.getElementById('debt');
+      const deps = document.getElementById('deps');
+      const term = document.getElementById('term');
+
+      const incomeVal = document.getElementById('incomeVal');
+      const debtVal = document.getElementById('debtVal');
+      const depsVal = document.getElementById('depsVal');
+      const termVal = document.getElementById('termVal');
+
+      const calcResult = document.getElementById('calcResult');
+      const calcRange = document.getElementById('calcRange');
+
+      const fmtCurrency = (n) => '$' + Math.round(n).toLocaleString('en-AU');
+      const fmtCurrencyShort = (n) => {
+        if (n >= 1000000) return '$' + (n / 1000000).toFixed(2).replace(/\.?0+$/, '') + 'm';
+        if (n >= 1000) return '$' + Math.round(n / 1000) + 'k';
+        return '$' + Math.round(n);
+      };
+
+      function calc() {
+        if (!income) return;
+        const incV = +income.value;
+        const debtV = +debt.value;
+        const depsV = +deps.value;
+        const termV = +term.value;
+
+        incomeVal.textContent = fmtCurrency(incV);
+        debtVal.textContent = fmtCurrency(debtV);
+        depsVal.textContent = depsV >= 5 ? '5+' : depsV;
+        termVal.textContent = termV + ' years';
+
+        // Very simplified serviceability proxy.
+        // Net income approximation: progressive tax-ish
+        let tax = 0;
+        if (incV <= 18200) tax = 0;
+        else if (incV <= 45000) tax = (incV - 18200) * 0.19;
+        else if (incV <= 135000) tax = 5092 + (incV - 45000) * 0.30;
+        else if (incV <= 190000) tax = 32092 + (incV - 135000) * 0.37;
+        else tax = 52442 + (incV - 190000) * 0.45;
+        // Add medicare levy ~2%
+        tax += incV * 0.02;
+        const netAnnual = incV - tax;
+        const netMonthly = netAnnual / 12;
+
+        // HEM-style household expense baseline
+        const expenseBase = 2400 + depsV * 700; // monthly
+        // Existing debt
+        const monthlyDebt = debtV;
+        // Available monthly for new repayment
+        const available = Math.max(0, netMonthly - expenseBase - monthlyDebt);
+        // Stress rate proxy: 7.5% p/a stressed
+        const rate = 0.075 / 12;
+        const n = termV * 12;
+        // Loan amount L such that monthly repayment = available
+        // L = available * (1 - (1+r)^-n) / r
+        const L = available * (1 - Math.pow(1 + rate, -n)) / rate;
+
+        // Sanity bounds
+        const bounded = Math.max(0, Math.min(L, incV * 9));
+
+        calcResult.textContent = fmtCurrencyShort(bounded);
+        const low = bounded * 0.93;
+        const high = bounded * 1.07;
+        calcRange.textContent = 'Approximately ' + fmtCurrencyShort(low) + ' – ' + fmtCurrencyShort(high);
+      }
+      [income, debt, deps, term].forEach(el => el && el.addEventListener('input', calc));
+      calc();
+
+      // ---------- Refinance health check ----------
+      const hcState = { last: null, rate: null, fixed: null };
+      const hcOutput = document.getElementById('hcOutput');
+      document.querySelectorAll('.hc-q__opts').forEach(group => {
+        const q = group.getAttribute('data-q');
+        group.querySelectorAll('.hc-opt').forEach(btn => {
+          btn.addEventListener('click', () => {
+            group.querySelectorAll('.hc-opt').forEach(b => b.classList.remove('is-on'));
+            btn.classList.add('is-on');
+            hcState[q] = +btn.getAttribute('data-v');
+            evalHc();
+          });
+        });
+      });
+      function evalHc() {
+        if (hcState.last === null || hcState.rate === null || hcState.fixed === null) return;
+        const score = hcState.last + hcState.rate + hcState.fixed;
+        let msg = '';
+        if (score >= 5) {
+          msg = '<strong>Definitely worth a refinance conversation.</strong> Your rate is likely well above current market, your loan is overdue for review, and your fixed period is near-term. Twenty-minute call would be useful.';
+        } else if (score >= 3) {
+          msg = '<strong>Worth a refinance conversation.</strong> Your circumstances suggest a review would likely save money or improve structure. Worth a twenty-minute call.';
+        } else if (score >= 1) {
+          msg = '<strong>Probably not urgent.</strong> But a quick chat in the next six months could be useful — particularly if anything in your situation is changing.';
+        } else {
+          msg = '<strong>Probably leave it.</strong> You\'ve refinanced recently, you\'re on a good rate, and your fixed (if any) isn\'t close to ending. Check back in a year.';
+        }
+        hcOutput.innerHTML = msg;
+      }
+
+      // ---------- Insight expand/collapse ----------
+      document.querySelectorAll('.insight-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('.insight-card');
+          if (!card) return;
+          const expanded = card.classList.toggle('is-expanded');
+          btn.textContent = expanded ? 'Show less' : 'Read more';
+        });
+      });
+
+      // ---------- Contact form (visual only) ----------
+      const contactForm = document.getElementById('contactForm');
+      const contactSuccess = document.getElementById('contactSuccess');
+      if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const required = contactForm.querySelectorAll('[required]');
+          let ok = true;
+          required.forEach(field => {
+            if (!field.value.trim()) {
+              field.style.borderColor = '#c54a4a';
+              ok = false;
+            } else {
+              field.style.borderColor = '';
+            }
+          });
+          if (!ok) return;
+          contactSuccess.classList.add('is-shown');
+          contactForm.querySelector('button[type="submit"]').textContent = 'Sent';
+        });
+      }
+
+      // ---------- Click on data-page (already wired above) — ensure top-of-page on demo entry pages ----------
+      // Already handled in switchPage()
+    })();
+  </script>
+
+</body>
+</html>

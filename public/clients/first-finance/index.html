@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>First Finance — Modernisation Review by TWNY</title>
-  <meta name="description" content="A practical modernisation review and future-state demo for First Finance Solutions, prepared by TWNY.">
+  <title>First Finance — Modernisation Review by twny</title>
+  <meta name="description" content="A practical modernisation review and future-state demo for First Finance Solutions, prepared by twny.">
   <meta name="robots" content="noindex">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,16 +16,20 @@
        TOKENS
        ============================================================ */
     :root {
-      /* TWNY mode (proposal) — default */
+      /* twny mode (proposal) — default */
       --bg: #F8F6F1;
       --surface: #FFFDF9;
       --ink: #11171C;
       --ink-quiet: #5C6267;
       --caption: #888A86;
       --line: #E2DDD2;
-      --accent: #225A79;
-      --accent-soft: #E9F0F1;
-      --twny-blue: #225A79;
+      --accent: #15B8C6;
+      --accent-soft: #E4F5F4;
+      --twny-dark: #071317;
+      --twny-panel: #0D2025;
+      --twny-teal: #14B8A6;
+      --twny-cyan: #22D3EE;
+      --twny-muted: #9EB6BA;
       --client-purple: #3B2C5E;
       --client-gold: #B8924D;
       --client-ground: #FBF8F2;
@@ -283,11 +287,13 @@
       align-items: center;
       justify-content: space-between;
       gap: var(--s-4);
-      padding: 10px 24px;
-      background: color-mix(in srgb, var(--bg) 94%, transparent);
-      border-bottom: 1px solid var(--line);
+      padding: 9px 24px;
+      background:
+        linear-gradient(90deg, var(--twny-dark), color-mix(in srgb, var(--twny-panel) 82%, #000 18%));
+      border-bottom: 1px solid rgba(34, 211, 238, 0.18);
       backdrop-filter: saturate(180%) blur(14px);
       -webkit-backdrop-filter: saturate(180%) blur(14px);
+      color: #F5FFFE;
     }
     .mode-shell::after {
       content: "";
@@ -296,13 +302,13 @@
       right: 0;
       bottom: -1px;
       height: 1px;
-      background: linear-gradient(90deg, var(--twny-blue), var(--client-purple) 62%, var(--client-gold));
-      opacity: 0.32;
+      background: linear-gradient(90deg, var(--twny-teal), var(--twny-cyan) 42%, var(--client-gold));
+      opacity: 0.58;
       pointer-events: none;
     }
-    @media (min-width: 768px) { .mode-shell { padding: 10px 48px; } }
+    @media (min-width: 768px) { .mode-shell { padding: 9px 48px; } }
     @media (max-width: 640px) {
-      :root { --mode-bar-h: 92px; }
+      :root { --mode-bar-h: 96px; }
       .mode-shell {
         align-items: flex-start;
         flex-direction: column;
@@ -315,13 +321,29 @@
       gap: 8px;
       font-weight: 700;
       letter-spacing: 0.01em;
-      color: var(--ink);
+      color: #F7FFFD;
       white-space: nowrap;
-      text-transform: uppercase;
-      font-size: 13px;
+      font-size: 14px;
     }
+    .mode-brand span:first-child {
+      position: relative;
+      padding-left: 13px;
+    }
+    .mode-brand span:first-child::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--twny-cyan);
+      transform: translateY(-50%);
+      box-shadow: 0 0 14px rgba(34,211,238,0.36);
+    }
+    .mode-brand:hover { color: #FFFFFF; }
     .mode-brand__client {
-      color: color-mix(in srgb, var(--client-purple) 82%, var(--ink) 18%);
+      color: color-mix(in srgb, var(--client-gold) 58%, #F7FFFD 42%);
       text-transform: none;
       letter-spacing: 0;
       font-weight: 600;
@@ -329,24 +351,23 @@
     .mode-separator {
       width: 1px;
       height: 16px;
-      background: linear-gradient(180deg, var(--twny-blue), var(--client-gold));
-      opacity: 0.55;
+      background: linear-gradient(180deg, var(--twny-cyan), var(--twny-teal));
+      opacity: 0.68;
     }
     .mode-context {
-      color: var(--ink-quiet);
+      color: var(--twny-muted);
       font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
     @media (max-width: 760px) { .mode-context { display: none; } }
     .mode-tabs {
       display: inline-flex;
       padding: 4px;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(34, 211, 238, 0.2);
       border-radius: 999px;
-      background: color-mix(in srgb, var(--surface) 92%, var(--client-ground) 8%);
-      box-shadow: 0 8px 24px rgba(31,27,46,0.035);
+      background: rgba(255,255,255,0.055);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
     }
     .mode-tab {
       min-height: 34px;
@@ -354,16 +375,22 @@
       border-radius: 999px;
       font-size: 13px;
       font-weight: 600;
-      color: var(--ink-quiet);
-      transition: background-color 180ms var(--ease), color 180ms var(--ease);
+      color: color-mix(in srgb, var(--twny-muted) 86%, #fff 14%);
+      transition: background-color 180ms var(--ease), color 180ms var(--ease), box-shadow 180ms var(--ease);
       white-space: nowrap;
+    }
+    .mode-tab:hover {
+      color: #FFFFFF;
+      background: rgba(255,255,255,0.08);
     }
     .mode-tab.is-active {
       background: var(--accent);
       color: #fff;
     }
     body.mode-proposal .mode-tab.is-active {
-      background: var(--twny-blue);
+      background: linear-gradient(135deg, var(--twny-teal), var(--twny-cyan));
+      color: #041114;
+      box-shadow: 0 8px 18px rgba(20,184,166,0.16);
     }
     @media (max-width: 400px) {
       .mode-tabs { width: 100%; }
@@ -373,7 +400,7 @@
     .transition-overlay {
       position: fixed;
       inset: 0;
-      background: linear-gradient(90deg, var(--twny-blue), var(--client-purple));
+      background: linear-gradient(90deg, var(--twny-dark), var(--twny-teal), var(--client-purple));
       z-index: 200;
       pointer-events: none;
       opacity: 0;
@@ -396,41 +423,43 @@
       position: sticky;
       top: var(--mode-bar-h);
       z-index: 50;
-      background: color-mix(in srgb, var(--bg) 92%, transparent);
+      background: color-mix(in srgb, var(--twny-panel) 94%, transparent);
       backdrop-filter: saturate(180%) blur(14px);
       -webkit-backdrop-filter: saturate(180%) blur(14px);
-      border-bottom: 1px solid transparent;
+      border-bottom: 1px solid rgba(34, 211, 238, 0.12);
       transition: border-color 220ms var(--ease);
+      color: #F5FFFE;
     }
-    .pframe.is-scrolled { border-color: var(--line); }
+    .pframe.is-scrolled { border-color: rgba(34, 211, 238, 0.26); }
     .pframe__inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 24px;
+      padding: 13px 24px;
       max-width: 1280px;
       margin: 0 auto;
     }
-    @media (min-width: 768px) { .pframe__inner { padding: 18px 48px; } }
+    @media (min-width: 768px) { .pframe__inner { padding: 13px 48px; } }
     .pmark {
       font-weight: 600;
       font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: 0.01em;
       display: inline-flex;
       align-items: center;
       gap: 10px;
+      transition: color 180ms var(--ease);
     }
+    .pmark:hover { color: #FFFFFF; }
     .pmark .bridge {
       width: 26px;
       height: 1px;
-      background: linear-gradient(90deg, var(--twny-blue), var(--client-purple));
-      opacity: 0.7;
+      background: linear-gradient(90deg, var(--twny-cyan), var(--client-gold));
+      opacity: 0.82;
     }
-    .pmark .sub { font-size: 12px; color: var(--ink-quiet); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
+    .pmark .sub { font-size: 12px; color: var(--twny-muted); font-weight: 500; letter-spacing: 0.02em; }
     @media (max-width: 600px) { .pmark .sub { display: none; } }
 
-    .pmeta { font-size: 12px; color: var(--ink-quiet); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
+    .pmeta { font-size: 12px; color: var(--twny-muted); font-weight: 500; letter-spacing: 0.02em; }
     .pmeta span { display: none; }
     @media (min-width: 768px) { .pmeta span { display: inline; } }
 
@@ -750,11 +779,10 @@
       margin-top: var(--s-7);
       padding-top: var(--s-4);
       border-top: 1px solid var(--line);
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.02em;
       color: var(--caption);
-      font-weight: 600;
+      font-weight: 500;
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
@@ -1925,15 +1953,15 @@
 
   <nav class="mode-shell" aria-label="Experience mode">
     <a href="#intro" class="mode-brand" id="modeBrand">
-      <span>TWNY</span>
+      <span>twny</span>
       <span class="mode-separator" aria-hidden="true"></span>
       <span class="mode-brand__client">First Finance</span>
     </a>
-    <div class="mode-tabs" role="group" aria-label="Switch between proposal and future-state demo">
+    <div class="mode-tabs" role="group" aria-label="Switch between proposal and website demo">
       <button class="mode-tab is-active" id="proposalModeBtn" type="button" aria-pressed="true">Proposal</button>
-      <button class="mode-tab" id="demoModeBtn" type="button" aria-pressed="false">Future-State Demo</button>
+      <button class="mode-tab" id="demoModeBtn" type="button" aria-pressed="false">Website demo</button>
     </div>
-    <span class="mode-context">Modernisation review · proposal environment</span>
+    <span class="mode-context">SMB technology modernisation · proposal environment</span>
   </nav>
 
   <!-- ========================================================
@@ -1943,22 +1971,22 @@
 
     <header class="pframe" id="pframe" role="banner">
       <div class="pframe__inner">
-        <a href="#intro" class="pmark">TWNY<span class="bridge" aria-hidden="true"></span><span class="sub">First Finance · Modernisation Review</span></a>
-        <p class="pmeta"><span>Prepared for Craig &amp; Ben Walker · </span>2026</p>
+        <a href="#intro" class="pmark">twny<span class="bridge" aria-hidden="true"></span><span class="sub">First Finance · Modernisation Review</span></a>
+        <p class="pmeta"><span>Proposal environment · </span>2026</p>
       </div>
     </header>
 
     <main>
 
-      <!-- Section 1 — TWNY intro -->
+      <!-- Section 1 — twny intro -->
       <section id="intro" class="p-section p-intro">
         <div class="wrap">
-          <p class="eyebrow reveal">A practical modernisation review by TWNY</p>
+          <p class="eyebrow reveal">A practical modernisation review by twny</p>
           <h1 class="h-display reveal" data-d="1" style="margin-top: var(--s-4); max-width: 22ch;">
             The site we built then did its job. First Finance has grown beyond what it was built to say.
           </h1>
           <p class="lede reveal" data-d="2" style="margin-top: var(--s-5);">
-            TWNY built the current First Finance website years ago. It served the business well for the stage it was in: a clear online presence, a simple explanation of services, and a place for referred clients to confirm they were in the right hands.
+            twny built the current First Finance website years ago. It served the business well for the stage it was in: a clear online presence, a simple explanation of services, and a place for referred clients to confirm they were in the right hands.
           </p>
           <p class="lede reveal quiet" data-d="3" style="margin-top: var(--s-4);">
             The business has moved on. Craig and Ben now represent a stronger story than the original site was designed to carry: family continuity, long client relationships, industry recognition, and a practice that feels more established than its digital surface currently suggests. This review is about bringing the website up to the business, not replacing the relationship behind it.
@@ -2173,7 +2201,7 @@
       <!-- Section 7 — Enter the demo -->
       <section id="enter" class="p-enter">
         <div class="wrap-narrow">
-          <p class="section-label reveal">Future-State Demo</p>
+          <p class="section-label reveal">Website demo</p>
           <h2 class="h-1 reveal" data-d="1" style="margin-top: var(--s-4);">
             Step into the next version of First Finance.
           </h2>
@@ -2181,7 +2209,7 @@
             Use the switch above or the button below to open the working demo. It is still a prototype, but it is structured like a real site so the direction can be judged properly.
           </p>
           <button class="btn btn-primary btn-large reveal" data-d="3" id="enterDemoBtn" type="button">
-            Open future-state demo
+            Open website demo
             <span class="arrow" aria-hidden="true">→</span>
           </button>
           <p class="small reveal" data-d="3">The proposal tab remains available at all times.</p>
@@ -2210,8 +2238,8 @@
           </div>
 
           <div class="signature">
-            <span>Made for Craig and Ben Walker</span>
-            <span>TWNY · 2026</span>
+            <span>First Finance modernisation review</span>
+            <span>twny · 2026</span>
           </div>
         </div>
       </section>
@@ -2241,7 +2269,7 @@
           </ul>
         </nav>
         <div class="dnav__right">
-          <button class="return-btn" id="returnBtn" type="button" title="Return to the TWNY proposal">
+          <button class="return-btn" id="returnBtn" type="button" title="Return to the twny proposal">
             <span class="arrow" aria-hidden="true">←</span>
             <span>Back to proposal</span>
           </button>
@@ -2966,7 +2994,7 @@
           demoModeBtn.setAttribute('aria-pressed', demo ? 'true' : 'false');
         }
         if (modeBrand) {
-          modeBrand.innerHTML = '<span>TWNY</span><span class="mode-separator" aria-hidden="true"></span><span class="mode-brand__client">First Finance</span>';
+          modeBrand.innerHTML = '<span>twny</span><span class="mode-separator" aria-hidden="true"></span><span class="mode-brand__client">First Finance</span>';
           modeBrand.href = demo ? '#' : '#intro';
         }
       }

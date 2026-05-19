@@ -280,22 +280,7 @@
       pointer-events: auto;
     }
 
-    /* ============================================================
-       REVEAL ANIMATION
-       ============================================================ */
-    .reveal {
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity 600ms var(--ease), transform 600ms var(--ease);
-    }
-    .reveal.is-in { opacity: 1; transform: translateY(0); }
-    .reveal[data-d="1"] { transition-delay: 60ms; }
-    .reveal[data-d="2"] { transition-delay: 130ms; }
-    .reveal[data-d="3"] { transition-delay: 200ms; }
-    .reveal[data-d="4"] { transition-delay: 270ms; }
-
     @media (prefers-reduced-motion: reduce) {
-      .reveal { opacity: 1; transform: none; transition: none; }
       .transition-overlay { transition: none; }
       html { scroll-behavior: auto; }
     }
@@ -660,15 +645,9 @@
        ============================================================ */
     .dpage {
       display: none;
-      animation: pageFade 360ms var(--ease) both;
       padding: var(--s-7) 0 var(--s-8);
     }
     .dpage.is-active { display: block; }
-
-    @keyframes pageFade {
-      0% { opacity: 0; transform: translateY(8px); }
-      100% { opacity: 1; transform: none; }
-    }
 
     .dhero { padding: var(--s-7) 0 var(--s-6); }
     .dhero .eyebrow::before { background: var(--gold); }
@@ -2749,22 +2728,6 @@
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const body = document.body;
       const overlay = document.getElementById('transitionOverlay');
-
-      // ---------- Reveal on scroll ----------
-      const revealEls = document.querySelectorAll('.reveal');
-      if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-        revealEls.forEach(el => el.classList.add('is-in'));
-      } else {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-in');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
-        revealEls.forEach(el => observer.observe(el));
-      }
 
       // ---------- Sticky frame border on scroll ----------
       const pframe = document.getElementById('pframe');

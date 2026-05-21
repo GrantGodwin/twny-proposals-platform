@@ -9,7 +9,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,700&family=Manrope:wght@400;500;600;700;800&display=swap">
 
   <style>
     /* ============================================================
@@ -50,6 +50,7 @@
       --font-ui: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --font-display: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --font-serif: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-logo: "Cormorant Garamond", Georgia, serif;
 
       /* Spacing scale */
       --s-1: 4px;
@@ -247,49 +248,50 @@
       gap: 12px;
       color: var(--client-purple);
       text-transform: lowercase;
-      letter-spacing: -0.045em;
+      letter-spacing: 0;
     }
     .ff-mark {
-      width: 44px;
-      height: 44px;
-      border-radius: 999px;
-      display: inline-grid;
-      place-items: center;
+      width: 1.15em;
+      height: 1em;
+      display: inline-flex;
+      align-items: baseline;
+      justify-content: center;
       flex: 0 0 auto;
-      background:
-        radial-gradient(circle at 34% 18%, rgba(255,255,255,0.18), transparent 30%),
-        linear-gradient(135deg, #4B2450 0%, var(--client-purple) 72%);
-      color: #FFFFFF;
-      font-family: var(--font-display);
-      font-size: 17px;
-      font-weight: 800;
-      letter-spacing: -0.11em;
-      line-height: 1;
+      background: transparent;
+      color: var(--client-purple);
+      font-family: var(--font-logo);
+      font-size: 58px;
+      font-style: italic;
+      font-weight: 700;
+      letter-spacing: -0.13em;
+      line-height: 0.82;
       position: relative;
-      box-shadow: 0 12px 24px rgba(56,31,63,0.16);
+      box-shadow: none;
     }
     .ff-mark::after {
-      content: "";
+      content: ".";
       position: absolute;
-      right: 9px;
-      bottom: 8px;
-      width: 5px;
-      height: 5px;
-      border-radius: 999px;
-      background: var(--client-gold);
+      right: -0.12em;
+      bottom: -0.08em;
+      color: var(--client-gold);
+      font-size: 0.62em;
+      font-style: normal;
+      line-height: 1;
     }
     .ff-mark--small {
-      width: 32px;
-      height: 32px;
-      font-size: 13px;
-      box-shadow: 0 8px 18px rgba(56,31,63,0.12);
+      width: 1.15em;
+      height: 1em;
+      font-size: 34px;
+      box-shadow: none;
     }
     .ff-word {
       display: inline-flex;
       align-items: baseline;
-      font-size: clamp(34px, 4.7vw, 64px);
-      font-weight: 800;
-      line-height: 0.98;
+      font-family: var(--font-logo);
+      font-size: clamp(38px, 5vw, 70px);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 0.94;
     }
     .ff-word .dot { color: var(--client-gold); margin-left: 2px; }
     .ff-tagline {
@@ -581,6 +583,11 @@
       margin-top: var(--s-6);
       display: grid;
       gap: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: #FFFFFF;
+      box-shadow: 0 16px 36px rgba(31,31,35,0.045);
     }
     .item {
       padding: var(--s-5) 0;
@@ -588,8 +595,17 @@
       display: grid;
       grid-template-columns: 48px 1fr;
       gap: var(--s-3) var(--s-4);
+      padding-left: var(--s-5);
+      padding-right: var(--s-5);
     }
-    .item:last-child { border-bottom: 1px solid var(--line); }
+    .item:first-child { border-top: 0; }
+    .item:last-child { border-bottom: 0; }
+    @media (max-width: 640px) {
+      .item {
+        grid-template-columns: 34px 1fr;
+        padding: var(--s-4);
+      }
+    }
     @media (min-width: 960px) {
       .item { grid-template-columns: 80px 1fr 1.2fr; gap: var(--s-6); align-items: start; }
     }
@@ -676,8 +692,9 @@
     }
     .brand-kit__hero .ff-lockup { color: #FFFFFF; }
     .brand-kit__hero .ff-mark {
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.18);
+      color: #FFFFFF;
+      background: transparent;
+      border: 0;
       box-shadow: none;
     }
     .brand-kit__note {
@@ -749,7 +766,7 @@
     }
     @media (min-width: 980px) {
       .brand-board-grid {
-        grid-template-columns: 0.9fr 1.1fr 1fr;
+        grid-template-columns: 1.12fr 1.2fr 0.88fr;
       }
       .brand-board-grid > * + * { border-left: 1px solid var(--line); }
     }
@@ -804,8 +821,9 @@
     }
     .logo-specimen__row.is-dark .ff-lockup { color: #FFFFFF; }
     .logo-specimen__row.is-dark .ff-mark {
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.18);
+      color: #FFFFFF;
+      background: transparent;
+      border: 0;
       box-shadow: none;
     }
     .logo-specimen__caption {
@@ -821,7 +839,7 @@
       border-top: 1px solid var(--line);
     }
     @media (min-width: 900px) {
-      .brand-matrix { grid-template-columns: 1fr 1fr; }
+      .brand-matrix { grid-template-columns: 0.82fr 1.18fr; }
       .brand-matrix > *:nth-child(even) { border-left: 1px solid var(--line); }
     }
     .brand-swatches {
@@ -1172,15 +1190,28 @@
 
     /* Section 7 — enter */
     .p-enter {
-      padding: var(--s-8) 0;
+      padding: var(--s-8) 0 var(--s-7);
       background:
         radial-gradient(circle at 82% 0%, rgba(200,167,102,0.12), transparent 26rem),
         linear-gradient(180deg, var(--bg) 0%, color-mix(in srgb, var(--client-wash) 68%, #fff 32%) 100%);
       text-align: center;
     }
-    .p-enter .h-1 { max-width: 22ch; margin-left: auto; margin-right: auto; }
-    .p-enter .lede { margin: var(--s-4) auto 0; }
-    .p-enter .btn-large { margin-top: var(--s-6); }
+    .p-enter .wrap-narrow { max-width: 760px; }
+    .p-enter .section-label { display: block; }
+    .p-enter .h-1 {
+      max-width: 18ch;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: clamp(27px, 3vw, 38px);
+      line-height: 1.24;
+      letter-spacing: -0.025em;
+    }
+    .p-enter .lede {
+      margin: var(--s-5) auto 0;
+      max-width: 58ch;
+      line-height: 1.68;
+    }
+    .p-enter .btn-large { margin-top: var(--s-5); }
     .p-enter .btn-primary {
       background: var(--client-purple);
       box-shadow: 0 14px 34px rgba(59,44,94,0.16);
@@ -1235,14 +1266,14 @@
     @media (min-width: 768px) { .dnav__inner { padding: 16px 48px; } }
 
     .dnav__mark {
-      font-family: var(--font-display);
-      font-size: 21px;
-      font-weight: 800;
-      letter-spacing: -0.045em;
+      font-family: var(--font-logo);
+      font-size: 31px;
+      font-weight: 700;
+      letter-spacing: -0.035em;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
       color: var(--client-purple);
+      line-height: 0.95;
     }
     .dnav__word { display: inline-flex; align-items: baseline; }
     .dnav__mark .dot { color: var(--gold); margin-left: 1px; }
@@ -1890,55 +1921,6 @@
     .lender-note strong { color: var(--accent); }
 
     /* ============================================================
-       DEMO — Stories (relationships)
-       ============================================================ */
-    .stories-list { margin-top: var(--s-6); }
-    .story {
-      padding: var(--s-6) 0;
-      border-top: 1px solid var(--line);
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--s-4);
-    }
-    .story:last-child { border-bottom: 1px solid var(--line); }
-    @media (min-width: 900px) {
-      .story { grid-template-columns: 240px 1fr; gap: var(--s-6); align-items: start; }
-    }
-    .story__meta { font-size: 14px; line-height: 1.55; color: var(--ink-quiet); }
-    .story__name {
-      font-family: var(--font-serif);
-      font-size: 22px;
-      font-weight: 400;
-      letter-spacing: 0;
-      color: var(--ink);
-      display: block;
-    }
-    .story__where { margin-top: 4px; display: block; }
-    .story__time {
-      margin-top: 8px;
-      display: inline-block;
-      font-size: 11.5px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 600;
-    }
-    .story__quote {
-      font-family: var(--font-serif);
-      font-size: clamp(16.5px, 1.25vw, 19px);
-      line-height: 1.58;
-      letter-spacing: 0;
-      color: var(--ink);
-    }
-    .stories-closing {
-      margin-top: var(--s-6);
-      padding-top: var(--s-5);
-      border-top: 1px solid var(--line);
-      color: var(--ink-quiet);
-      font-size: 15.5px;
-    }
-
-    /* ============================================================
        DEMO — Process
        ============================================================ */
     .process-list { margin-top: var(--s-6); display: grid; gap: 0; }
@@ -2192,71 +2174,6 @@
     .hc-output strong { color: var(--accent); }
 
     /* ============================================================
-       DEMO — Insights
-       ============================================================ */
-    .insight-grid {
-      margin-top: var(--s-6);
-      display: grid;
-      gap: var(--s-4);
-    }
-    .insight-card {
-      padding: var(--s-5);
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--s-3);
-      box-shadow: 0 14px 30px rgba(31,31,35,0.045);
-    }
-    @media (min-width: 900px) {
-      .insight-card { grid-template-columns: 100px 1fr; gap: var(--s-5); padding: var(--s-6); }
-    }
-    .insight-card__date {
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 600;
-    }
-    .insight-card__title {
-      font-family: var(--font-serif);
-      font-size: clamp(19px, 1.45vw, 22px);
-      font-weight: 800;
-      letter-spacing: -0.025em;
-      line-height: 1.36;
-    }
-    .insight-card__author {
-      margin-top: var(--s-2);
-      font-size: 13px;
-      color: var(--ink-quiet);
-    }
-    .insight-card__preview {
-      margin-top: var(--s-3);
-      color: var(--ink-quiet);
-      font-size: 15.5px;
-      line-height: 1.6;
-    }
-    .insight-card__more {
-      margin-top: var(--s-3);
-      color: var(--ink-quiet);
-      font-size: 15.5px;
-      line-height: 1.6;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 400ms var(--ease);
-    }
-    .insight-card.is-expanded .insight-card__more { max-height: 600px; }
-    .insight-toggle {
-      margin-top: var(--s-3);
-      color: var(--accent);
-      font-size: 14px;
-      font-weight: 500;
-      align-self: start;
-    }
-    .insight-toggle:hover { text-decoration: underline; }
-
-    /* ============================================================
        DEMO — Contact
        ============================================================ */
     .contact-grid {
@@ -2382,6 +2299,7 @@
       max-width: 30ch;
     }
     .dfooter__about .dot { color: var(--gold); }
+    .dfooter__about .ff-word { font-size: 32px; }
     .dfooter__about-body { margin-top: var(--s-3); color: var(--ink-quiet); font-size: 14.5px; line-height: 1.55; max-width: 38ch; }
     .dfooter__bottom {
       margin-top: var(--s-7);
@@ -2581,7 +2499,6 @@
               <div>
                 <p class="section-label">Evolved identity direction</p>
                 <div class="ff-lockup" aria-label="first finance logo direction">
-                  <span class="ff-mark">ff</span>
                   <span>
                     <span class="ff-word">first finance<span class="dot">.</span></span>
                     <span class="ff-tagline">finance made personal</span>
@@ -2619,17 +2536,19 @@
                 <div class="logo-specimen" style="margin-top: var(--s-4);">
                   <div class="logo-specimen__row">
                     <div class="ff-lockup">
-                      <span class="ff-mark">ff</span>
                       <span><span class="ff-word">first finance<span class="dot">.</span></span><span class="ff-tagline">finance made personal</span></span>
                     </div>
                     <p class="logo-specimen__caption">Primary lock-up for the website, proposals and client-facing material.</p>
                   </div>
                   <div class="logo-specimen__row is-dark">
                     <div class="ff-lockup">
-                      <span class="ff-mark">ff</span>
                       <span><span class="ff-word">first finance<span class="dot">.</span></span></span>
                     </div>
                     <p class="logo-specimen__caption">Reversed version for plum surfaces and high-confidence moments.</p>
+                  </div>
+                  <div class="logo-specimen__row">
+                    <span class="ff-mark">ff</span>
+                    <p class="logo-specimen__caption">Standalone mark for favicon, social avatars and small moments where the full wordmark is too wide.</p>
                   </div>
                 </div>
               </div>
@@ -2718,7 +2637,7 @@
                   <article class="brand-sample">
                     <p class="brand-sample__label">Testimonial module</p>
                     <h3 class="brand-sample__title">"They made the process feel simple."</h3>
-                    <p class="brand-sample__body">Relationship stories with names, context and timeframes, not anonymous quote tiles.</p>
+                    <p class="brand-sample__body">Relationship reviews with names, context and timeframes, not anonymous quote tiles.</p>
                   </article>
                 </div>
               </div>
@@ -2840,7 +2759,6 @@
     <header class="dnav" role="banner">
       <div class="dnav__inner">
         <a href="#" class="dnav__mark" data-page="home">
-          <span class="ff-mark ff-mark--small">ff</span>
           <span class="dnav__word">first finance<span class="dot">.</span></span>
         </a>
         <nav aria-label="Primary">
@@ -2848,10 +2766,8 @@
             <li><a href="#" class="dnav__link is-active" data-page="home">Home</a></li>
             <li><a href="#" class="dnav__link" data-page="about">About</a></li>
             <li><a href="#" class="dnav__link" data-page="services">Services</a></li>
-            <li><a href="#" class="dnav__link" data-page="stories">Stories</a></li>
             <li><a href="#" class="dnav__link" data-page="process">Process</a></li>
             <li><a href="#" class="dnav__link" data-page="tools">Tools</a></li>
-            <li><a href="#" class="dnav__link" data-page="insights">Insights</a></li>
             <li><a href="#" class="dnav__link" data-page="contact">Contact</a></li>
           </ul>
         </nav>
@@ -2876,10 +2792,8 @@
         <li><a href="#" data-page="home">Home</a></li>
         <li><a href="#" data-page="about">About</a></li>
         <li><a href="#" data-page="services">Services</a></li>
-        <li><a href="#" data-page="stories">Stories</a></li>
         <li><a href="#" data-page="process">Process</a></li>
         <li><a href="#" data-page="tools">Tools</a></li>
-        <li><a href="#" data-page="insights">Insights</a></li>
         <li><a href="#" data-page="contact">Contact</a></li>
       </ul>
     </div>
@@ -2986,18 +2900,17 @@
           </div>
 
           <div class="preview-row">
-            <a href="#" class="preview" data-page="stories">
-              <p class="lbl">A relationship · 20+ years</p>
+            <article class="preview">
+              <p class="lbl">Client review · 20+ years</p>
               <h3 class="title">Rob Lamers — Park Orchards.</h3>
               <p class="body">"I have been dealing with Craig Walker at First Finance Solutions for over 20 years. During that time I have utilised Craig for all my personal finance needs. I have also referred my friends and family."</p>
-              <span class="btn-text" style="color: var(--accent);">See all relationships <span aria-hidden="true">→</span></span>
-            </a>
-            <a href="#" class="preview" data-page="insights">
-              <p class="lbl">Insights · Q2 2026</p>
-              <h3 class="title">What lender appetite has actually looked like through the first half of 2026.</h3>
-              <p class="body">A quarterly note from Ben on where the major banks have quietly become more competitive, where second-tier lenders are tightening, and what investment lending policy is doing.</p>
-              <span class="btn-text" style="color: var(--accent);">Read the latest note <span aria-hidden="true">→</span></span>
-            </a>
+            </article>
+            <article class="preview">
+              <p class="lbl">Useful first step</p>
+              <h3 class="title">Start with a short position check.</h3>
+              <p class="body">A practical first conversation around timing, property, income, existing loans and whether there is a sensible lender pathway to explore.</p>
+              <a href="#" class="btn-text" style="color: var(--accent);" data-page="contact">Book a free chat <span aria-hidden="true">→</span></a>
+            </article>
           </div>
         </div>
       </section>
@@ -3177,66 +3090,6 @@
         </div>
       </section>
 
-      <!-- STORIES -->
-      <section class="dpage" data-page="stories">
-        <div class="wrap">
-          <div class="dhero">
-            <p class="eyebrow">Relationships</p>
-            <h1 class="h-display">What "client for life" <em>actually looks like.</em></h1>
-            <p class="lede">Five relationships, in their own words. Real names, real timeframes, real situations.</p>
-          </div>
-
-          <div class="stories-list">
-            <article class="story">
-              <div class="story__meta">
-                <span class="story__name">Rob Lamers</span>
-                <span class="story__where">Park Orchards</span>
-                <span class="story__time">Client since the early 2000s · 20+ years</span>
-              </div>
-              <p class="story__quote">"I have been dealing with Craig Walker at First Finance Solutions for over 20 years. During that time I have utilised Craig for all my personal finance needs. I have also referred my friends and family. I have worked for various lenders in the business lending field for over 25 years, and have been fortunate to receive numerous referrals from First Finance Solutions. It is a true two-way referral relationship."</p>
-            </article>
-
-            <article class="story">
-              <div class="story__meta">
-                <span class="story__name">Bill Munro</span>
-                <span class="story__where">Styling Services, Collingwood</span>
-                <span class="story__time">Client for 15 years · Commercial, residential, SMSF</span>
-              </div>
-              <p class="story__quote">"First Finance has been an absolute pleasure to work with over the past 15 years. No matter how challenging the project the service level is second to none. Commercial, residential, superannuation funds — nothing is too hard, and the advice has saved us thousands."</p>
-            </article>
-
-            <article class="story">
-              <div class="story__meta">
-                <span class="story__name">Matt Cannon</span>
-                <span class="story__where">Focus Financial Group, East Ringwood</span>
-                <span class="story__time">Business acquisition financing · Worked with Ben</span>
-              </div>
-              <p class="story__quote">"Purchasing a business is a challenging exercise which requires total focus and commitment. The appropriate financing of my business purchase was integral to a successful transaction so I was keen to engage someone with experience in this area. Ben and the FFS team were very professional and thorough with their proposal and negotiations to achieve the desired outcome."</p>
-            </article>
-
-            <article class="story">
-              <div class="story__meta">
-                <span class="story__name">Andrew Cameron</span>
-                <span class="story__where">North Melbourne</span>
-                <span class="story__time">Investment property financing · Multiple properties</span>
-              </div>
-              <p class="story__quote">"Craig has been of great assistance to me in financing two investment properties. One investment in particular needed a very fast turnaround which Craig was happily able to accommodate. Dealing directly with the banks has been painful, from experience with my home loan. Using First Finance Solutions has been a real advantage — not only to get a competitive home loan rate, but to take the hassle out of the whole process."</p>
-            </article>
-
-            <article class="story">
-              <div class="story__meta">
-                <span class="story__name">Cihan &amp; Tully Demirel</span>
-                <span class="story__where">Macleod</span>
-                <span class="story__time">First-home buyers, 2024 · Worked with Ben</span>
-              </div>
-              <p class="story__quote">"When we first began looking into home loans and purchasing a property, both my husband and I felt overwhelmed by the amount of information we had to navigate. Ben was a wonderful support to us during the process. He was able to present us with all of our options in a way that was comprehensive and easy to digest. What could have been a stressful process was streamlined and simplified. Ben is friendly and approachable and we felt very comfortable negotiating big decisions with his guidance."</p>
-            </article>
-          </div>
-
-          <p class="stories-closing">If you'd like to be introduced to one of these clients before engaging us, we can arrange it.</p>
-        </div>
-      </section>
-
       <!-- PROCESS -->
       <section class="dpage" data-page="process">
         <div class="wrap">
@@ -3375,62 +3228,6 @@
         </div>
       </section>
 
-      <!-- INSIGHTS -->
-      <section class="dpage" data-page="insights">
-        <div class="wrap">
-          <div class="dhero">
-            <p class="eyebrow">Insights</p>
-            <h1 class="h-display">A quarterly note from us.</h1>
-            <p class="lede">Not a marketing blog. A short piece of writing every three months on what lender appetite or policy is actually doing.</p>
-          </div>
-
-          <div class="insight-grid">
-            <article class="insight-card">
-              <p class="insight-card__date">Q2 · 2026</p>
-              <div>
-                <h3 class="insight-card__title">What lender appetite has actually looked like through the first half of 2026.</h3>
-                <p class="insight-card__author">— Ben Walker</p>
-                <p class="insight-card__preview">Through the first six months of 2026, lender appetite for owner-occupier refinance has tightened from the second-tier banks while the majors have quietly become more competitive on cashback. Investment lending policy remains stricter than most borrowers expect, particularly around rental yield assumptions.</p>
-                <div class="insight-card__more">
-                  <p style="margin-top: 12px;">The shift to watch is the major banks reintroducing structured cashbacks for refinance — $2,000 to $4,000 range — without the policy tightening that accompanied the last round in 2023. For clients with clean serviceability the math is again worth running.</p>
-                  <p style="margin-top: 12px;">On the investment side, three lenders have pulled back from high-LVR investment lending in the past quarter. Two have come back in cautiously. Anyone planning a third or fourth property purchase in the next six months should run serviceability before assuming what was possible twelve months ago is still possible now.</p>
-                  <p style="margin-top: 12px;">Worth a short conversation if you're either refinancing in the next quarter or sitting on a fixed rate that ends in 2026.</p>
-                </div>
-                <button class="insight-toggle" type="button">Read more</button>
-              </div>
-            </article>
-
-            <article class="insight-card">
-              <p class="insight-card__date">Q1 · 2026</p>
-              <div>
-                <h3 class="insight-card__title">Why business-purchase financing is easier than it was twelve months ago, and harder than it looks.</h3>
-                <p class="insight-card__author">— Craig Walker</p>
-                <p class="insight-card__preview">Twelve months ago, business-purchase financing was difficult to write outside the major bank business divisions. That has changed — second-tier and specialist lenders are back in the market. But the structuring requirements have quietly become more important.</p>
-                <div class="insight-card__more">
-                  <p style="margin-top: 12px;">The misread I see most often is treating a business purchase like a property purchase. The financing structure is different, the assessment lens is different, and the security position is different. Get those right early — usually before signing the heads of agreement — and the rest is straightforward.</p>
-                  <p style="margin-top: 12px;">For anyone seriously evaluating an acquisition in the next six months: budget a conversation with us before you commit to the structure. It's the one piece of work that gets harder the later it's started.</p>
-                </div>
-                <button class="insight-toggle" type="button">Read more</button>
-              </div>
-            </article>
-
-            <article class="insight-card">
-              <p class="insight-card__date">Q4 · 2025</p>
-              <div>
-                <h3 class="insight-card__title">The conversation most refinancers are not having with their accountant.</h3>
-                <p class="insight-card__author">— Ben Walker</p>
-                <p class="insight-card__preview">Most refinances are organised between the borrower and the broker. The accountant gets a notification at the end. There's a better order, especially for anyone with investment property or who has restructured ownership in the last few years.</p>
-                <div class="insight-card__more">
-                  <p style="margin-top: 12px;">Three things to flag with your accountant <em>before</em> the refinance, not after: the interest deductibility implications of any loan splits, whether the timing of the refinance affects current-year tax position, and whether the new structure changes anything for an SMSF property if you have one.</p>
-                  <p style="margin-top: 12px;">Where we work coordinated, we usually save the client one or two structural decisions they would have spent a year working around. It's not a big change. It just needs to happen in the right order.</p>
-                </div>
-                <button class="insight-toggle" type="button">Read more</button>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
       <!-- CONTACT -->
       <section class="dpage" data-page="contact">
         <div class="wrap">
@@ -3521,8 +3318,7 @@
           <div class="dfooter__col">
             <p class="dfooter__about">
               <span class="ff-lockup">
-                <span class="ff-mark ff-mark--small">ff</span>
-                <span class="dnav__word">first finance<span class="dot">.</span></span>
+                <span class="ff-word">first finance<span class="dot">.</span></span>
               </span>
             </p>
             <p class="dfooter__about-body">A Melbourne finance broking practice. Family-led since 1992. Finance made personal.</p>
@@ -3533,7 +3329,6 @@
               <li><a href="#" data-page="home">Home</a></li>
               <li><a href="#" data-page="about">About</a></li>
               <li><a href="#" data-page="services">Services</a></li>
-              <li><a href="#" data-page="stories">Stories</a></li>
             </ul>
           </div>
           <div class="dfooter__col">
@@ -3541,7 +3336,6 @@
             <ul>
               <li><a href="#" data-page="process">Process</a></li>
               <li><a href="#" data-page="tools">Tools</a></li>
-              <li><a href="#" data-page="insights">Insights</a></li>
               <li><a href="#" data-page="contact">Contact</a></li>
             </ul>
           </div>
@@ -3793,16 +3587,6 @@
         }
         hcOutput.innerHTML = msg;
       }
-
-      // ---------- Insight expand/collapse ----------
-      document.querySelectorAll('.insight-toggle').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const card = btn.closest('.insight-card');
-          if (!card) return;
-          const expanded = card.classList.toggle('is-expanded');
-          btn.textContent = expanded ? 'Show less' : 'Read more';
-        });
-      });
 
       // ---------- Contact form (visual only) ----------
       const contactForm = document.getElementById('contactForm');

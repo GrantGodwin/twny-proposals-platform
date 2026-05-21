@@ -7,11 +7,36 @@
   <meta name="description" content="A practical website update and working demo for First Finance Solutions from twny.">
   <meta name="robots" content="noindex">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,700&family=Manrope:wght@400;500;600;700;800&display=swap">
-
   <style>
+    @font-face {
+      font-family: "Satoshi";
+      src: url("/clients/first-finance/fonts/Satoshi-Regular.otf") format("opentype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Satoshi";
+      src: url("/clients/first-finance/fonts/Satoshi-Medium.otf") format("opentype");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Satoshi";
+      src: url("/clients/first-finance/fonts/Satoshi-Bold.otf") format("opentype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Recoleta";
+      src: local("Recoleta Medium"), local("Recoleta-Medium"), local("Recoleta");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
     /* ============================================================
        TOKENS
        ============================================================ */
@@ -47,10 +72,10 @@
       --shadow-shell: 0 12px 34px rgba(3, 14, 17, 0.22);
 
       /* Typography defaults */
-      --font-ui: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --font-display: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --font-serif: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --font-logo: "Cormorant Garamond", Georgia, serif;
+      --font-ui: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-display: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-serif: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-logo: "Recoleta", "Recoleta Medium", Georgia, serif;
 
       /* Spacing scale */
       --s-1: 4px;
@@ -260,21 +285,21 @@
       background: transparent;
       color: var(--client-purple);
       font-family: var(--font-logo);
-      font-size: 58px;
+      font-size: 54px;
       font-style: italic;
-      font-weight: 700;
-      letter-spacing: -0.13em;
-      line-height: 0.82;
+      font-weight: 500;
+      letter-spacing: -0.115em;
+      line-height: 0.9;
       position: relative;
       box-shadow: none;
     }
     .ff-mark::after {
       content: ".";
       position: absolute;
-      right: -0.12em;
-      bottom: -0.08em;
+      right: -0.1em;
+      bottom: -0.055em;
       color: var(--client-gold);
-      font-size: 0.62em;
+      font-size: 0.54em;
       font-style: normal;
       line-height: 1;
     }
@@ -288,10 +313,10 @@
       display: inline-flex;
       align-items: baseline;
       font-family: var(--font-logo);
-      font-size: clamp(38px, 5vw, 70px);
-      font-weight: 700;
-      letter-spacing: -0.035em;
-      line-height: 0.94;
+      font-size: clamp(40px, 5vw, 68px);
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      line-height: 1.02;
     }
     .ff-word .dot { color: var(--client-gold); margin-left: 2px; }
     .ff-tagline {
@@ -674,9 +699,11 @@
       top: 50%;
       transform: translateY(-50%);
       color: rgba(255,255,255,0.055);
+      font-family: var(--font-logo);
       font-size: clamp(130px, 21vw, 270px);
-      font-weight: 800;
-      letter-spacing: -0.15em;
+      font-style: italic;
+      font-weight: 500;
+      letter-spacing: -0.13em;
       line-height: 1;
       pointer-events: none;
       z-index: -1;
@@ -766,7 +793,7 @@
     }
     @media (min-width: 980px) {
       .brand-board-grid {
-        grid-template-columns: 1.12fr 1.2fr 0.88fr;
+        grid-template-columns: minmax(230px, 0.95fr) minmax(280px, 1.05fr) minmax(330px, 1.25fr);
       }
       .brand-board-grid > * + * { border-left: 1px solid var(--line); }
     }
@@ -774,12 +801,17 @@
       padding: clamp(22px, 3.6vw, 34px);
       border-bottom: 1px solid var(--line);
       background: #FFFFFF;
+      min-width: 0;
     }
     .brand-panel--soft {
       background: color-mix(in srgb, var(--client-ground) 72%, #fff 28%);
     }
     @media (min-width: 980px) {
       .brand-panel--wide { grid-column: span 2; }
+    }
+    .brand-panel--type {
+      min-width: 0;
+      overflow: visible;
     }
     .brand-panel__label {
       font-size: 11px;
@@ -960,38 +992,73 @@
     }
     .type-specimen {
       display: grid;
-      gap: 12px;
+      gap: 13px;
+      min-width: 0;
     }
     .type-specimen__face {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
       gap: var(--s-3);
+      flex-wrap: wrap;
       padding-bottom: var(--s-3);
       border-bottom: 1px solid var(--line);
     }
     .type-specimen__name {
-      font-size: clamp(30px, 3.6vw, 48px);
+      font-size: clamp(32px, 3.2vw, 46px);
       font-weight: 700;
-      letter-spacing: -0.045em;
+      letter-spacing: -0.035em;
       color: var(--client-charcoal);
-      line-height: 1;
+      line-height: 1.08;
     }
     .type-specimen__aa {
-      font-size: clamp(34px, 4vw, 56px);
+      font-size: clamp(36px, 3.8vw, 54px);
       line-height: 1;
       color: var(--client-charcoal);
-      font-weight: 500;
+      font-weight: 400;
     }
     .type-row {
       display: grid;
-      grid-template-columns: 46px 1fr 48px;
+      grid-template-columns: 38px minmax(0, 1fr) auto;
       gap: 12px;
       align-items: baseline;
       font-size: 13px;
       color: var(--ink-quiet);
     }
-    .type-row strong { color: var(--ink); }
+    .type-row strong {
+      color: var(--ink);
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+    .type-row span:last-child {
+      justify-self: end;
+      white-space: nowrap;
+      font-size: 11px;
+      color: var(--caption);
+    }
+    .type-accent {
+      margin-top: var(--s-3);
+      padding-top: var(--s-4);
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: var(--s-4);
+      align-items: baseline;
+    }
+    .type-accent__name {
+      font-family: var(--font-logo);
+      font-size: clamp(22px, 2.2vw, 30px);
+      line-height: 1.12;
+      color: var(--client-purple);
+      font-weight: 500;
+    }
+    .type-accent__aa {
+      font-family: var(--font-logo);
+      font-size: clamp(28px, 3vw, 42px);
+      line-height: 1;
+      color: var(--client-purple);
+      font-weight: 500;
+    }
     .photo-direction-grid {
       margin-top: var(--s-4);
       display: grid;
@@ -2591,17 +2658,23 @@
                 </div>
               </div>
 
-              <div class="brand-panel">
+              <div class="brand-panel brand-panel--type">
                 <p class="brand-panel__label">Typography</p>
                 <div class="type-specimen" style="margin-top: var(--s-4);">
                   <div class="type-specimen__face">
-                    <span class="type-specimen__name">Manrope</span>
+                    <span class="type-specimen__name">Satoshi</span>
                     <span class="type-specimen__aa">Aa</span>
                   </div>
-                  <div class="type-row"><span>H1</span><strong>Confident, readable</strong><span>56/62</span></div>
-                  <div class="type-row"><span>H2</span><strong>Clear section titles</strong><span>38/45</span></div>
-                  <div class="type-row"><span>Body</span><strong>Plain English guidance</strong><span>16/26</span></div>
-                  <p class="brand-panel__body">A human sans direction keeps the site modern without making it feel like a magazine or a fintech product.</p>
+                  <div class="type-row"><span>H1</span><strong>Satoshi Bold</strong><span>44/52</span></div>
+                  <div class="type-row"><span>H2</span><strong>Satoshi Bold</strong><span>32/40</span></div>
+                  <div class="type-row"><span>H3</span><strong>Satoshi Medium</strong><span>24/32</span></div>
+                  <div class="type-row"><span>Body</span><strong>Satoshi Regular</strong><span>16/26</span></div>
+                  <div class="type-row"><span>Small</span><strong>Satoshi Regular</strong><span>14/22</span></div>
+                  <div class="type-accent">
+                    <span class="type-accent__name">Recoleta Medium</span>
+                    <span class="type-accent__aa">Aa</span>
+                  </div>
+                  <p class="brand-panel__body">Satoshi carries UI, body copy and headings. Recoleta is reserved for the logo and small accent moments.</p>
                 </div>
               </div>
             </div>

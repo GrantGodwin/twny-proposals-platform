@@ -9,7 +9,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
 
   <style>
     /* ============================================================
@@ -17,34 +17,39 @@
        ============================================================ */
     :root {
       /* twny mode (proposal) — default */
-      --bg: #F7F4EE;
-      --surface: #FFFDF8;
+      --bg: #F3F2EF;
+      --surface: #FFFFFF;
       --surface-raised: #FFFFFF;
-      --ink: #172024;
-      --ink-quiet: #5D6568;
-      --caption: #858984;
-      --line: #E1DACD;
+      --ink: #1F1F23;
+      --ink-quiet: #4A4A52;
+      --caption: #76767E;
+      --line: #D8D9DD;
       --accent: #15B8C6;
-      --accent-soft: #E4F5F4;
+      --accent-soft: #E1F7F5;
       --twny-dark: #0B171B;
       --twny-panel: #10262B;
       --twny-panel-soft: #143036;
       --twny-teal: #15B5A9;
       --twny-cyan: #5CDCE8;
       --twny-muted: #A6BEC2;
-      --client-purple: #3B2C5E;
-      --client-gold: #B8924D;
-      --client-ground: #FBF8F2;
-      --client-wash: #EFE9F5;
-      --gold: #B8924D;
-      --gold-soft: #F2EBDA;
-      --shadow-soft: 0 14px 34px rgba(42, 33, 20, 0.055);
-      --shadow-raised: 0 22px 56px rgba(42, 33, 20, 0.085);
+      --client-purple: #381F3F;
+      --client-gold: #C8A766;
+      --client-champagne: #E8D6B2;
+      --client-ground: #F3F2EF;
+      --client-wash: #F7F2E7;
+      --client-charcoal: #1F1F23;
+      --client-graphite: #4A4A52;
+      --client-cool-grey: #D8D9DD;
+      --gold: #C8A766;
+      --gold-soft: #F3E7CB;
+      --shadow-soft: 0 16px 36px rgba(31, 31, 35, 0.06);
+      --shadow-raised: 0 24px 60px rgba(31, 31, 35, 0.10);
       --shadow-shell: 0 12px 34px rgba(3, 14, 17, 0.22);
 
       /* Typography defaults */
-      --font-ui: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --font-serif: "Source Serif 4", Georgia, serif;
+      --font-ui: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-display: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-serif: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
       /* Spacing scale */
       --s-1: 4px;
@@ -68,16 +73,17 @@
 
     body.mode-demo {
       /* First Finance evolved mode */
-      --bg: #FBF8F2;
+      --bg: #F3F2EF;
       --surface: #FFFFFF;
-      --ink: #1F1B2E;
-      --ink-quiet: #5C5670;
-      --caption: #8C8598;
-      --line: #E8E2D5;
-      --accent: #3B2C5E;          /* evolved purple */
-      --accent-soft: #EFE9F5;
-      --gold: #B8924D;            /* evolved restrained gold */
-      --gold-soft: #F2EBDA;
+      --surface-raised: #FFFFFF;
+      --ink: #1F1F23;
+      --ink-quiet: #4A4A52;
+      --caption: #74747B;
+      --line: #D8D9DD;
+      --accent: #381F3F;
+      --accent-soft: #F0E9F2;
+      --gold: #C8A766;
+      --gold-soft: #F3E7CB;
     }
 
     /* ============================================================
@@ -88,9 +94,9 @@
     body {
       margin: 0;
       background:
-        radial-gradient(circle at 8% -8%, rgba(21,184,166,0.095), transparent 32rem),
-        radial-gradient(circle at 92% 8%, rgba(184,146,77,0.075), transparent 30rem),
-        linear-gradient(180deg, color-mix(in srgb, var(--bg) 90%, #fff 10%) 0%, var(--bg) 44%, color-mix(in srgb, var(--bg) 94%, #EFE6D8 6%) 100%);
+        radial-gradient(circle at 12% -8%, rgba(56,31,63,0.07), transparent 28rem),
+        radial-gradient(circle at 90% 4%, rgba(200,167,102,0.12), transparent 30rem),
+        linear-gradient(180deg, #FFFFFF 0%, var(--bg) 48%, #FFFFFF 100%);
       color: var(--ink);
       font-family: var(--font-ui);
       font-size: 16px;
@@ -176,22 +182,25 @@
     }
 
     .h-display {
-      font-size: clamp(33px, 4.45vw, 58px);
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 56px);
       line-height: 1.13;
-      letter-spacing: -0.004em;
-      font-weight: 500;
+      letter-spacing: -0.035em;
+      font-weight: 700;
     }
     .h-1 {
-      font-size: clamp(27px, 2.95vw, 39px);
+      font-family: var(--font-display);
+      font-size: clamp(27px, 2.8vw, 38px);
       line-height: 1.18;
-      letter-spacing: -0.003em;
-      font-weight: 500;
+      letter-spacing: -0.028em;
+      font-weight: 700;
     }
     .h-2 {
-      font-size: clamp(23px, 2.2vw, 30px);
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.05vw, 29px);
       line-height: 1.22;
-      letter-spacing: 0;
-      font-weight: 500;
+      letter-spacing: -0.022em;
+      font-weight: 700;
     }
     .h-3 {
       font-size: clamp(19px, 1.4vw, 22px);
@@ -211,22 +220,87 @@
     .quiet { color: var(--ink-quiet); }
     .caption { font-size: 14px; color: var(--caption); line-height: 1.5; }
 
-    /* In demo mode, use serif for display moments */
+    /* First Finance keeps display type clean and humanist, not editorial. */
     body.mode-demo .h-display,
     body.mode-demo .h-1,
     body.mode-demo .h-2 {
-      font-family: var(--font-serif);
-      font-weight: 400;
-      letter-spacing: -0.006em;
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: -0.035em;
     }
     body.mode-demo .h-display {
       font-size: clamp(32px, 4.2vw, 56px);
       line-height: 1.12;
     }
     body.mode-demo .lede { font-weight: 400; }
+    body.mode-demo em {
+      color: var(--client-gold);
+      font-style: normal;
+    }
 
     /* Accent dot used in the FF wordmark */
     .gold-dot { color: var(--gold); }
+
+    .ff-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--client-purple);
+      text-transform: lowercase;
+      letter-spacing: -0.045em;
+    }
+    .ff-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 auto;
+      background:
+        radial-gradient(circle at 34% 18%, rgba(255,255,255,0.18), transparent 30%),
+        linear-gradient(135deg, #4B2450 0%, var(--client-purple) 72%);
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.11em;
+      line-height: 1;
+      position: relative;
+      box-shadow: 0 12px 24px rgba(56,31,63,0.16);
+    }
+    .ff-mark::after {
+      content: "";
+      position: absolute;
+      right: 9px;
+      bottom: 8px;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--client-gold);
+    }
+    .ff-mark--small {
+      width: 32px;
+      height: 32px;
+      font-size: 13px;
+      box-shadow: 0 8px 18px rgba(56,31,63,0.12);
+    }
+    .ff-word {
+      display: inline-flex;
+      align-items: baseline;
+      font-size: clamp(34px, 4.7vw, 64px);
+      font-weight: 800;
+      line-height: 0.98;
+    }
+    .ff-word .dot { color: var(--client-gold); margin-left: 2px; }
+    .ff-tagline {
+      display: block;
+      margin-top: 10px;
+      color: var(--client-gold);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
 
     /* ============================================================
        BUTTONS
@@ -255,6 +329,16 @@
       background: color-mix(in srgb, var(--accent) 88%, var(--twny-dark) 12%);
       transform: translateY(-1px);
     }
+    body.mode-demo .btn-primary {
+      background: var(--client-gold);
+      color: var(--client-purple);
+      box-shadow: 0 14px 28px rgba(200,167,102,0.24);
+      font-weight: 800;
+    }
+    body.mode-demo .btn-primary:hover {
+      background: color-mix(in srgb, var(--client-gold) 88%, #FFFFFF 12%);
+      color: var(--client-purple);
+    }
 
     .btn-ghost {
       background: color-mix(in srgb, var(--surface) 74%, transparent);
@@ -264,6 +348,16 @@
     .btn-ghost:hover {
       border-color: color-mix(in srgb, var(--ink) 42%, var(--line) 58%);
       background: var(--surface);
+    }
+    body.mode-demo .btn-ghost {
+      background: #FFFFFF;
+      border-color: var(--client-cool-grey);
+      color: var(--client-purple);
+      font-weight: 700;
+    }
+    body.mode-demo .btn-ghost:hover {
+      border-color: var(--client-purple);
+      background: color-mix(in srgb, var(--client-ground) 70%, #fff 30%);
     }
 
     .btn-large {
@@ -446,6 +540,23 @@
       background:
         linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0));
     }
+    #observed {
+      background:
+        radial-gradient(circle at 90% 8%, rgba(200,167,102,0.10), transparent 24rem),
+        linear-gradient(180deg, #FFFFFF 0%, var(--client-ground) 100%);
+    }
+    #matters {
+      background: #FFFFFF;
+    }
+    #strengths {
+      background:
+        linear-gradient(180deg, var(--client-ground) 0%, #FFFFFF 100%);
+    }
+    #evolution {
+      background:
+        radial-gradient(circle at 8% 0%, rgba(56,31,63,0.06), transparent 28rem),
+        linear-gradient(180deg, #FFFFFF 0%, var(--client-ground) 100%);
+    }
 
     .p-intro {
       min-height: auto;
@@ -453,10 +564,17 @@
       align-items: flex-start;
       padding-top: var(--s-8);
       padding-bottom: var(--s-7);
+      color: #F5FFFE;
       background:
-        radial-gradient(circle at 84% 4%, rgba(92,220,232,0.08), transparent 30rem),
-        linear-gradient(180deg, rgba(255,255,255,0.32), rgba(255,255,255,0));
+        radial-gradient(circle at 12% 0%, rgba(92,220,232,0.10), transparent 32rem),
+        linear-gradient(135deg, var(--twny-dark) 0%, #10262B 62%, #0C1A1E 100%);
+      border-bottom: 1px solid rgba(92,220,232,0.18);
     }
+    .p-intro .eyebrow,
+    .p-intro .lede,
+    .p-intro .quiet { color: color-mix(in srgb, #F5FFFE 82%, var(--twny-muted) 18%); }
+    .p-intro .h-display { color: #FFFFFF; }
+    .p-intro .eyebrow::before { background: var(--twny-cyan); }
 
     /* Observation / strength / opportunity blocks */
     .item-list {
@@ -502,9 +620,10 @@
     .strength {
       padding: var(--s-5);
       background:
-        linear-gradient(180deg, var(--surface-raised), color-mix(in srgb, var(--surface) 86%, var(--bg) 14%));
-      border: 1px solid color-mix(in srgb, var(--line) 80%, #fff 20%);
-      border-radius: 14px;
+        linear-gradient(180deg, var(--surface-raised), color-mix(in srgb, var(--client-ground) 50%, #fff 50%));
+      border: 1px solid var(--line);
+      border-left: 4px solid color-mix(in srgb, var(--client-gold) 72%, #fff 28%);
+      border-radius: 16px;
       box-shadow: var(--shadow-soft);
     }
     .strength__lbl { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
@@ -512,133 +631,210 @@
     .strength__body { margin-top: var(--s-3); color: var(--ink-quiet); font-size: 15.5px; line-height: 1.62; }
 
     /* Brand evolution visual */
-    .evolution-block {
-      margin-top: var(--s-6);
-      padding: var(--s-6);
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-    }
-    @media (max-width: 767px) {
-      .evolution-block { padding: var(--s-5); }
-    }
-    .evo-row {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--s-4);
-      padding: var(--s-5) 0;
-      border-top: 1px solid var(--line);
-    }
-    .evo-row:first-child { border-top: 0; padding-top: 0; }
-    .evo-row:last-child { padding-bottom: 0; }
-    @media (min-width: 768px) {
-      .evo-row { grid-template-columns: 200px 1fr 1fr; gap: var(--s-6); align-items: center; }
-    }
-    .evo-label {
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--ink-quiet);
-    }
-    .evo-current, .evo-evolved {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .evo-tag {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--caption);
-      font-weight: 600;
-    }
-    .evo-swatches {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-    .swatch {
-      width: 44px; height: 44px;
-      border-radius: 8px;
-      border: 1px solid rgba(0,0,0,0.06);
-    }
-    .swatch-code {
-      font-family: 'SF Mono', ui-monospace, Menlo, monospace;
-      font-size: 12px;
-      color: var(--ink-quiet);
-    }
-    .evo-mark-current {
-      font-family: Georgia, serif;
-      font-style: italic;
-      font-weight: 700;
-      font-size: 22px;
-      color: #6B4E92; /* approximation of current bright FF purple */
-      letter-spacing: 0;
-    }
-    .evo-mark-evolved {
-      font-family: var(--font-serif);
-      font-weight: 400;
-      font-size: 28px;
-      color: var(--client-purple);
-      letter-spacing: 0;
-    }
-    .evo-mark-evolved::after {
-      content: ".";
-      color: var(--client-gold);
-      margin-left: 1px;
-    }
-
     .brand-kit {
       margin-top: var(--s-6);
-      display: grid;
-      gap: var(--s-5);
-      padding-top: var(--s-5);
-      border-top: 1px solid color-mix(in srgb, var(--line) 82%, var(--client-purple) 18%);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: #FFFFFF;
+      box-shadow: var(--shadow-raised);
     }
     .brand-kit__hero {
-      padding: var(--s-5);
-      border: 1px solid color-mix(in srgb, var(--line) 78%, var(--client-purple) 22%);
-      border-radius: 16px;
+      padding: clamp(28px, 5vw, 58px);
       background:
-        radial-gradient(circle at 12% 12%, rgba(184,146,77,0.12), transparent 22rem),
-        linear-gradient(135deg, var(--client-ground) 0%, var(--surface) 56%, var(--client-wash) 100%);
-      box-shadow: var(--shadow-raised);
+        radial-gradient(circle at 18% 8%, rgba(200,167,102,0.14), transparent 28rem),
+        linear-gradient(135deg, #2C1234 0%, var(--client-purple) 70%, #26112D 100%);
+      color: #FFFFFF;
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--s-5);
+      position: relative;
+      isolation: isolate;
+    }
+    .brand-kit__hero::after {
+      content: "ff";
+      position: absolute;
+      right: clamp(18px, 7vw, 92px);
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255,255,255,0.055);
+      font-size: clamp(130px, 21vw, 270px);
+      font-weight: 800;
+      letter-spacing: -0.15em;
+      line-height: 1;
+      pointer-events: none;
+      z-index: -1;
     }
     @media (min-width: 900px) {
       .brand-kit__hero {
-        grid-template-columns: 1fr 1.1fr;
-        align-items: end;
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 0.8fr);
+        align-items: center;
       }
     }
-    .brand-wordmark {
-      font-family: var(--font-serif);
-      font-size: clamp(38px, 5.2vw, 72px);
-      line-height: 1.04;
-      letter-spacing: -0.008em;
+    .brand-kit__hero .section-label {
+      color: color-mix(in srgb, var(--client-champagne) 84%, #fff 16%);
+    }
+    .brand-kit__hero .ff-lockup { color: #FFFFFF; }
+    .brand-kit__hero .ff-mark {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: none;
+    }
+    .brand-kit__note {
+      color: rgba(255,255,255,0.82);
+      max-width: 48ch;
+      font-size: 16px;
+      line-height: 1.65;
+    }
+    .brand-purpose {
+      padding: clamp(24px, 4vw, 40px);
+      display: grid;
+      gap: var(--s-5);
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #FFFFFF 0%, color-mix(in srgb, var(--client-ground) 74%, #fff 26%) 100%);
+    }
+    @media (min-width: 920px) { .brand-purpose { grid-template-columns: 1.1fr 0.9fr; } }
+    .brand-purpose__statement {
+      font-size: clamp(22px, 2.4vw, 34px);
+      line-height: 1.25;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+      max-width: 24ch;
       color: var(--client-purple);
     }
-    .brand-wordmark span { color: var(--client-gold); }
-    .brand-kit__note {
+    .brand-purpose__statement span { color: var(--client-gold); }
+    .brand-values {
+      display: grid;
+      gap: 12px;
+    }
+    .brand-value {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+    .brand-value__icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: var(--client-purple);
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .brand-value:nth-child(even) .brand-value__icon {
+      background: var(--client-gold);
+      color: var(--client-purple);
+    }
+    .brand-value strong {
+      display: block;
+      font-size: 14px;
+      line-height: 1.3;
+      color: var(--ink);
+    }
+    .brand-value__text { display: block; }
+    .brand-value__text span {
+      display: block;
+      margin-top: 3px;
+      font-size: 13px;
+      line-height: 1.45;
       color: var(--ink-quiet);
-      max-width: 48ch;
-      font-size: 15.5px;
-      line-height: 1.6;
+    }
+    .brand-board-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-top: 1px solid var(--line);
+    }
+    @media (min-width: 980px) {
+      .brand-board-grid {
+        grid-template-columns: 0.9fr 1.1fr 1fr;
+      }
+      .brand-board-grid > * + * { border-left: 1px solid var(--line); }
+    }
+    .brand-panel {
+      padding: clamp(22px, 3.6vw, 34px);
+      border-bottom: 1px solid var(--line);
+      background: #FFFFFF;
+    }
+    .brand-panel--soft {
+      background: color-mix(in srgb, var(--client-ground) 72%, #fff 28%);
+    }
+    @media (min-width: 980px) {
+      .brand-panel--wide { grid-column: span 2; }
+    }
+    .brand-panel__label {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--client-graphite);
+      font-weight: 800;
+    }
+    .brand-panel__title {
+      margin-top: 10px;
+      font-size: 18px;
+      line-height: 1.34;
+      letter-spacing: -0.018em;
+      font-weight: 700;
+      color: var(--client-purple);
+    }
+    .brand-panel__body {
+      margin-top: 10px;
+      color: var(--ink-quiet);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .logo-specimen {
+      display: grid;
+      gap: var(--s-4);
+    }
+    .logo-specimen__row {
+      padding: var(--s-4);
+      border-radius: 16px;
+      background: var(--client-ground);
+      border: 1px solid var(--line);
+    }
+    .logo-specimen__row.is-dark {
+      background:
+        radial-gradient(circle at 90% 12%, rgba(200,167,102,0.14), transparent 18rem),
+        var(--client-purple);
+      color: #FFFFFF;
+      border-color: transparent;
+    }
+    .logo-specimen__row.is-dark .ff-lockup { color: #FFFFFF; }
+    .logo-specimen__row.is-dark .ff-mark {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: none;
+    }
+    .logo-specimen__caption {
+      margin-top: 12px;
+      color: var(--caption);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .logo-specimen__row.is-dark .logo-specimen__caption { color: rgba(255,255,255,0.72); }
+    .brand-matrix {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-top: 1px solid var(--line);
+    }
+    @media (min-width: 900px) {
+      .brand-matrix { grid-template-columns: 1fr 1fr; }
+      .brand-matrix > *:nth-child(even) { border-left: 1px solid var(--line); }
     }
     .brand-swatches {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: var(--s-3);
+      gap: 10px;
     }
     @media (min-width: 720px) { .brand-swatches { grid-template-columns: repeat(4, 1fr); } }
     .brand-swatch {
-      min-height: 112px;
-      border-radius: 14px;
+      min-height: 106px;
+      border-radius: 16px;
       border: 1px solid rgba(0,0,0,0.07);
-      padding: var(--s-4);
+      padding: 14px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -665,12 +861,11 @@
     }
     @media (min-width: 900px) { .brand-samples { grid-template-columns: 1fr 1fr; } }
     .brand-sample {
-      padding: var(--s-5);
-      border: 1px solid color-mix(in srgb, var(--line) 82%, #fff 18%);
-      border-radius: 14px;
-      background:
-        linear-gradient(180deg, var(--surface-raised), color-mix(in srgb, var(--surface) 90%, var(--client-ground) 10%));
-      box-shadow: var(--shadow-soft);
+      padding: var(--s-4);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #FFFFFF;
+      box-shadow: 0 14px 30px rgba(31,31,35,0.055);
     }
     .brand-sample__label {
       font-size: 11px;
@@ -681,11 +876,11 @@
     }
     .brand-sample__title {
       margin-top: var(--s-3);
-      font-family: var(--font-serif);
-      font-size: clamp(22px, 2vw, 30px);
-      font-weight: 400;
+      font-family: var(--font-display);
+      font-size: clamp(20px, 1.75vw, 26px);
+      font-weight: 800;
       line-height: 1.22;
-      letter-spacing: 0;
+      letter-spacing: -0.03em;
       color: var(--client-purple);
     }
     .brand-sample__body {
@@ -709,7 +904,12 @@
       color: #fff;
     }
     .brand-mini-btn.is-secondary {
-      background: #F2EBDA;
+      background: var(--client-ground);
+      border: 1px solid var(--line);
+      color: var(--client-purple);
+    }
+    .brand-mini-btn.is-gold {
+      background: var(--client-gold);
       color: var(--client-purple);
     }
     .brand-module-row {
@@ -740,13 +940,242 @@
       font-size: 13px;
       line-height: 1.45;
     }
+    .type-specimen {
+      display: grid;
+      gap: 12px;
+    }
+    .type-specimen__face {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--s-3);
+      padding-bottom: var(--s-3);
+      border-bottom: 1px solid var(--line);
+    }
+    .type-specimen__name {
+      font-size: clamp(30px, 3.6vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.045em;
+      color: var(--client-charcoal);
+      line-height: 1;
+    }
+    .type-specimen__aa {
+      font-size: clamp(34px, 4vw, 56px);
+      line-height: 1;
+      color: var(--client-charcoal);
+      font-weight: 500;
+    }
+    .type-row {
+      display: grid;
+      grid-template-columns: 46px 1fr 48px;
+      gap: 12px;
+      align-items: baseline;
+      font-size: 13px;
+      color: var(--ink-quiet);
+    }
+    .type-row strong { color: var(--ink); }
+    .photo-direction-grid {
+      margin-top: var(--s-4);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .photo-tile {
+      min-height: 112px;
+      border-radius: 14px;
+      padding: 12px;
+      display: flex;
+      align-items: flex-end;
+      background:
+        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.46)),
+        linear-gradient(135deg, #D6CEC3 0%, #BFAF9C 52%, #776168 100%);
+      color: #FFFFFF;
+      font-size: 12px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+    .photo-tile:nth-child(2) {
+      background:
+        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.42)),
+        linear-gradient(135deg, #C6D4D5 0%, #A99073 54%, #3C2543 100%);
+    }
+    .photo-tile:nth-child(3) {
+      background:
+        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.42)),
+        linear-gradient(135deg, #E5D6BA 0%, #C8A766 46%, #6E536F 100%);
+    }
+    .photo-tile:nth-child(4) {
+      background:
+        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.46)),
+        linear-gradient(135deg, #F2EFEA 0%, #BFC5C8 50%, #381F3F 100%);
+    }
+    .icon-grid {
+      margin-top: var(--s-4);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .brand-icon {
+      aspect-ratio: 1;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: var(--client-purple);
+      background: #FFFFFF;
+    }
+    .brand-icon svg {
+      width: 26px;
+      height: 26px;
+      stroke-width: 1.6;
+    }
+    .mini-home {
+      margin-top: var(--s-4);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #FFFFFF;
+      box-shadow: 0 16px 34px rgba(31,31,35,0.08);
+    }
+    .mini-home__nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--client-purple);
+      color: #FFFFFF;
+    }
+    .mini-home__nav .ff-word {
+      font-size: 18px;
+      letter-spacing: -0.035em;
+    }
+    .mini-home__cta {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--client-gold);
+      color: var(--client-purple);
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .mini-home__body {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      min-height: 210px;
+    }
+    .mini-home__copy {
+      padding: var(--s-4);
+      background: linear-gradient(135deg, var(--client-purple), #2A1230);
+      color: #FFFFFF;
+    }
+    .mini-home__copy h4 {
+      max-width: 12ch;
+      font-size: clamp(24px, 3.2vw, 34px);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+    }
+    .mini-home__copy p {
+      margin-top: 12px;
+      color: rgba(255,255,255,0.76);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .mini-home__image {
+      background:
+        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.18)),
+        linear-gradient(135deg, #E8D6B2 0%, #B9C6C7 45%, #8D7357 100%);
+      position: relative;
+    }
+    .mini-home__image::after {
+      content: "real homes + real conversations";
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 800;
+      text-shadow: 0 2px 12px rgba(31,31,35,0.24);
+    }
+    .mini-mobile {
+      margin-top: var(--s-4);
+      width: min(170px, 100%);
+      margin-left: auto;
+      margin-right: auto;
+      border: 7px solid #17171A;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #FFFFFF;
+      box-shadow: 0 18px 36px rgba(31,31,35,0.12);
+    }
+    .mini-mobile__top {
+      padding: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+    }
+    .mini-mobile__screen {
+      padding: 18px 14px;
+      min-height: 210px;
+      background:
+        radial-gradient(circle at 82% 0%, rgba(200,167,102,0.18), transparent 9rem),
+        var(--client-purple);
+      color: #FFFFFF;
+    }
+    .mini-mobile__screen h4 {
+      font-size: 26px;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+    }
+    .mini-mobile__screen p {
+      margin-top: 12px;
+      color: rgba(255,255,255,0.78);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .mini-mobile__button {
+      display: inline-flex;
+      margin-top: 16px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: var(--client-gold);
+      color: var(--client-purple);
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .voice-examples {
+      display: grid;
+      gap: 12px;
+    }
+    .voice-example {
+      padding: var(--s-4);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #FFFFFF;
+    }
+    .voice-example strong {
+      display: block;
+      color: var(--client-purple);
+      font-size: 16px;
+      line-height: 1.3;
+    }
+    .voice-example span {
+      display: block;
+      margin-top: 8px;
+      color: var(--ink-quiet);
+      font-size: 13px;
+      line-height: 1.45;
+    }
 
     /* Section 7 — enter */
     .p-enter {
       padding: var(--s-8) 0;
       background:
-        radial-gradient(circle at 50% 0%, rgba(92,220,232,0.10), transparent 30rem),
-        linear-gradient(180deg, var(--bg) 0%, color-mix(in srgb, var(--accent-soft) 70%, var(--client-wash) 30%) 100%);
+        radial-gradient(circle at 82% 0%, rgba(200,167,102,0.12), transparent 26rem),
+        linear-gradient(180deg, var(--bg) 0%, color-mix(in srgb, var(--client-wash) 68%, #fff 32%) 100%);
       text-align: center;
     }
     .p-enter .h-1 { max-width: 22ch; margin-left: auto; margin-right: auto; }
@@ -788,11 +1217,11 @@
       position: sticky;
       top: var(--mode-bar-h);
       z-index: 50;
-      background: color-mix(in srgb, var(--bg) 94%, transparent);
+      background: rgba(255,255,255,0.92);
       backdrop-filter: saturate(180%) blur(14px);
       -webkit-backdrop-filter: saturate(180%) blur(14px);
-      border-bottom: 1px solid color-mix(in srgb, var(--line) 86%, var(--accent) 14%);
-      box-shadow: 0 10px 28px rgba(59,44,94,0.045);
+      border-bottom: 1px solid color-mix(in srgb, var(--line) 82%, var(--client-purple) 18%);
+      box-shadow: 0 10px 28px rgba(31,31,35,0.055);
     }
     .dnav__inner {
       max-width: 1280px;
@@ -806,14 +1235,16 @@
     @media (min-width: 768px) { .dnav__inner { padding: 16px 48px; } }
 
     .dnav__mark {
-      font-family: var(--font-serif);
-      font-size: 22px;
-      font-weight: 400;
-      letter-spacing: 0;
+      font-family: var(--font-display);
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -0.045em;
       display: inline-flex;
-      align-items: baseline;
-      color: var(--ink);
+      align-items: center;
+      gap: 10px;
+      color: var(--client-purple);
     }
+    .dnav__word { display: inline-flex; align-items: baseline; }
     .dnav__mark .dot { color: var(--gold); margin-left: 1px; }
 
     .dnav__links {
@@ -825,7 +1256,7 @@
     @media (min-width: 1024px) { .dnav__links { display: flex; } }
     .dnav__link {
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 700;
       color: var(--ink-quiet);
       padding: 8px 6px;
       letter-spacing: -0.005em;
@@ -907,8 +1338,8 @@
     .dmenu-sheet a {
       font-family: var(--font-serif);
       font-size: 24px;
-      font-weight: 400;
-      letter-spacing: 0;
+      font-weight: 800;
+      letter-spacing: -0.03em;
       line-height: 1.25;
       color: var(--ink);
     }
@@ -967,26 +1398,37 @@
       border-radius: 18px;
       overflow: hidden;
       background:
-        linear-gradient(180deg, rgba(31,27,46,0.08), rgba(31,27,46,0.5)),
-        radial-gradient(circle at 25% 18%, rgba(248,238,211,0.88), transparent 34%),
-        linear-gradient(135deg, #d6c2a3 0%, #b58e65 42%, var(--client-purple) 100%);
-      border: 1px solid color-mix(in srgb, var(--line) 72%, var(--accent) 28%);
+        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.52)),
+        linear-gradient(135deg, #E8D6B2 0%, #BFAF9C 36%, #8D7357 62%, var(--client-purple) 100%);
+      border: 1px solid color-mix(in srgb, var(--line) 72%, var(--client-purple) 28%);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       padding: var(--s-5);
       position: relative;
       isolation: isolate;
+      box-shadow: 0 22px 46px rgba(31,31,35,0.10);
+    }
+    .home-photo-card::before {
+      content: "ff";
+      position: absolute;
+      right: -10px;
+      top: -28px;
+      color: rgba(255,255,255,0.12);
+      font-size: 170px;
+      font-weight: 800;
+      letter-spacing: -0.15em;
+      line-height: 1;
+      z-index: -1;
     }
     .home-photo-card::after {
       content: "";
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg, rgba(255,255,255,0.14) 0 1px, transparent 1px 100%),
-        linear-gradient(0deg, rgba(255,255,255,0.12) 0 1px, transparent 1px 100%);
-      background-size: 46px 46px;
-      opacity: 0.22;
+        linear-gradient(90deg, rgba(255,255,255,0.16) 0 1px, transparent 1px 100%);
+      background-size: 25% 100%;
+      opacity: 0.18;
       pointer-events: none;
       z-index: -1;
     }
@@ -1008,11 +1450,10 @@
     }
     .photo-caption strong {
       display: block;
-      font-family: var(--font-serif);
       font-size: clamp(22px, 2vw, 30px);
-      font-weight: 400;
+      font-weight: 800;
       line-height: 1.18;
-      letter-spacing: 0;
+      letter-spacing: -0.035em;
     }
     .photo-caption span {
       display: block;
@@ -1033,8 +1474,9 @@
     .hero-fact {
       padding: 12px 14px;
       border: 1px solid var(--line);
-      background: color-mix(in srgb, var(--surface) 72%, var(--bg) 28%);
-      border-radius: 10px;
+      background: #FFFFFF;
+      border-radius: 14px;
+      box-shadow: 0 10px 22px rgba(31,31,35,0.045);
     }
     .hero-fact strong {
       display: block;
@@ -1064,8 +1506,8 @@
       min-height: 100%;
       padding: var(--s-5);
       border: 1px solid var(--line);
-      background: var(--surface);
-      border-radius: 14px;
+      background: #FFFFFF;
+      border-radius: 18px;
       display: flex;
       flex-direction: column;
       gap: var(--s-3);
@@ -1073,8 +1515,8 @@
     }
     .situation-card:hover {
       transform: translateY(-3px);
-      border-color: color-mix(in srgb, var(--accent) 45%, var(--line) 55%);
-      box-shadow: 0 16px 36px rgba(31,27,46,0.08);
+      border-color: color-mix(in srgb, var(--client-purple) 45%, var(--line) 55%);
+      box-shadow: 0 18px 38px rgba(31,31,35,0.08);
     }
     .situation-card__kicker {
       font-size: 11px;
@@ -1084,11 +1526,10 @@
       font-weight: 700;
     }
     .situation-card__title {
-      font-family: var(--font-serif);
       font-size: clamp(21px, 1.7vw, 25px);
-      font-weight: 400;
+      font-weight: 800;
       line-height: 1.24;
-      letter-spacing: 0;
+      letter-spacing: -0.03em;
     }
     .situation-card__body {
       color: var(--ink-quiet);
@@ -1122,8 +1563,8 @@
     .entry__title {
       font-family: var(--font-serif);
       font-size: clamp(20px, 1.9vw, 26px);
-      font-weight: 400;
-      letter-spacing: 0;
+      font-weight: 800;
+      letter-spacing: -0.03em;
       line-height: 1.25;
     }
     .entry__arrow {
@@ -1139,9 +1580,11 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: var(--s-4);
-      padding: var(--s-5) 0;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
+      padding: var(--s-5);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #FFFFFF;
+      box-shadow: 0 16px 34px rgba(31,31,35,0.055);
     }
     @media (min-width: 768px) {
       .trust-strip { grid-template-columns: repeat(4, 1fr); }
@@ -1149,9 +1592,10 @@
     .trust__num {
       font-family: var(--font-serif);
       font-size: clamp(26px, 2.8vw, 34px);
-      font-weight: 400;
-      letter-spacing: 0;
+      font-weight: 800;
+      letter-spacing: -0.04em;
       line-height: 1;
+      color: var(--client-purple);
     }
     .trust__num .small {
       font-size: 0.55em;
@@ -1180,10 +1624,11 @@
       padding: var(--s-5);
       background: var(--surface);
       border: 1px solid var(--line);
-      border-radius: 14px;
+      border-radius: 18px;
       display: flex;
       flex-direction: column;
       gap: var(--s-3);
+      box-shadow: 0 14px 30px rgba(31,31,35,0.045);
     }
     .preview .lbl {
       font-size: 11px;
@@ -1195,8 +1640,8 @@
     .preview .title {
       font-family: var(--font-serif);
       font-size: 20px;
-      font-weight: 400;
-      letter-spacing: 0;
+      font-weight: 800;
+      letter-spacing: -0.025em;
       line-height: 1.3;
     }
     .preview .body { color: var(--ink-quiet); font-size: 15px; line-height: 1.55; }
@@ -1212,9 +1657,10 @@
     }
     .operation-card {
       padding: var(--s-5);
-      background: color-mix(in srgb, var(--gold-soft) 58%, var(--surface) 42%);
+      background: color-mix(in srgb, var(--gold-soft) 68%, var(--surface) 32%);
       border: 1px solid var(--line);
-      border-radius: 14px;
+      border-radius: 18px;
+      box-shadow: 0 16px 34px rgba(31,31,35,0.055);
     }
     .operation-card.is-plain {
       background: var(--surface);
@@ -1228,11 +1674,10 @@
     }
     .operation-card__title {
       margin-top: var(--s-3);
-      font-family: var(--font-serif);
       font-size: clamp(22px, 1.9vw, 28px);
       line-height: 1.22;
-      font-weight: 400;
-      letter-spacing: 0;
+      font-weight: 800;
+      letter-spacing: -0.03em;
     }
     .operation-card__body {
       margin-top: var(--s-3);
@@ -1279,13 +1724,16 @@
       padding: var(--s-5);
       background: var(--surface);
       border: 1px solid var(--line);
-      border-radius: 16px;
+      border-radius: 20px;
+      box-shadow: 0 16px 34px rgba(31,31,35,0.055);
     }
     .team__photo {
       width: 100%;
       aspect-ratio: 4 / 3;
-      background: linear-gradient(135deg, var(--accent-soft) 0%, var(--gold-soft) 100%);
-      border-radius: 12px;
+      background:
+        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.18)),
+        linear-gradient(135deg, var(--client-champagne) 0%, #B9C6C7 48%, var(--client-purple) 100%);
+      border-radius: 16px;
       display: flex;
       align-items: flex-end;
       justify-content: flex-start;
@@ -1310,17 +1758,17 @@
     .team__photo .initials {
       font-family: var(--font-serif);
       font-size: 68px;
-      color: var(--accent);
-      font-weight: 400;
+      color: rgba(56,31,63,0.42);
+      font-weight: 800;
       line-height: 0.8;
-      opacity: 0.35;
+      opacity: 1;
     }
     .team__name {
       margin-top: var(--s-4);
       font-family: var(--font-serif);
       font-size: 24px;
-      font-weight: 400;
-      letter-spacing: 0;
+      font-weight: 800;
+      letter-spacing: -0.03em;
     }
     .team__role {
       margin-top: 4px;
@@ -1350,13 +1798,13 @@
     @media (min-width: 768px) { .principles { grid-template-columns: repeat(3, 1fr); gap: var(--s-5); } }
     .principle {
       padding: var(--s-4) 0;
-      border-top: 2px solid var(--accent);
+      border-top: 2px solid var(--client-gold);
     }
     .principle__title {
       font-family: var(--font-serif);
       font-size: 21px;
-      font-weight: 400;
-      letter-spacing: 0;
+      font-weight: 800;
+      letter-spacing: -0.025em;
     }
     .principle__body { margin-top: var(--s-3); color: var(--ink-quiet); font-size: 15px; line-height: 1.55; }
 
@@ -1410,9 +1858,10 @@
     }
     .service-scenario {
       padding: var(--s-4);
-      background: color-mix(in srgb, var(--surface) 78%, var(--bg) 22%);
+      background: #FFFFFF;
       border: 1px solid var(--line);
-      border-radius: 10px;
+      border-radius: 14px;
+      box-shadow: 0 12px 24px rgba(31,31,35,0.04);
     }
     .service-scenario strong {
       display: block;
@@ -1431,8 +1880,9 @@
     .lender-note {
       margin-top: var(--s-6);
       padding: var(--s-5);
-      background: var(--accent-soft);
-      border-radius: 12px;
+      background: color-mix(in srgb, var(--gold-soft) 62%, #fff 38%);
+      border: 1px solid color-mix(in srgb, var(--client-gold) 44%, var(--line) 56%);
+      border-radius: 16px;
       color: var(--ink);
       font-size: 15px;
       line-height: 1.55;
@@ -1475,7 +1925,6 @@
     }
     .story__quote {
       font-family: var(--font-serif);
-      font-style: italic;
       font-size: clamp(16.5px, 1.25vw, 19px);
       line-height: 1.58;
       letter-spacing: 0;
@@ -1507,16 +1956,16 @@
     .process-step__num {
       font-family: var(--font-serif);
       font-size: 36px;
-      font-weight: 400;
-      color: var(--accent);
-      letter-spacing: 0;
+      font-weight: 800;
+      color: var(--client-gold);
+      letter-spacing: -0.04em;
       line-height: 0.9;
     }
     .process-step__title {
       font-family: var(--font-serif);
       font-size: clamp(19px, 1.45vw, 22px);
-      font-weight: 400;
-      letter-spacing: 0;
+      font-weight: 800;
+      letter-spacing: -0.025em;
       line-height: 1.32;
     }
     .process-step__body { color: var(--ink-quiet); font-size: 15.5px; line-height: 1.6; }
@@ -1525,7 +1974,8 @@
       margin-top: var(--s-6);
       padding: var(--s-5);
       background: var(--gold-soft);
-      border-radius: 12px;
+      border: 1px solid color-mix(in srgb, var(--client-gold) 38%, var(--line) 62%);
+      border-radius: 16px;
       font-size: 15px;
       line-height: 1.55;
       color: var(--ink);
@@ -1537,7 +1987,8 @@
       padding: var(--s-5);
       background: var(--surface);
       border: 1px solid var(--line);
-      border-radius: 14px;
+      border-radius: 18px;
+      box-shadow: 0 16px 34px rgba(31,31,35,0.045);
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--s-5);
@@ -1548,9 +1999,9 @@
     .document-panel__title {
       font-family: var(--font-serif);
       font-size: clamp(21px, 1.7vw, 26px);
-      font-weight: 400;
+      font-weight: 800;
       line-height: 1.24;
-      letter-spacing: 0;
+      letter-spacing: -0.03em;
     }
     .document-panel__body {
       margin-top: var(--s-3);
@@ -1567,7 +2018,8 @@
       padding: var(--s-5);
       background: var(--surface);
       border: 1px solid var(--line);
-      border-radius: 16px;
+      border-radius: 20px;
+      box-shadow: 0 18px 38px rgba(31,31,35,0.055);
     }
     @media (max-width: 767px) { .tool-block { padding: var(--s-5); } }
 
@@ -1603,7 +2055,7 @@
     .calc-input label .val {
       font-family: var(--font-serif);
       font-size: 18px;
-      font-weight: 400;
+      font-weight: 800;
       color: var(--accent);
       letter-spacing: -0.008em;
     }
@@ -1645,8 +2097,10 @@
 
     .calc-output {
       padding: var(--s-5);
-      background: var(--accent-soft);
-      border-radius: 12px;
+      background:
+        radial-gradient(circle at 86% 0%, rgba(200,167,102,0.16), transparent 18rem),
+        var(--client-purple);
+      border-radius: 18px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -1656,22 +2110,22 @@
       font-size: 12px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--client-champagne);
       font-weight: 600;
     }
     .calc-output__num {
       margin-top: var(--s-3);
       font-family: var(--font-serif);
       font-size: clamp(32px, 3.6vw, 44px);
-      font-weight: 400;
-      color: var(--accent);
-      letter-spacing: 0;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.04em;
       line-height: 1;
     }
     .calc-output__range {
       margin-top: var(--s-2);
       font-size: 15px;
-      color: var(--ink-quiet);
+      color: rgba(255,255,255,0.72);
     }
     .calc-output__cta { margin-top: var(--s-5); }
 
@@ -1691,7 +2145,8 @@
       padding: var(--s-5);
       background: var(--surface);
       border: 1px solid var(--line);
-      border-radius: 16px;
+      border-radius: 20px;
+      box-shadow: 0 18px 38px rgba(31,31,35,0.055);
     }
     @media (max-width: 767px) { .health-check { padding: var(--s-5); } }
     .hc-q {
@@ -1748,10 +2203,11 @@
       padding: var(--s-5);
       background: var(--surface);
       border: 1px solid var(--line);
-      border-radius: 14px;
+      border-radius: 18px;
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--s-3);
+      box-shadow: 0 14px 30px rgba(31,31,35,0.045);
     }
     @media (min-width: 900px) {
       .insight-card { grid-template-columns: 100px 1fr; gap: var(--s-5); padding: var(--s-6); }
@@ -1766,8 +2222,8 @@
     .insight-card__title {
       font-family: var(--font-serif);
       font-size: clamp(19px, 1.45vw, 22px);
-      font-weight: 400;
-      letter-spacing: 0;
+      font-weight: 800;
+      letter-spacing: -0.025em;
       line-height: 1.36;
     }
     .insight-card__author {
@@ -1817,9 +2273,10 @@
       padding: var(--s-6);
       background: var(--surface);
       border: 1px solid var(--line);
-      border-radius: 16px;
+      border-radius: 20px;
       display: grid;
       gap: var(--s-4);
+      box-shadow: 0 18px 38px rgba(31,31,35,0.055);
     }
     .contact-field { display: flex; flex-direction: column; gap: 6px; }
     .contact-field label {
@@ -1983,9 +2440,9 @@
       <!-- Section 2 — What we observed -->
       <section id="observed" class="p-section">
         <div class="wrap">
-          <p class="section-label reveal">What changed since the first site</p>
+          <p class="section-label reveal">First Finance today</p>
           <div class="grid-2-split" style="margin-top: var(--s-4);">
-            <h2 class="h-1 reveal" data-d="1">The current site is showing an older version of First Finance.</h2>
+            <h2 class="h-1 reveal" data-d="1">The business is strong. The site is just showing an older version of it.</h2>
             <p class="lede quiet reveal" data-d="2">That happens naturally. Good businesses keep moving; websites usually do not unless we come back to them.</p>
           </div>
 
@@ -2022,15 +2479,18 @@
       <!-- Section 3 — Why this matters -->
       <section id="matters" class="p-section">
         <div class="wrap">
-          <p class="section-label reveal">Why the site should catch up</p>
+          <p class="section-label reveal">What changed around the website</p>
           <div class="grid-2-split" style="margin-top: var(--s-4);">
-            <h2 class="h-1 reveal" data-d="1">The issue is fit, not effort.</h2>
+            <h2 class="h-1 reveal" data-d="1">Client expectations have moved.</h2>
             <div class="stack-l">
               <p class="body-l reveal quiet" data-d="1">
                 The current website reflects the business we built it for at the time. It now needs to show First Finance as people experience it today: established, family-led, commercially capable, and still personal.
               </p>
               <p class="body-l reveal quiet" data-d="2">
                 That matters because the website sits alongside referrals, phone calls, accountant introductions, and long-standing client trust. It should not replace any of that. It should reduce doubt and make the first conversation easier.
+              </p>
+              <p class="body-l reveal quiet" data-d="2">
+                People now check on their phone, expect clearer service pathways, look for reassurance earlier, and want useful tools before they commit to a conversation. The site can meet those expectations while still feeling like First Finance.
               </p>
             </div>
           </div>
@@ -2119,65 +2579,203 @@
           <div class="brand-kit reveal">
             <div class="brand-kit__hero">
               <div>
-                <p class="section-label">Logo direction</p>
-                <p class="brand-wordmark">first finance<span>.</span></p>
-              </div>
-              <p class="brand-kit__note">A cleaner wordmark keeps the name simple and recognisable. The purple and gold stay, just quieter and more consistent.</p>
-            </div>
-
-            <div class="brand-swatches" aria-label="Evolved First Finance colours">
-              <div class="brand-swatch" style="background: var(--client-purple);">
-                <strong>Deepened purple</strong>
-                <span>#3B2C5E</span>
-              </div>
-              <div class="brand-swatch" style="background: var(--client-gold);">
-                <strong>Quieter gold</strong>
-                <span>#B8924D</span>
-              </div>
-              <div class="brand-swatch is-light" style="background: var(--client-ground);">
-                <strong>Warm site base</strong>
-                <span>#FBF8F2</span>
-              </div>
-              <div class="brand-swatch is-light" style="background: var(--client-wash);">
-                <strong>Soft identity wash</strong>
-                <span>#EFE9F5</span>
-              </div>
-            </div>
-
-            <div class="brand-samples">
-              <article class="brand-sample">
-                <p class="brand-sample__label">Homepage module</p>
-                <h3 class="brand-sample__title">Advisor for life. Across generations.</h3>
-                <p class="brand-sample__body">A warm introduction for referred clients who want to know who Craig and Ben are before they get in touch.</p>
-                <div class="brand-button-row">
-                  <span class="brand-mini-btn">Talk to us</span>
-                  <span class="brand-mini-btn is-secondary">See services</span>
+                <p class="section-label">Evolved identity direction</p>
+                <div class="ff-lockup" aria-label="first finance logo direction">
+                  <span class="ff-mark">ff</span>
+                  <span>
+                    <span class="ff-word">first finance<span class="dot">.</span></span>
+                    <span class="ff-tagline">finance made personal</span>
+                  </span>
                 </div>
-              </article>
-
-              <article class="brand-sample">
-                <p class="brand-sample__label">Proof module</p>
-                <h3 class="brand-sample__title">33 years, 35+ lenders, two generations.</h3>
-                <p class="brand-sample__body">Short, factual proof gives people confidence without asking them to read a long case for the business.</p>
-                <div class="brand-button-row">
-                  <span class="brand-mini-btn is-secondary">Craig Walker · Elite Broker</span>
-                  <span class="brand-mini-btn is-secondary">Ben Walker · CRN 480233</span>
-                </div>
-              </article>
+              </div>
+              <p class="brand-kit__note">The identity keeps the business recognisable, but gives it a clearer system: deep plum for confidence, warm gold for action, practical sans typography, and real-world moments that make the advice feel personal before someone calls.</p>
             </div>
 
-            <div class="brand-module-row">
-              <div class="brand-module">
-                <strong>Client situation card</strong>
-                <span>Refinancing, investing, or business finance paths in the first screen.</span>
+            <div class="brand-purpose">
+              <p class="brand-purpose__statement">To simplify finance and create <span>possibility</span> for the lives clients want to lead.</p>
+              <div class="brand-values" aria-label="Brand values">
+                <div class="brand-value">
+                  <span class="brand-value__icon">01</span>
+                  <span class="brand-value__text"><strong>People first</strong><span>We listen, we care, and we act in the client's best interest.</span></span>
+                </div>
+                <div class="brand-value">
+                  <span class="brand-value__icon">02</span>
+                  <span class="brand-value__text"><strong>Trusted experience</strong><span>Decades of knowledge made easy to rely on.</span></span>
+                </div>
+                <div class="brand-value">
+                  <span class="brand-value__icon">03</span>
+                  <span class="brand-value__text"><strong>Clarity and simplicity</strong><span>Complex decisions explained in plain language.</span></span>
+                </div>
+                <div class="brand-value">
+                  <span class="brand-value__icon">04</span>
+                  <span class="brand-value__text"><strong>Local and accountable</strong><span>Proudly Australian, visible, and easy to reach.</span></span>
+                </div>
               </div>
-              <div class="brand-module">
-                <strong>Relationship story card</strong>
-                <span>Real client names, timeframes, and the situation behind each quote.</span>
+            </div>
+
+            <div class="brand-board-grid">
+              <div class="brand-panel">
+                <p class="brand-panel__label">Logo system</p>
+                <div class="logo-specimen" style="margin-top: var(--s-4);">
+                  <div class="logo-specimen__row">
+                    <div class="ff-lockup">
+                      <span class="ff-mark">ff</span>
+                      <span><span class="ff-word">first finance<span class="dot">.</span></span><span class="ff-tagline">finance made personal</span></span>
+                    </div>
+                    <p class="logo-specimen__caption">Primary lock-up for the website, proposals and client-facing material.</p>
+                  </div>
+                  <div class="logo-specimen__row is-dark">
+                    <div class="ff-lockup">
+                      <span class="ff-mark">ff</span>
+                      <span><span class="ff-word">first finance<span class="dot">.</span></span></span>
+                    </div>
+                    <p class="logo-specimen__caption">Reversed version for plum surfaces and high-confidence moments.</p>
+                  </div>
+                </div>
               </div>
-              <div class="brand-module">
-                <strong>Practical tool surface</strong>
-                <span>Borrowing estimate, refinance check, process guide and contact flow.</span>
+
+              <div class="brand-panel brand-panel--soft">
+                <p class="brand-panel__label">Colour palette</p>
+                <div class="brand-swatches" aria-label="Evolved First Finance colours" style="margin-top: var(--s-4);">
+                  <div class="brand-swatch" style="background: var(--client-purple);">
+                    <strong>Deep Plum</strong>
+                    <span>#381F3F</span>
+                  </div>
+                  <div class="brand-swatch" style="background: var(--client-gold); color: var(--client-purple);">
+                    <strong>Warm Gold</strong>
+                    <span>#C8A766</span>
+                  </div>
+                  <div class="brand-swatch is-light" style="background: var(--client-champagne);">
+                    <strong>Champagne</strong>
+                    <span>#E8D6B2</span>
+                  </div>
+                  <div class="brand-swatch is-light" style="background: var(--client-ground);">
+                    <strong>Soft Stone</strong>
+                    <span>#F3F2EF</span>
+                  </div>
+                  <div class="brand-swatch" style="background: var(--client-charcoal);">
+                    <strong>Charcoal</strong>
+                    <span>#1F1F23</span>
+                  </div>
+                  <div class="brand-swatch" style="background: var(--client-graphite);">
+                    <strong>Graphite</strong>
+                    <span>#4A4A52</span>
+                  </div>
+                  <div class="brand-swatch is-light" style="background: var(--client-cool-grey);">
+                    <strong>Cool Grey</strong>
+                    <span>#D8D9DD</span>
+                  </div>
+                  <div class="brand-swatch is-light" style="background: #FFFFFF;">
+                    <strong>White</strong>
+                    <span>#FFFFFF</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="brand-panel">
+                <p class="brand-panel__label">Typography</p>
+                <div class="type-specimen" style="margin-top: var(--s-4);">
+                  <div class="type-specimen__face">
+                    <span class="type-specimen__name">Manrope</span>
+                    <span class="type-specimen__aa">Aa</span>
+                  </div>
+                  <div class="type-row"><span>H1</span><strong>Confident, readable</strong><span>56/62</span></div>
+                  <div class="type-row"><span>H2</span><strong>Clear section titles</strong><span>38/45</span></div>
+                  <div class="type-row"><span>Body</span><strong>Plain English guidance</strong><span>16/26</span></div>
+                  <p class="brand-panel__body">A human sans direction keeps the site modern without making it feel like a magazine or a fintech product.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="brand-matrix">
+              <div class="brand-panel">
+                <p class="brand-panel__label">Photography direction</p>
+                <h3 class="brand-panel__title">Warm, local, and real-world.</h3>
+                <p class="brand-panel__body">Kitchen tables, Australian homes, client conversations, office work, and natural light. No bank-stock handshakes or luxury lifestyle imagery.</p>
+                <div class="photo-direction-grid" aria-label="Photography direction placeholders">
+                  <div class="photo-tile">Family around the kitchen table</div>
+                  <div class="photo-tile">Melbourne home in natural light</div>
+                  <div class="photo-tile">Broker and client conversation</div>
+                  <div class="photo-tile">Documents, calls and real work</div>
+                </div>
+              </div>
+
+              <div class="brand-panel brand-panel--soft">
+                <p class="brand-panel__label">UI elements</p>
+                <h3 class="brand-panel__title">Useful surfaces, not decorative cards.</h3>
+                <div class="brand-button-row">
+                  <span class="brand-mini-btn is-gold">Book a free chat →</span>
+                  <span class="brand-mini-btn">Explore options</span>
+                  <span class="brand-mini-btn is-secondary">Trusted experience</span>
+                  <span class="brand-mini-btn is-secondary">Local advice</span>
+                </div>
+                <div class="brand-samples" style="margin-top: var(--s-4);">
+                  <article class="brand-sample">
+                    <p class="brand-sample__label">Trust module</p>
+                    <h3 class="brand-sample__title">30+ years of practical advice.</h3>
+                    <p class="brand-sample__body">Clear proof presented plainly, without making the business feel boastful.</p>
+                  </article>
+                  <article class="brand-sample">
+                    <p class="brand-sample__label">Testimonial module</p>
+                    <h3 class="brand-sample__title">"They made the process feel simple."</h3>
+                    <p class="brand-sample__body">Relationship stories with names, context and timeframes, not anonymous quote tiles.</p>
+                  </article>
+                </div>
+              </div>
+
+              <div class="brand-panel brand-panel--soft">
+                <p class="brand-panel__label">Iconography</p>
+                <h3 class="brand-panel__title">Rounded, simple, human.</h3>
+                <div class="icon-grid" aria-label="Icon style direction">
+                  <span class="brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 10.5 12 4l8 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5z"/><path d="M9 20v-6h6v6"/></svg></span>
+                  <span class="brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/><path d="M2.5 21a5.5 5.5 0 0 1 11 0"/><path d="M17 10v8"/><path d="m13 14 4 4 4-4"/></svg></span>
+                  <span class="brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3 4 6v5c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6z"/><path d="m8.5 12 2.3 2.3 4.7-5"/></svg></span>
+                  <span class="brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 16.5c3-4.4 5.5-5.5 8-3.2 2 1.8 4.7 1.3 8-2.8"/><path d="M5 20h14"/><path d="M6 8h.01M12 6h.01M18 4h.01"/></svg></span>
+                </div>
+              </div>
+
+              <div class="brand-panel">
+                <p class="brand-panel__label">Brand voice</p>
+                <h3 class="brand-panel__title">Calm, clear, and down-to-earth.</h3>
+                <div class="voice-examples" style="margin-top: var(--s-4);">
+                  <div class="voice-example"><strong>Real advice. Real outcomes.</strong><span>Short, plain headlines that feel confident without sounding inflated.</span></div>
+                  <div class="voice-example"><strong>No obligation. Just a friendly chat.</strong><span>Microcopy that lowers pressure and sounds like the business.</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="brand-board-grid">
+              <div class="brand-panel brand-panel--wide">
+                <p class="brand-panel__label">Brand in application</p>
+                <h3 class="brand-panel__title">A homepage fragment that feels like a real finance website.</h3>
+                <div class="mini-home" aria-label="Homepage fragment preview">
+                  <div class="mini-home__nav">
+                    <span class="ff-word">first finance<span class="dot">.</span></span>
+                    <span class="mini-home__cta">Book a free chat</span>
+                  </div>
+                  <div class="mini-home__body">
+                    <div class="mini-home__copy">
+                      <h4>Advice that moves you forward.</h4>
+                      <p>Home loans, refinancing and finance solutions tailored to you.</p>
+                    </div>
+                    <div class="mini-home__image" aria-hidden="true"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="brand-panel brand-panel--soft">
+                <p class="brand-panel__label">Mobile behaviour</p>
+                <h3 class="brand-panel__title">Fast to understand, easy to act on.</h3>
+                <div class="mini-mobile" aria-label="Mobile homepage preview">
+                  <div class="mini-mobile__top">
+                    <span class="ff-mark ff-mark--small">ff</span>
+                    <span style="font-weight: 800; color: var(--client-purple);">Menu</span>
+                  </div>
+                  <div class="mini-mobile__screen">
+                    <h4>Finance made personal.</h4>
+                    <p>Clear advice. Better outcomes.</p>
+                    <span class="mini-mobile__button">Book a free chat →</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -2241,7 +2839,10 @@
     <!-- Persistent nav -->
     <header class="dnav" role="banner">
       <div class="dnav__inner">
-        <a href="#" class="dnav__mark" data-page="home">first finance<span class="dot">.</span></a>
+        <a href="#" class="dnav__mark" data-page="home">
+          <span class="ff-mark ff-mark--small">ff</span>
+          <span class="dnav__word">first finance<span class="dot">.</span></span>
+        </a>
         <nav aria-label="Primary">
           <ul class="dnav__links">
             <li><a href="#" class="dnav__link is-active" data-page="home">Home</a></li>
@@ -2290,8 +2891,8 @@
           <div class="home-hero-grid">
             <div class="dhero">
               <p class="eyebrow">First Finance Solutions · Est. 1992</p>
-              <h1 class="h-display">Advisor <em>for life.</em><br>Across generations.</h1>
-              <p class="lede">A Melbourne finance broking practice, family-led since 1992. Craig and Ben Walker, thirty-five lender relationships, and three decades of clients still on the books.</p>
+              <h1 class="h-display">Advice that moves you forward.</h1>
+              <p class="lede">Clear, personal finance guidance from a Melbourne brokerage that has helped clients through home loans, refinancing and business finance for more than three decades.</p>
               <div class="hero-facts" aria-label="Practice highlights">
                 <div class="hero-fact">
                   <strong>Residential and commercial</strong>
@@ -2307,13 +2908,13 @@
                 </div>
               </div>
               <div class="cta-row">
-                <a href="#" class="btn btn-primary" data-page="contact">Talk to us about your situation <span class="arrow" aria-hidden="true">→</span></a>
-                <a href="#" class="btn btn-ghost" data-page="tools">Check borrowing capacity</a>
+                <a href="#" class="btn btn-primary" data-page="contact">Book a free chat <span class="arrow" aria-hidden="true">→</span></a>
+                <a href="#" class="btn btn-ghost" data-page="tools">Explore your options</a>
               </div>
             </div>
 
-            <aside class="home-photo-card" aria-label="Concept photography direction">
-              <span class="photo-pill">Concept photography direction</span>
+            <aside class="home-photo-card" aria-label="Photography direction">
+              <span class="photo-pill">Photography direction</span>
               <p class="photo-caption">
                 <strong>Craig and Ben in the Mitcham office, not a stock-finance backdrop.</strong>
                 <span>Warm working portraits, documents on the desk, real conversations, the everyday practice visible.</span>
@@ -2918,8 +3519,13 @@
       <div class="wrap">
         <div class="dfooter__grid">
           <div class="dfooter__col">
-            <p class="dfooter__about">first finance<span class="dot">.</span></p>
-            <p class="dfooter__about-body">A Melbourne finance broking practice. Family-led since 1992. Advisor for life, across generations.</p>
+            <p class="dfooter__about">
+              <span class="ff-lockup">
+                <span class="ff-mark ff-mark--small">ff</span>
+                <span class="dnav__word">first finance<span class="dot">.</span></span>
+              </span>
+            </p>
+            <p class="dfooter__about-body">A Melbourne finance broking practice. Family-led since 1992. Finance made personal.</p>
           </div>
           <div class="dfooter__col">
             <h4>Visit</h4>

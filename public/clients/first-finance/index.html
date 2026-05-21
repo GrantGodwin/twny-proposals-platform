@@ -105,8 +105,8 @@
       --measure: 64ch;
       --proposal-shell-height: 72px;
       --mode-bar-h: var(--proposal-shell-height);
-      --section-padding-y: 120px;
-      --section-intro-gap: 48px;
+      --section-padding-y: 112px;
+      --section-intro-gap: 40px;
       --content-grid-gap: 32px;
     }
 
@@ -197,15 +197,15 @@
 
     @media (min-width: 768px) and (max-width: 1023px) {
       :root {
-        --section-padding-y: 88px;
-        --section-intro-gap: 40px;
+        --section-padding-y: 80px;
+        --section-intro-gap: 36px;
         --content-grid-gap: 24px;
       }
     }
     @media (max-width: 767px) {
       :root {
-        --section-padding-y: 72px;
-        --section-intro-gap: 32px;
+        --section-padding-y: 64px;
+        --section-intro-gap: 28px;
         --content-grid-gap: 20px;
       }
     }
@@ -528,13 +528,6 @@
       background: linear-gradient(180deg, var(--twny-cyan), var(--twny-teal));
       opacity: 0.68;
     }
-    .mode-context {
-      color: var(--twny-muted);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-    }
-    @media (max-width: 760px) { .mode-context { display: none; } }
     .mode-tabs {
       display: inline-flex;
       padding: 4px;
@@ -626,6 +619,13 @@
     .page-section--enter {
       background: var(--stone);
       text-align: center;
+      padding-block: 80px 72px;
+    }
+    .page-section--next {
+      padding-block: 72px 96px;
+    }
+    .page-section:not(.page-section--intro) {
+      --accent: var(--client-purple);
     }
 
     .section-inner {
@@ -642,7 +642,7 @@
     .section-intro {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 20px;
       margin-bottom: var(--section-intro-gap);
       min-width: 0;
     }
@@ -669,6 +669,24 @@
     .section-content--center {
       align-items: center;
       text-align: center;
+    }
+    .section-intro .t-display {
+      max-width: 22ch;
+    }
+    .section-intro .t-h1 {
+      max-width: 24ch;
+    }
+    .section-intro .lede {
+      max-width: 62ch;
+    }
+    .section-intro--center .lede {
+      max-width: 640px;
+    }
+    @media (max-width: 767px) {
+      .page-section--enter,
+      .page-section--next {
+        padding-block: 56px;
+      }
     }
 
     body.mode-proposal :is(.item, .strength, .brand-kit, .brand-panel, .brand-sample, .brand-value, .voice-example, .logo-specimen__row) {
@@ -724,8 +742,11 @@
 
     .strength-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+      grid-template-columns: minmax(0, 1fr);
       gap: var(--content-grid-gap);
+    }
+    @media (min-width: 820px) {
+      .strength-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     .strength {
       padding: 32px;
@@ -744,10 +765,11 @@
       border-radius: 24px;
       background: var(--white);
       box-shadow: var(--shadow-raised);
+      overflow: clip;
     }
     .brand-kit__hero {
       padding: clamp(32px, 5vw, 64px);
-      background: var(--plum);
+      background: linear-gradient(135deg, var(--plum-deep) 0%, var(--plum) 68%, color-mix(in srgb, var(--plum) 84%, var(--gold) 16%) 100%);
       color: var(--white);
       display: grid;
       grid-template-columns: minmax(0, 1fr);
@@ -860,6 +882,9 @@
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
       border-top: 1px solid var(--line);
     }
+    @media (min-width: 920px) {
+      .brand-matrix { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
     .brand-panel {
       padding: clamp(28px, 3.8vw, 40px);
       border-bottom: 1px solid var(--line);
@@ -932,6 +957,17 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 132px), 1fr));
       gap: 10px;
+    }
+    .photo-direction-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: var(--s-4);
+    }
+    .icon-grid {
+      grid-template-columns: repeat(4, 52px);
+      gap: 12px;
+      margin-top: var(--s-4);
+      align-items: start;
     }
     .brand-samples {
       display: grid;
@@ -1122,30 +1158,49 @@
       font-weight: 500;
     }
     .photo-tile {
-      min-height: 112px;
+      min-height: 128px;
       border-radius: 14px;
       padding: 12px;
       display: flex;
       align-items: flex-end;
-      background: var(--champagne);
-      color: var(--charcoal);
+      background:
+        linear-gradient(180deg, rgba(31,31,35,0.04), rgba(31,31,35,0.46)),
+        linear-gradient(135deg, var(--champagne) 0%, var(--stone) 48%, var(--plum) 100%);
+      color: var(--white);
       font-size: 12px;
       line-height: 1.35;
       font-weight: 700;
+      text-shadow: 0 1px 12px rgba(31,31,35,0.28);
+    }
+    .photo-tile:nth-child(2) {
+      background:
+        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.36)),
+        linear-gradient(135deg, var(--stone) 0%, var(--champagne) 46%, color-mix(in srgb, var(--gold) 34%, var(--plum) 66%) 100%);
+    }
+    .photo-tile:nth-child(3) {
+      background:
+        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.42)),
+        linear-gradient(135deg, var(--white) 0%, var(--champagne) 42%, var(--graphite) 100%);
+    }
+    .photo-tile:nth-child(4) {
+      background:
+        linear-gradient(180deg, rgba(31,31,35,0.04), rgba(31,31,35,0.44)),
+        linear-gradient(135deg, var(--stone) 0%, var(--cool-grey) 44%, var(--plum-deep) 100%);
     }
     .brand-icon {
-      aspect-ratio: 1;
+      width: 52px;
+      height: 52px;
       border: 1px solid var(--line);
-      border-radius: 14px;
+      border-radius: 13px;
       display: grid;
       place-items: center;
       color: var(--client-purple);
-      background: var(--white);
+      background: color-mix(in srgb, var(--white) 82%, var(--champagne) 18%);
     }
     .brand-icon svg {
-      width: 26px;
-      height: 26px;
-      stroke-width: 1.6;
+      width: 30px;
+      height: 30px;
+      stroke-width: 1.55;
     }
     .mini-home {
       margin-top: var(--s-4);
@@ -1294,17 +1349,13 @@
       align-items: flex-start;
       gap: 20px;
     }
-    .page-section--next .signature {
-      margin-top: 64px;
-      padding-top: 24px;
-      border-top: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      flex-wrap: wrap;
-      color: var(--ink-quiet);
-      font-size: 13px;
-      line-height: 1.5;
+    .page-section:not(.page-section--intro) .btn-primary {
+      background: var(--client-purple);
+      color: var(--white);
+      box-shadow: 0 14px 30px rgba(56,31,63,0.14);
+    }
+    .page-section:not(.page-section--intro) .btn-primary:hover {
+      background: var(--plum-deep);
     }
 
     /* ============================================================
@@ -1496,8 +1547,8 @@
       border-radius: 18px;
       overflow: hidden;
       background:
-        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.52)),
-        linear-gradient(135deg, var(--champagne) 0%, var(--stone) 36%, var(--graphite) 62%, var(--client-purple) 100%);
+        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.48)),
+        linear-gradient(135deg, var(--champagne) 0%, var(--stone) 38%, color-mix(in srgb, var(--gold) 34%, var(--plum) 66%) 66%, var(--plum-deep) 100%);
       border: 1px solid color-mix(in srgb, var(--line) 72%, var(--client-purple) 28%);
       display: flex;
       flex-direction: column;
@@ -1513,8 +1564,10 @@
       right: -10px;
       top: -28px;
       color: rgba(255,255,255,0.12);
+      font-family: var(--font-logo);
       font-size: 170px;
-      font-weight: 700;
+      font-style: italic;
+      font-weight: 500;
       letter-spacing: -0.15em;
       line-height: 1;
       z-index: -1;
@@ -1829,8 +1882,8 @@
       width: 100%;
       aspect-ratio: 4 / 3;
       background:
-        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.18)),
-        linear-gradient(135deg, var(--client-champagne) 0%, var(--cool-grey) 48%, var(--client-purple) 100%);
+        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.20)),
+        linear-gradient(135deg, var(--client-champagne) 0%, var(--stone) 42%, color-mix(in srgb, var(--gold) 22%, var(--client-purple) 78%) 100%);
       border-radius: 16px;
       display: flex;
       align-items: flex-end;
@@ -2396,7 +2449,6 @@
       <button class="mode-tab is-active" id="proposalModeBtn" type="button" aria-pressed="true">Proposal</button>
       <button class="mode-tab" id="demoModeBtn" type="button" aria-pressed="false">Website demo</button>
     </div>
-    <span class="mode-context">Original site → what changed → working demo</span>
   </nav>
 
   <!-- ========================================================
@@ -2738,6 +2790,10 @@
                   <span class="brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/><path d="M2.5 21a5.5 5.5 0 0 1 11 0"/><path d="M17 10v8"/><path d="m13 14 4 4 4-4"/></svg></span>
                   <span class="brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3 4 6v5c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6z"/><path d="m8.5 12 2.3 2.3 4.7-5"/></svg></span>
                   <span class="brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 16.5c3-4.4 5.5-5.5 8-3.2 2 1.8 4.7 1.3 8-2.8"/><path d="M5 20h14"/><path d="M6 8h.01M12 6h.01M18 4h.01"/></svg></span>
+                  <span class="brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 12.5 10 15l4.5-5"/><path d="M3 7.5 12 3l9 4.5"/><path d="M5 9v8.5A1.5 1.5 0 0 0 6.5 19h11a1.5 1.5 0 0 0 1.5-1.5V9"/></svg></span>
+                  <span class="brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 11.5h10"/><path d="M7 15.5h6"/><path d="M5.5 4h13A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5v-13A1.5 1.5 0 0 1 5.5 4Z"/><path d="M8 7.5h.01"/></svg></span>
+                  <span class="brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 17c2-4 4-5 6-3s4 1 6-3"/><path d="M4 20h16"/><path d="M6 6h12v4H6z"/></svg></span>
+                  <span class="brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 7.5h14"/><path d="M7 7.5v11"/><path d="M17 7.5v11"/><path d="M9.5 4h5"/><path d="M8 18.5h8"/><path d="M10 11h4"/></svg></span>
                 </div>
               </div>
 
@@ -2799,7 +2855,7 @@
               Have a look at what this could feel like.
             </h2>
             <p class="lede quiet" data-d="2">
-              Use the switch above or the button below to open the working demo. It is not the final site, but there is enough there to react to properly.
+              Open the working demo when you are ready. It is not the final site, but there is enough there to react to properly.
             </p>
           </div>
           <div class="section-content section-content--stack section-content--center">
@@ -2807,7 +2863,6 @@
               Open website demo
               <span class="arrow" aria-hidden="true">→</span>
             </button>
-            <p class="small" data-d="3">You can come back to this proposal at any time.</p>
           </div>
         </div>
       </section>
@@ -2833,11 +2888,6 @@
             <p class="small" data-d="3">
               Or sit with it for a few days. We don't chase.
             </p>
-
-            <div class="signature">
-              <span>First Finance website update</span>
-              <span>twny</span>
-            </div>
           </div>
         </div>
       </section>

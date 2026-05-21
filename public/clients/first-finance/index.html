@@ -188,15 +188,9 @@
     .grid-2 { display: grid; grid-template-columns: 1fr; gap: 24px; }
     @media (min-width: 900px) { .grid-2 { grid-template-columns: 1fr 1fr; gap: 32px; } }
 
-    .grid-2-split { display: grid; grid-template-columns: 1fr; gap: 24px; }
-    @media (min-width: 1080px) {
-      .grid-2-split { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 32px; }
-    }
-
     .grid-3 { display: grid; grid-template-columns: 1fr; gap: 24px; }
     @media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(3, 1fr); gap: 32px; } }
     .grid-2 > *,
-    .grid-2-split > *,
     .grid-3 > * {
       min-width: 0;
     }
@@ -247,7 +241,7 @@
     .h-display {
       font-family: var(--font-display);
       font-size: clamp(32px, 4vw, 56px);
-      line-height: 1.02;
+      line-height: 1.05;
       letter-spacing: -0.032em;
       font-weight: 700;
       max-width: 18ch;
@@ -295,7 +289,7 @@
     }
     body.mode-demo .h-display {
       font-size: clamp(32px, 4.2vw, 56px);
-      line-height: 1;
+      line-height: 1.05;
     }
     body.mode-demo .lede { font-weight: 400; }
     body.mode-demo em {
@@ -599,19 +593,13 @@
     }
 
     /* ============================================================
-       PROPOSAL — sections
+       PROPOSAL — rebuilt page layout
        ============================================================ */
-    .p-section {
-      padding: var(--section-padding-y) 0;
-      position: relative;
-      background: var(--white);
-      isolation: isolate;
-    }
     .proposal-root,
     .demo-site,
     .demo-page,
     .demo-section,
-    .p-section,
+    .page-section,
     .dpage,
     .service-block,
     .tool-block,
@@ -619,133 +607,106 @@
       scroll-margin-top: var(--proposal-shell-height);
     }
 
-    .p-section + .p-section { border-top: 1px solid var(--line); }
-    .p-section:nth-of-type(even) {
-      background:
-        linear-gradient(180deg, var(--white) 0%, var(--stone) 100%);
-    }
-    #observed {
-      background:
-        linear-gradient(180deg, var(--white) 0%, var(--stone) 100%);
-    }
-    #matters {
+    .page-section {
+      padding-block: var(--section-padding-y);
       background: var(--white);
     }
-    #strengths {
-      background:
-        linear-gradient(180deg, var(--stone) 0%, var(--white) 100%);
-    }
-    #modernise {
-      background: var(--white);
-    }
-    #evolution {
-      background:
-        linear-gradient(180deg, var(--white) 0%, var(--stone) 100%);
-    }
-    #next {
-      background: var(--white);
-    }
-
-    .p-intro {
-      min-height: auto;
-      display: flex;
-      align-items: flex-start;
-      padding-top: var(--section-padding-y);
-      padding-bottom: var(--section-padding-y);
-      color: #F5FFFE;
+    .page-section--stone { background: var(--stone); }
+    .page-section--intro {
       background:
         radial-gradient(circle at 12% 0%, rgba(92,220,232,0.10), transparent 32rem),
         linear-gradient(135deg, var(--twny-dark) 0%, var(--twny-panel) 62%, color-mix(in srgb, var(--twny-dark) 88%, var(--twny-panel) 12%) 100%);
-      border-bottom: 1px solid rgba(92,220,232,0.18);
+      color: #F5FFFE;
     }
-    .p-intro .eyebrow,
-    .p-intro .lede,
-    .p-intro .quiet { color: color-mix(in srgb, #F5FFFE 82%, var(--twny-muted) 18%); }
-    .p-intro .h-display { color: var(--white); }
-    .p-intro .eyebrow::before { background: var(--twny-cyan); }
+    .page-section--intro .eyebrow,
+    .page-section--intro .lede,
+    .page-section--intro .quiet { color: color-mix(in srgb, #F5FFFE 82%, var(--twny-muted) 18%); }
+    .page-section--intro .h-display { color: var(--white); }
+    .page-section--intro .eyebrow::before { background: var(--twny-cyan); }
+    .page-section--enter {
+      background: var(--stone);
+      text-align: center;
+    }
 
-    .section-shell {
+    .section-inner {
+      width: min(1180px, calc(100% - 48px));
+      max-width: 1180px;
+      margin-inline: auto;
       min-width: 0;
     }
+    .section-inner--narrow {
+      width: min(760px, calc(100% - 48px));
+      max-width: 760px;
+    }
+
     .section-intro {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 24px;
       margin-bottom: var(--section-intro-gap);
       min-width: 0;
     }
-    .section-intro:last-child {
-      margin-bottom: 0;
+    .section-intro:last-child { margin-bottom: 0; }
+    .section-intro--center {
+      align-items: center;
+      text-align: center;
     }
     .section-intro > *,
     .section-content > * {
       min-width: 0;
     }
-    .section-intro-row {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: var(--content-grid-gap);
-      align-items: start;
-      min-width: 0;
-    }
-    @media (min-width: 1080px) {
-      .section-intro-row {
-        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-      }
-    }
     .section-content {
-      display: block;
-      margin-top: 0;
       min-width: 0;
     }
     .section-content > :first-child {
       margin-top: 0;
     }
-    .section-content .item-list,
-    .section-content .strength-grid,
-    .section-content .brand-kit {
-      margin-top: 0;
+    .section-content--stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
-    .demo-site main,
-    .demo-site .wrap,
-    .demo-site .wrap > *,
-    .demo-site .dhero,
-    .demo-site .dhero > *,
-    .demo-site article,
-    .demo-site form {
-      min-width: 0;
+    .section-content--center {
+      align-items: center;
+      text-align: center;
     }
 
-    /* Observation / strength / opportunity blocks */
+    body.mode-proposal :is(.item, .strength, .brand-kit, .brand-panel, .brand-sample, .brand-value, .voice-example, .logo-specimen__row) {
+      min-width: 0;
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+    body.mode-proposal :is(.item-list, .strength-grid, .brand-board-grid, .brand-matrix, .brand-swatches, .brand-samples, .brand-module-row, .photo-direction-grid, .icon-grid) {
+      min-width: 0;
+    }
+    body.mode-proposal :is(.item-list, .strength-grid, .brand-kit) {
+      margin-top: 0;
+    }
+
     .item-list {
-      margin-top: 40px;
       display: grid;
       gap: 0;
-      overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 20px;
       background: var(--white);
       box-shadow: 0 16px 36px rgba(31,31,35,0.045);
     }
     .item {
-      padding: 32px 0;
+      padding: 32px;
       border-top: 1px solid color-mix(in srgb, var(--line) 84%, var(--white) 16%);
       display: grid;
-      grid-template-columns: 48px 1fr;
+      grid-template-columns: 48px minmax(0, 1fr);
       gap: var(--s-3) var(--s-4);
-      padding-left: 32px;
-      padding-right: 32px;
     }
     .item:first-child { border-top: 0; }
-    .item:last-child { border-bottom: 0; }
+    @media (min-width: 960px) {
+      .item { grid-template-columns: 80px minmax(0, 1fr) minmax(0, 1.2fr); gap: 32px; align-items: start; }
+    }
     @media (max-width: 640px) {
       .item {
-        grid-template-columns: 34px 1fr;
+        grid-template-columns: 34px minmax(0, 1fr);
         padding: var(--s-4);
       }
-    }
-    @media (min-width: 960px) {
-      .item { grid-template-columns: 80px 1fr 1.2fr; gap: 32px; align-items: start; }
     }
     .item__num {
       font-feature-settings: "tnum";
@@ -761,20 +722,14 @@
       .item__body { grid-column: auto; }
     }
 
-    /* Strengths cards */
     .strength-grid {
-      margin-top: 40px;
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
-    @media (min-width: 900px) {
-      .strength-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+      gap: var(--content-grid-gap);
     }
     .strength {
       padding: 32px;
-      background:
-        linear-gradient(180deg, var(--surface-raised), color-mix(in srgb, var(--client-ground) 50%, var(--white) 50%));
+      background: var(--white);
       border: 1px solid var(--line);
       border-left: 4px solid color-mix(in srgb, var(--client-gold) 72%, var(--white) 28%);
       border-radius: 16px;
@@ -784,10 +739,7 @@
     .strength__title { margin-top: var(--s-3); font-size: 18px; line-height: 1.34; font-weight: 600; letter-spacing: 0; }
     .strength__body { margin-top: var(--s-3); color: var(--ink-quiet); font-size: 15.5px; line-height: 1.62; }
 
-    /* Brand evolution visual */
     .brand-kit {
-      margin-top: 40px;
-      overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 24px;
       background: var(--white);
@@ -795,13 +747,11 @@
     }
     .brand-kit__hero {
       padding: clamp(32px, 5vw, 64px);
-      background:
-        radial-gradient(circle at 18% 8%, color-mix(in srgb, var(--gold) 14%, transparent), transparent 28rem),
-        linear-gradient(135deg, var(--plum-deep) 0%, var(--plum) 72%, var(--plum-deep) 100%);
+      background: var(--plum);
       color: var(--white);
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 32px;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--content-grid-gap);
       position: relative;
       isolation: isolate;
     }
@@ -823,7 +773,7 @@
     }
     @media (min-width: 900px) {
       .brand-kit__hero {
-        grid-template-columns: minmax(0, 1fr) minmax(320px, 0.8fr);
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
         align-items: center;
       }
     }
@@ -846,11 +796,12 @@
     .brand-purpose {
       padding: clamp(32px, 4.5vw, 48px);
       display: grid;
-      gap: 32px;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--content-grid-gap);
       border-bottom: 1px solid var(--line);
-      background: linear-gradient(180deg, var(--white) 0%, color-mix(in srgb, var(--stone) 74%, var(--white) 26%) 100%);
+      background: var(--white);
     }
-    @media (min-width: 920px) { .brand-purpose { grid-template-columns: 1.1fr 0.9fr; } }
+    @media (min-width: 920px) { .brand-purpose { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); } }
     .brand-purpose__statement {
       font-size: clamp(22px, 2.4vw, 34px);
       line-height: 1.25;
@@ -866,7 +817,7 @@
     }
     .brand-value {
       display: grid;
-      grid-template-columns: 34px 1fr;
+      grid-template-columns: 34px minmax(0, 1fr);
       gap: 12px;
       align-items: start;
     }
@@ -901,30 +852,27 @@
     }
     .brand-board-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
       border-top: 1px solid var(--line);
-      min-width: 0;
     }
-    @media (min-width: 980px) {
-      .brand-board-grid {
-        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr) minmax(0, 1.25fr);
-      }
-      .brand-board-grid > * + * { border-left: 1px solid var(--line); }
+    .brand-matrix {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+      border-top: 1px solid var(--line);
     }
     .brand-panel {
       padding: clamp(28px, 3.8vw, 40px);
       border-bottom: 1px solid var(--line);
       background: var(--white);
-      min-width: 0;
     }
     .brand-panel--soft {
       background: color-mix(in srgb, var(--client-ground) 72%, var(--white) 28%);
     }
+    .brand-panel--wide { grid-column: 1 / -1; }
     @media (min-width: 980px) {
       .brand-panel--wide { grid-column: span 2; }
     }
     .brand-panel--type {
-      min-width: 0;
       overflow: visible;
     }
     .brand-panel__label {
@@ -959,9 +907,7 @@
       border: 1px solid var(--line);
     }
     .logo-specimen__row.is-dark {
-      background:
-        radial-gradient(circle at 90% 12%, color-mix(in srgb, var(--gold) 14%, transparent), transparent 18rem),
-        var(--plum);
+      background: var(--plum);
       color: var(--white);
       border-color: transparent;
     }
@@ -979,21 +925,16 @@
       line-height: 1.45;
     }
     .logo-specimen__row.is-dark .logo-specimen__caption { color: rgba(255,255,255,0.72); }
-    .brand-matrix {
-      display: grid;
-      grid-template-columns: 1fr;
-      border-top: 1px solid var(--line);
-      min-width: 0;
-    }
-    @media (min-width: 900px) {
-      .brand-matrix { grid-template-columns: 0.82fr 1.18fr; }
-      .brand-matrix > *:nth-child(even) { border-left: 1px solid var(--line); }
-    }
-    .brand-swatches {
+    .brand-swatches,
+    .brand-samples,
+    .brand-module-row,
+    .photo-direction-grid,
+    .icon-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 132px), 1fr));
       gap: 10px;
     }
+    .brand-samples { gap: var(--s-4); }
     .brand-swatch {
       min-height: 106px;
       border-radius: 16px;
@@ -1018,13 +959,6 @@
       font-size: 12px;
       opacity: 0.76;
     }
-    .brand-samples {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--s-4);
-      min-width: 0;
-    }
-    @media (min-width: 900px) { .brand-samples { grid-template-columns: 1fr 1fr; } }
     .brand-sample {
       padding: var(--s-4);
       border: 1px solid var(--line);
@@ -1077,20 +1011,11 @@
       background: var(--client-gold);
       color: var(--client-purple);
     }
-    .brand-module-row {
-      margin-top: var(--s-5);
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--s-3);
-      min-width: 0;
-    }
-    @media (min-width: 760px) { .brand-module-row { grid-template-columns: repeat(3, 1fr); } }
     .brand-module {
       padding: var(--s-4);
       border-radius: 12px;
       border: 1px solid color-mix(in srgb, var(--champagne) 42%, var(--cool-grey) 58%);
-      background:
-        linear-gradient(180deg, var(--client-ground), color-mix(in srgb, var(--client-ground) 86%, var(--white) 14%));
+      background: var(--client-ground);
       box-shadow: 0 10px 24px rgba(59,44,94,0.035);
     }
     .brand-module strong {
@@ -1193,46 +1118,17 @@
       color: var(--client-purple);
       font-weight: 500;
     }
-    .photo-direction-grid {
-      margin-top: var(--s-4);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
     .photo-tile {
       min-height: 112px;
       border-radius: 14px;
       padding: 12px;
       display: flex;
       align-items: flex-end;
-      background:
-        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.46)),
-        linear-gradient(135deg, var(--stone) 0%, var(--champagne) 52%, var(--graphite) 100%);
-      color: var(--white);
+      background: var(--champagne);
+      color: var(--charcoal);
       font-size: 12px;
       line-height: 1.35;
       font-weight: 700;
-    }
-    .photo-tile:nth-child(2) {
-      background:
-        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.42)),
-        linear-gradient(135deg, var(--cool-grey) 0%, var(--champagne) 54%, var(--plum) 100%);
-    }
-    .photo-tile:nth-child(3) {
-      background:
-        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.42)),
-        linear-gradient(135deg, var(--champagne) 0%, var(--gold) 46%, var(--plum) 100%);
-    }
-    .photo-tile:nth-child(4) {
-      background:
-        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.46)),
-        linear-gradient(135deg, var(--stone) 0%, var(--cool-grey) 50%, var(--plum) 100%);
-    }
-    .icon-grid {
-      margin-top: var(--s-4);
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
     }
     .brand-icon {
       aspect-ratio: 1;
@@ -1250,7 +1146,6 @@
     }
     .mini-home {
       margin-top: var(--s-4);
-      overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 18px;
       background: var(--white);
@@ -1264,6 +1159,7 @@
       padding: 14px 16px;
       background: var(--client-purple);
       color: var(--white);
+      border-radius: 18px 18px 0 0;
     }
     .mini-home__nav .ff-word {
       font-size: 18px;
@@ -1279,12 +1175,15 @@
     }
     .mini-home__body {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
       min-height: 210px;
+    }
+    @media (max-width: 640px) {
+      .mini-home__body { grid-template-columns: minmax(0, 1fr); }
     }
     .mini-home__copy {
       padding: var(--s-4);
-      background: linear-gradient(135deg, var(--client-purple), var(--plum-deep));
+      background: var(--client-purple);
       color: var(--white);
     }
     .mini-home__copy h4 {
@@ -1301,21 +1200,8 @@
       line-height: 1.45;
     }
     .mini-home__image {
-      background:
-        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.18)),
-        linear-gradient(135deg, var(--champagne) 0%, var(--cool-grey) 45%, var(--graphite) 100%);
-      position: relative;
-    }
-    .mini-home__image::after {
-      content: "real homes + real conversations";
-      position: absolute;
-      left: 12px;
-      right: 12px;
-      bottom: 12px;
-      color: var(--white);
-      font-size: 11px;
-      font-weight: 700;
-      text-shadow: 0 2px 12px rgba(31,31,35,0.24);
+      background: var(--champagne);
+      min-height: 180px;
     }
     .mini-mobile {
       margin-top: var(--s-4);
@@ -1324,7 +1210,6 @@
       margin-right: auto;
       border: 7px solid var(--charcoal);
       border-radius: 24px;
-      overflow: hidden;
       background: var(--white);
       box-shadow: 0 18px 36px rgba(31,31,35,0.12);
     }
@@ -1338,10 +1223,9 @@
     .mini-mobile__screen {
       padding: 18px 14px;
       min-height: 210px;
-      background:
-        radial-gradient(circle at 82% 0%, color-mix(in srgb, var(--gold) 18%, transparent), transparent 9rem),
-        var(--client-purple);
+      background: var(--client-purple);
       color: var(--white);
+      border-radius: 0 0 16px 16px;
     }
     .mini-mobile__screen h4 {
       font-size: 26px;
@@ -1388,75 +1272,36 @@
       font-size: 13px;
       line-height: 1.45;
     }
-
-    /* Section 7 — enter */
-    .p-enter {
-      padding: var(--section-padding-y) 0;
-      background:
-        linear-gradient(180deg, var(--stone) 0%, color-mix(in srgb, var(--champagne) 34%, var(--white) 66%) 100%);
-      text-align: center;
-    }
-    .p-enter .wrap-narrow { max-width: 760px; }
-    .p-enter .section-shell {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      min-width: 0;
-    }
-    .p-enter .section-label { display: block; }
-    .p-enter .h-1 {
+    .page-section--enter .h-1 {
       max-width: 760px;
-      margin-left: auto;
-      margin-right: auto;
-      font-size: clamp(27px, 3vw, 38px);
-      line-height: 1.24;
-      letter-spacing: -0.025em;
+      margin-inline: auto;
     }
-    .p-enter .lede {
-      margin: 0 auto;
+    .page-section--enter .lede {
       max-width: 680px;
-      line-height: 1.68;
+      margin-inline: auto;
     }
-    .p-enter .btn-large { margin-top: 0; }
-    .p-enter .btn-primary {
-      background: var(--client-purple);
-      box-shadow: 0 14px 34px rgba(59,44,94,0.16);
-    }
-    .p-enter .btn-primary:hover { background: color-mix(in srgb, var(--client-purple) 88%, var(--twny-dark) 12%); }
-    .p-enter .small {
-      margin-top: 0;
+    .page-section .small {
       font-size: 13px;
+      line-height: 1.5;
       color: var(--ink-quiet);
     }
-
-    /* Section 8 — next steps (post-return) */
-    .p-next {
-      padding: var(--section-padding-y) 0;
-    }
-    .p-next .section-content {
+    .page-section--next .section-content {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 20px;
     }
-    .p-next .small {
-      margin-top: 0;
-      color: var(--ink-quiet);
-      font-size: 14px;
-    }
-    .p-next .signature {
-      margin-top: var(--s-7);
-      padding-top: var(--s-4);
-      border-top: 1px solid color-mix(in srgb, var(--line) 82%, var(--accent) 18%);
-      font-size: 13px;
-      letter-spacing: 0.02em;
-      color: var(--caption);
-      font-weight: 500;
+    .page-section--next .signature {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
       display: flex;
       justify-content: space-between;
+      gap: 24px;
       flex-wrap: wrap;
-      gap: var(--s-3);
+      color: var(--ink-quiet);
+      font-size: 13px;
+      line-height: 1.5;
     }
 
     /* ============================================================
@@ -2559,8 +2404,8 @@
     <main>
 
       <!-- Section 1 — twny intro -->
-      <section id="intro" class="p-section p-intro">
-        <div class="wrap section-shell">
+      <section id="intro" class="page-section page-section--intro">
+        <div class="section-inner">
           <div class="section-intro">
             <p class="eyebrow reveal">Where we are starting</p>
             <h1 class="h-display reveal" data-d="1" style="max-width: 22ch;">
@@ -2569,6 +2414,8 @@
             <p class="lede reveal" data-d="2">
               At the time, the site did what it needed to do: give referred clients a clear place to understand the basics and feel they were in the right hands.
             </p>
+          </div>
+          <div class="section-content">
             <p class="lede reveal quiet" data-d="3">
               Since then, First Finance has changed. Craig and Ben now carry a deeper story: family continuity, long client relationships, industry recognition, and a practice with more depth than the website currently shows. This is about bringing the site up to where the business already is.
             </p>
@@ -2577,14 +2424,12 @@
       </section>
 
       <!-- Section 2 — What we observed -->
-      <section id="observed" class="p-section">
-        <div class="wrap section-shell">
+      <section id="observed" class="page-section page-section--stone">
+        <div class="section-inner">
           <div class="section-intro">
             <p class="section-label reveal">First Finance today</p>
-            <div class="section-intro-row">
-              <h2 class="h-1 reveal" data-d="1">The business is strong. The site is just showing an older version of it.</h2>
-              <p class="lede quiet reveal" data-d="2">That happens naturally. Good businesses keep moving; websites usually do not unless we come back to them.</p>
-            </div>
+            <h2 class="h-1 reveal" data-d="1">The business is strong. The site is just showing an older version of it.</h2>
+            <p class="lede quiet reveal" data-d="2">That happens naturally. Good businesses keep moving; websites usually do not unless we come back to them.</p>
           </div>
 
           <div class="section-content">
@@ -2620,12 +2465,13 @@
       </section>
 
       <!-- Section 3 — Why this matters -->
-      <section id="matters" class="p-section">
-        <div class="wrap section-shell">
+      <section id="matters" class="page-section">
+        <div class="section-inner">
           <div class="section-intro">
             <p class="section-label reveal">What changed around the website</p>
-            <div class="section-intro-row">
-              <h2 class="h-1 reveal" data-d="1">Client expectations have moved.</h2>
+            <h2 class="h-1 reveal" data-d="1">Client expectations have moved.</h2>
+          </div>
+          <div class="section-content">
               <div class="stack-l">
                 <p class="body-l reveal quiet" data-d="1">
                   The current website reflects the business we built it for at the time. It now needs to show First Finance as people experience it today: established, family-led, commercially capable, and still personal.
@@ -2637,20 +2483,17 @@
                   People now check on their phone, expect clearer service pathways, look for reassurance earlier, and want useful tools before they commit to a conversation. The site can meet those expectations while still feeling like First Finance.
                 </p>
               </div>
-            </div>
           </div>
         </div>
       </section>
 
       <!-- Section 4 — What's already strong -->
-      <section id="strengths" class="p-section">
-        <div class="wrap section-shell">
+      <section id="strengths" class="page-section page-section--stone">
+        <div class="section-inner">
           <div class="section-intro">
             <p class="section-label reveal">What should stay familiar</p>
-            <div class="section-intro-row">
-              <h2 class="h-1 reveal" data-d="1">The update should protect what clients already trust.</h2>
-              <p class="lede quiet reveal" data-d="2">We do not need to make First Finance feel like a different business. We need to make the real business easier to understand.</p>
-            </div>
+            <h2 class="h-1 reveal" data-d="1">The update should protect what clients already trust.</h2>
+            <p class="lede quiet reveal" data-d="2">We do not need to make First Finance feel like a different business. We need to make the real business easier to understand.</p>
           </div>
 
           <div class="section-content">
@@ -2681,8 +2524,8 @@
       </section>
 
       <!-- Section 5 — What we'd update -->
-      <section id="modernise" class="p-section">
-        <div class="wrap section-shell">
+      <section id="modernise" class="page-section">
+        <div class="section-inner">
           <div class="section-intro">
             <p class="section-label reveal">What we would make clearer</p>
             <h2 class="h-1 reveal" data-d="1">A clearer site for the business First Finance already is.</h2>
@@ -2721,14 +2564,12 @@
       </section>
 
       <!-- Section 6 — Brand evolution -->
-      <section id="evolution" class="p-section">
-        <div class="wrap section-shell">
+      <section id="evolution" class="page-section page-section--stone">
+        <div class="section-inner">
           <div class="section-intro">
             <p class="section-label reveal">How the identity carries forward</p>
-            <div class="section-intro-row">
-              <h2 class="h-1 reveal" data-d="1">Keep the recognisable cues. Make them feel current and useful.</h2>
-              <p class="lede quiet reveal" data-d="2">The useful move is not to throw away what people recognise. It is to clean it up and use it more consistently.</p>
-            </div>
+            <h2 class="h-1 reveal" data-d="1">Keep the recognisable cues. Make them feel current and useful.</h2>
+            <p class="lede quiet reveal" data-d="2">The useful move is not to throw away what people recognise. It is to clean it up and use it more consistently.</p>
           </div>
 
           <div class="section-content">
@@ -2947,26 +2788,30 @@
       </section>
 
       <!-- Section 7 — Enter the demo -->
-      <section id="enter" class="p-enter">
-        <div class="wrap-narrow section-shell">
-          <p class="section-label reveal">What the next site could feel like</p>
-          <h2 class="h-1 reveal" data-d="1">
-            Have a look at what this could feel like.
-          </h2>
-          <p class="lede reveal quiet" data-d="2">
-            Use the switch above or the button below to open the working demo. It is not the final site, but there is enough there to react to properly.
-          </p>
-          <button class="btn btn-primary btn-large reveal" data-d="3" id="enterDemoBtn" type="button">
-            Open website demo
-            <span class="arrow" aria-hidden="true">→</span>
-          </button>
-          <p class="small reveal" data-d="3">You can come back to this proposal at any time.</p>
+      <section id="enter" class="page-section page-section--enter page-section--stone">
+        <div class="section-inner section-inner--narrow">
+          <div class="section-intro section-intro--center">
+            <p class="section-label reveal">What the next site could feel like</p>
+            <h2 class="h-1 reveal" data-d="1">
+              Have a look at what this could feel like.
+            </h2>
+            <p class="lede reveal quiet" data-d="2">
+              Use the switch above or the button below to open the working demo. It is not the final site, but there is enough there to react to properly.
+            </p>
+          </div>
+          <div class="section-content section-content--stack section-content--center">
+            <button class="btn btn-primary btn-large reveal" data-d="3" id="enterDemoBtn" type="button">
+              Open website demo
+              <span class="arrow" aria-hidden="true">→</span>
+            </button>
+            <p class="small reveal" data-d="3">You can come back to this proposal at any time.</p>
+          </div>
         </div>
       </section>
 
       <!-- Section 8 — Next steps (after return) -->
-      <section id="next" class="p-section p-next">
-        <div class="wrap section-shell">
+      <section id="next" class="page-section page-section--next">
+        <div class="section-inner">
           <div class="section-intro">
             <p class="section-label reveal">If this feels close</p>
             <h2 class="h-display reveal" data-d="1" style="max-width: 22ch;">
@@ -2977,7 +2822,7 @@
             </p>
           </div>
 
-          <div class="section-content reveal" data-d="3">
+          <div class="section-content section-content--stack reveal" data-d="3">
             <a href="mailto:hello@twny.com.au?subject=First%20Finance%20—%20website%20update" class="btn btn-primary btn-large">
               Talk it through
               <span class="arrow" aria-hidden="true">→</span>
@@ -2985,11 +2830,11 @@
             <p class="small reveal" data-d="3">
               Or sit with it for a few days. We don't chase.
             </p>
-          </div>
 
-          <div class="signature">
-            <span>First Finance website update</span>
-            <span>twny</span>
+            <div class="signature">
+              <span>First Finance website update</span>
+              <span>twny</span>
+            </div>
           </div>
         </div>
       </section>

@@ -39,6 +39,8 @@
 
     /* ============================================================
        TOKENS
+       Canonical visual reference:
+       /clients/first-finance/reference/ff-brand-kit.png
        ============================================================ */
     :root {
       --plum: #381F3F;
@@ -329,10 +331,10 @@
     .ff-mark::after {
       content: ".";
       position: absolute;
-      right: -0.1em;
-      bottom: -0.055em;
+      right: -0.045em;
+      bottom: -0.015em;
       color: var(--client-gold);
-      font-size: 0.54em;
+      font-size: 0.48em;
       font-style: normal;
       line-height: 1;
     }
@@ -351,7 +353,11 @@
       letter-spacing: -0.025em;
       line-height: 1.02;
     }
-    .ff-word .dot { color: var(--client-gold); margin-left: 2px; }
+    .ff-word .dot {
+      color: var(--client-gold);
+      margin-left: 1px;
+      transform: translateY(-0.015em);
+    }
     .ff-tagline {
       display: block;
       margin-top: 10px;
@@ -1164,8 +1170,8 @@
       display: flex;
       align-items: flex-end;
       background:
-        linear-gradient(180deg, rgba(31,31,35,0.04), rgba(31,31,35,0.46)),
-        linear-gradient(135deg, var(--champagne) 0%, var(--stone) 48%, var(--plum) 100%);
+        linear-gradient(180deg, rgba(31,31,35,0.00), rgba(31,31,35,0.42)),
+        url("/clients/first-finance/images/family-kitchen.png") center / cover;
       color: var(--white);
       font-size: 12px;
       line-height: 1.35;
@@ -1174,18 +1180,18 @@
     }
     .photo-tile:nth-child(2) {
       background:
-        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.36)),
-        linear-gradient(135deg, var(--stone) 0%, var(--champagne) 46%, color-mix(in srgb, var(--gold) 34%, var(--plum) 66%) 100%);
+        linear-gradient(180deg, rgba(31,31,35,0.00), rgba(31,31,35,0.36)),
+        url("/clients/first-finance/images/modern-home.png") center / cover;
     }
     .photo-tile:nth-child(3) {
       background:
-        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.42)),
-        linear-gradient(135deg, var(--white) 0%, var(--champagne) 42%, var(--graphite) 100%);
+        linear-gradient(180deg, rgba(31,31,35,0.00), rgba(31,31,35,0.40)),
+        url("/clients/first-finance/images/warm-interior.png") center / cover;
     }
     .photo-tile:nth-child(4) {
       background:
-        linear-gradient(180deg, rgba(31,31,35,0.04), rgba(31,31,35,0.44)),
-        linear-gradient(135deg, var(--stone) 0%, var(--cool-grey) 44%, var(--plum-deep) 100%);
+        linear-gradient(180deg, rgba(31,31,35,0.00), rgba(31,31,35,0.42)),
+        url("/clients/first-finance/images/client-conversation.png") center / cover;
     }
     .brand-icon {
       width: 52px;
@@ -1208,6 +1214,12 @@
       border-radius: 18px;
       background: var(--white);
       box-shadow: 0 16px 34px rgba(31,31,35,0.08);
+    }
+    .brand-app-image {
+      width: 100%;
+      border: 1px solid color-mix(in srgb, var(--line) 78%, var(--client-purple) 22%);
+      border-radius: 18px;
+      box-shadow: 0 24px 52px rgba(31,31,35,0.12);
     }
     .mini-home__nav {
       display: flex;
@@ -1258,7 +1270,9 @@
       line-height: 1.45;
     }
     .mini-home__image {
-      background: var(--champagne);
+      background:
+        linear-gradient(180deg, rgba(31,31,35,0.00), rgba(31,31,35,0.18)),
+        url("/clients/first-finance/images/home-residential.png") center / cover;
       min-height: 180px;
     }
     .mini-mobile {
@@ -1356,6 +1370,15 @@
     }
     .page-section:not(.page-section--intro) .btn-primary:hover {
       background: var(--plum-deep);
+    }
+    .page-section--enter .btn-primary {
+      background: var(--client-gold);
+      color: var(--client-purple);
+      box-shadow: 0 16px 34px rgba(200,167,102,0.24);
+    }
+    .page-section--enter .btn-primary:hover {
+      background: color-mix(in srgb, var(--client-gold) 88%, var(--white) 12%);
+      color: var(--client-purple);
     }
 
     /* ============================================================
@@ -1547,8 +1570,9 @@
       border-radius: 18px;
       overflow: hidden;
       background:
-        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.48)),
-        linear-gradient(135deg, var(--champagne) 0%, var(--stone) 38%, color-mix(in srgb, var(--gold) 34%, var(--plum) 66%) 66%, var(--plum-deep) 100%);
+        linear-gradient(180deg, rgba(31,31,35,0.00), rgba(31,31,35,0.38)),
+        linear-gradient(90deg, rgba(56,31,63,0.36), rgba(56,31,63,0.04)),
+        url("/clients/first-finance/images/home-residential.png") center / cover;
       border: 1px solid color-mix(in srgb, var(--line) 72%, var(--client-purple) 28%);
       display: flex;
       flex-direction: column;
@@ -1882,8 +1906,8 @@
       width: 100%;
       aspect-ratio: 4 / 3;
       background:
-        linear-gradient(180deg, rgba(31,31,35,0.02), rgba(31,31,35,0.20)),
-        linear-gradient(135deg, var(--client-champagne) 0%, var(--stone) 42%, color-mix(in srgb, var(--gold) 22%, var(--client-purple) 78%) 100%);
+        linear-gradient(180deg, rgba(31,31,35,0.00), rgba(31,31,35,0.22)),
+        url("/clients/first-finance/images/family-kitchen.png") center / cover;
       border-radius: 16px;
       display: flex;
       align-items: flex-end;
@@ -1892,27 +1916,13 @@
       position: relative;
       overflow: hidden;
     }
-    .team__photo::before {
-      content: "Concept photograph";
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      font-size: 10.5px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-quiet);
-      background: var(--bg);
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-weight: 600;
+    .team:nth-child(2) .team__photo {
+      background:
+        linear-gradient(180deg, rgba(31,31,35,0.00), rgba(31,31,35,0.24)),
+        url("/clients/first-finance/images/client-conversation.png") center / cover;
     }
     .team__photo .initials {
-      font-family: var(--font-serif);
-      font-size: 68px;
-      color: color-mix(in srgb, var(--plum) 42%, transparent);
-      font-weight: 700;
-      line-height: 0.8;
-      opacity: 1;
+      display: none;
     }
     .team__name {
       margin-top: var(--s-4);
@@ -2811,19 +2821,7 @@
               <div class="brand-panel brand-panel--wide">
                 <p class="brand-panel__label">Brand in application</p>
                 <h3 class="brand-panel__title">A homepage fragment that feels like a real finance website.</h3>
-                <div class="mini-home" aria-label="Homepage fragment preview">
-                  <div class="mini-home__nav">
-                    <span class="ff-word">first finance<span class="dot">.</span></span>
-                    <span class="mini-home__cta">Book a free chat</span>
-                  </div>
-                  <div class="mini-home__body">
-                    <div class="mini-home__copy">
-                      <h4>Advice that moves you forward.</h4>
-                      <p>Home loans, refinancing and finance solutions tailored to you.</p>
-                    </div>
-                    <div class="mini-home__image" aria-hidden="true"></div>
-                  </div>
-                </div>
+                <img class="brand-app-image" src="/clients/first-finance/images/brand-application.png" alt="First Finance homepage application preview" loading="lazy" style="margin-top: var(--s-4);">
               </div>
               <div class="brand-panel brand-panel--soft">
                 <p class="brand-panel__label">Mobile behaviour</p>
@@ -2975,8 +2973,8 @@
             <aside class="home-photo-card" aria-label="Photography direction">
               <span class="photo-pill">Photography direction</span>
               <p class="photo-caption">
-                <strong>Craig and Ben in the Mitcham office, not a stock-finance backdrop.</strong>
-                <span>Warm working portraits, documents on the desk, real conversations, the everyday practice visible.</span>
+                <strong>Australian homes and real conversations, not a stock-finance backdrop.</strong>
+                <span>Warm residential imagery, documents on the desk, natural light, and the everyday practice visible.</span>
               </p>
             </aside>
           </div>

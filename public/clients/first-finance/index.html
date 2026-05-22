@@ -114,6 +114,8 @@
 
     body.mode-demo {
       /* First Finance evolved mode */
+      --mode-bar-h: 52px;
+      --proposal-shell-height: 52px;
       --bg: var(--stone);
       --surface: var(--white);
       --surface-raised: color-mix(in srgb, var(--white) 88%, var(--champagne) 12%);
@@ -452,6 +454,8 @@
       position: sticky;
       top: 0;
       z-index: 90;
+      width: 100vw;
+      max-width: 100vw;
       min-height: var(--mode-bar-h);
       display: flex;
       align-items: center;
@@ -557,6 +561,37 @@
       background: var(--accent);
       color: var(--white);
     }
+    body.mode-demo .mode-shell {
+      min-height: var(--mode-bar-h);
+      padding: 5px 24px;
+      background: color-mix(in srgb, var(--twny-dark) 86%, transparent);
+      border-bottom-color: rgba(92,220,232,0.10);
+      box-shadow: 0 8px 22px rgba(3,14,17,0.14);
+    }
+    body.mode-demo .mode-shell::after { opacity: 0.22; }
+    body.mode-demo .mode-brand {
+      font-size: 12px;
+      font-weight: 600;
+      opacity: 0.86;
+    }
+    body.mode-demo .mode-brand span:first-child::before {
+      width: 5px;
+      height: 5px;
+      box-shadow: none;
+    }
+    body.mode-demo .mode-tabs {
+      padding: 3px;
+      background: rgba(255,255,255,0.035);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.045);
+    }
+    body.mode-demo .mode-tab {
+      min-height: 28px;
+      padding: 6px 11px;
+      font-size: 12px;
+    }
+    @media (min-width: 768px) {
+      body.mode-demo .mode-shell { padding: 5px 48px; }
+    }
     body.mode-proposal .mode-tab.is-active {
       background: linear-gradient(135deg, var(--twny-teal), var(--twny-cyan));
       color: var(--twny-dark);
@@ -565,6 +600,24 @@
     @media (max-width: 400px) {
       .mode-tabs { width: 100%; }
       .mode-tab { flex: 1; padding: 8px 10px; }
+    }
+    @media (max-width: 520px) {
+      body.mode-demo .mode-shell {
+        gap: 6px;
+        padding: 4px 10px;
+      }
+      body.mode-demo .mode-tabs {
+        display: none;
+      }
+      body.mode-demo .mode-tab {
+        min-width: 0;
+        max-width: 82px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 5px 8px;
+        font-size: 11px;
+      }
+      body.mode-demo #demoModeBtn { display: none; }
     }
 
     .transition-overlay {
@@ -1310,6 +1363,31 @@
       font-size: 11px;
       font-weight: 700;
     }
+    .demo-capture {
+      margin-top: var(--s-4);
+      overflow: hidden;
+      border: 1px solid color-mix(in srgb, var(--line) 76%, var(--client-purple) 24%);
+      background: var(--white);
+      box-shadow: 0 24px 54px rgba(31,31,35,0.12);
+    }
+    .demo-capture img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .demo-capture--desktop {
+      aspect-ratio: 16 / 10;
+      border-radius: 20px;
+    }
+    .demo-capture--mobile {
+      width: min(190px, 100%);
+      aspect-ratio: 9 / 19;
+      margin-left: auto;
+      margin-right: auto;
+      border: 7px solid var(--charcoal);
+      border-radius: 28px;
+      box-shadow: 0 28px 58px rgba(31,31,35,0.18);
+    }
     .voice-examples {
       display: grid;
       gap: 12px;
@@ -1472,7 +1550,7 @@
     }
     .return-btn:hover .arrow { transform: translateX(-4px); }
     @media (max-width: 600px) {
-      .return-btn span { display: none; }
+      .return-btn span:not(.arrow) { display: none; }
       .return-btn { padding: 8px 12px; }
     }
 
@@ -1492,34 +1570,84 @@
     .dmenu-sheet {
       position: fixed;
       inset: 0;
-      background: var(--plum-deep);
+      background:
+        radial-gradient(circle at 86% 4%, rgba(200,167,102,0.18), transparent 18rem),
+        linear-gradient(135deg, var(--plum) 0%, var(--plum-deep) 100%);
       z-index: 60;
-      padding: 80px 32px 32px;
+      padding: 28px 28px 34px;
       transform: translateY(-100%);
       transition: transform 300ms var(--ease-firm);
       overflow-y: auto;
     }
+    .dmenu-sheet__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--s-4);
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(232,214,178,0.16);
+    }
+    .dmenu-sheet__brand .ff-word {
+      color: var(--white);
+      font-size: 34px;
+    }
+    .dmenu-sheet__brand p {
+      margin-top: 14px;
+      max-width: 24ch;
+      color: rgba(255,255,255,0.70);
+      font-size: 14px;
+      line-height: 1.45;
+    }
     .dmenu-sheet.is-open { transform: translateY(0); }
-    .dmenu-sheet ul { list-style: none; }
+    .dmenu-sheet ul {
+      margin-top: 28px;
+      list-style: none;
+    }
     .dmenu-sheet li {
-      padding: 16px 0;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid rgba(232,214,178,0.14);
     }
     .dmenu-sheet a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
       font-family: var(--font-serif);
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1.25;
       color: var(--white);
     }
+    .dmenu-sheet a::after {
+      content: "→";
+      color: var(--gold);
+      font-family: var(--font-ui);
+      font-size: 17px;
+    }
+    .dmenu-sheet__cta {
+      margin-top: 28px;
+      display: inline-flex;
+      width: 100%;
+      justify-content: center;
+      padding: 14px 18px;
+      border-radius: 999px;
+      background: var(--gold);
+      color: var(--plum-deep);
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    .dmenu-sheet__cta::after { content: none; }
     .dmenu-sheet .close {
-      position: absolute;
-      top: 22px;
-      right: 24px;
       width: 40px; height: 40px;
       display: inline-flex;
       align-items: center; justify-content: center;
+      flex: 0 0 auto;
+      border: 1px solid rgba(232,214,178,0.22);
+      border-radius: 999px;
+      color: var(--white);
+      background: rgba(255,255,255,0.05);
     }
 
     /* ============================================================
@@ -1576,7 +1704,10 @@
       box-shadow: 0 34px 86px rgba(31,31,35,0.24);
       overflow: hidden;
       position: relative;
+      width: 100%;
+      max-width: 100%;
     }
+    .home-hero-grid > * { min-width: 0; }
     .home-hero-grid::after {
       content: "ff";
       position: absolute;
@@ -1601,6 +1732,26 @@
       color: rgba(255,255,255,0.78);
     }
     .home-hero-grid .t-display { color: var(--white); }
+    @media (max-width: 520px) {
+      .dhero .cta-row .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .home-hero-grid {
+        padding: 24px;
+        border-radius: 24px;
+        min-width: 0;
+      }
+      .home-hero-grid .dhero,
+      .home-hero-grid .lede,
+      .hero-fact {
+        min-width: 0;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+      }
+      .home-photo-card { min-height: 320px; }
+      .hero-facts { max-width: 100%; }
+    }
 
     .home-photo-card {
       min-height: 430px;
@@ -2881,33 +3032,15 @@
               <div class="brand-panel brand-panel--wide">
                 <p class="brand-panel__label">Brand in application</p>
                 <h3 class="brand-panel__title">A homepage fragment that feels like a real finance website.</h3>
-                <div class="mini-home" aria-label="Homepage fragment preview">
-                  <div class="mini-home__nav">
-                    <span class="ff-word"><span class="ff-word__line">first</span><span class="ff-word__line">finance<span class="logo-period">.</span></span></span>
-                    <span class="mini-home__cta">Book a free chat</span>
-                  </div>
-                  <div class="mini-home__body">
-                    <div class="mini-home__copy">
-                      <h4>Advice that moves you forward.</h4>
-                      <p>Home loans, refinancing and finance solutions tailored to you.</p>
-                    </div>
-                    <div class="mini-home__image" aria-hidden="true"></div>
-                  </div>
+                <div class="demo-capture demo-capture--desktop" aria-label="Implemented First Finance homepage demo capture">
+                  <img src="/clients/first-finance/images/demo-home-capture.png" alt="Implemented First Finance homepage demo showing the plum hero, residential imagery and client entry points" loading="lazy">
                 </div>
               </div>
               <div class="brand-panel brand-panel--soft">
                 <p class="brand-panel__label">Mobile behaviour</p>
                 <h3 class="brand-panel__title">Fast to understand, easy to act on.</h3>
-                <div class="mini-mobile" aria-label="Mobile homepage preview">
-                  <div class="mini-mobile__top">
-                    <span class="ff-mark ff-mark--small">ff<span class="logo-period">.</span></span>
-                    <span style="font-weight: 700; color: var(--client-purple);">Menu</span>
-                  </div>
-                  <div class="mini-mobile__screen">
-                    <h4>Finance made personal.</h4>
-                    <p>Clear advice. Better outcomes.</p>
-                    <span class="mini-mobile__button">Book a free chat →</span>
-                  </div>
+                <div class="demo-capture demo-capture--mobile" aria-label="Implemented First Finance mobile demo capture">
+                  <img src="/clients/first-finance/images/demo-mobile-capture.png" alt="Implemented First Finance mobile demo showing the homepage hero and navigation scale" loading="lazy">
                 </div>
               </div>
             </div>
@@ -3000,9 +3133,15 @@
 
     <!-- Mobile menu sheet -->
     <div class="dmenu-sheet" id="menuSheet" aria-hidden="true">
-      <button class="close" id="menuClose" type="button" aria-label="Close menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
-      </button>
+      <div class="dmenu-sheet__head">
+        <div class="dmenu-sheet__brand">
+          <span class="ff-word"><span class="ff-word__line">first</span><span class="ff-word__line">finance<span class="logo-period">.</span></span></span>
+          <p>Clear advice for home, investment and business finance.</p>
+        </div>
+        <button class="close" id="menuClose" type="button" aria-label="Close menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+        </button>
+      </div>
       <ul>
         <li><a href="#" data-page="home">Home</a></li>
         <li><a href="#" data-page="about">About</a></li>
@@ -3011,6 +3150,7 @@
         <li><a href="#" data-page="tools">Tools</a></li>
         <li><a href="#" data-page="contact">Contact</a></li>
       </ul>
+      <a href="#" class="dmenu-sheet__cta" data-page="contact">Book a free chat</a>
     </div>
 
     <main>
@@ -3045,8 +3185,8 @@
             <aside class="home-photo-card" aria-label="First Finance residential advisory moment">
               <span class="photo-pill">Finance made personal</span>
               <p class="photo-caption">
-                <strong>Advice for the decisions made around the kitchen table.</strong>
-                <span>Warm residential imagery, real conversations, natural light, and the everyday practice visible.</span>
+                <strong>Advice for the move you are planning next.</strong>
+                <span>Buying, refinancing, renovating or investing starts with a clear conversation about what is possible.</span>
               </p>
             </aside>
           </div>
@@ -3151,12 +3291,12 @@
             <article class="operation-card is-plain">
               <p class="operation-card__label">The working practice</p>
               <h2 class="operation-card__title">Mitcham base, Melbourne clients, long-running referral relationships.</h2>
-              <p class="operation-card__body">The future site should make the practice feel findable and real: Craig and Ben named, office location visible, phone numbers plain, compliance present, and the relationship with accountants and planners described without overclaiming it.</p>
+              <p class="operation-card__body">Clients know who they are speaking with: Craig and Ben are visible, the office details are clear, phone numbers are plain, compliance is easy to find, and accountant or adviser coordination is explained without overcomplicating it.</p>
             </article>
             <article class="operation-card">
               <p class="operation-card__label">People and place</p>
-              <h2 class="operation-card__title">Commissioned working portraits, not finance stock imagery.</h2>
-              <p class="operation-card__body">Environmental photography would show the office, the people, the desk work, the calls, the review meetings and the small signs of a practice that has been doing this for decades.</p>
+              <h2 class="operation-card__title">A real practice, easy to recognise.</h2>
+              <p class="operation-card__body">The work happens in everyday moments: office conversations, review meetings, phone calls, document checks and the quiet follow-up that keeps clients coming back over many years.</p>
             </article>
           </div>
 

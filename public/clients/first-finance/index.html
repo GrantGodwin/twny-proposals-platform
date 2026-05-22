@@ -336,13 +336,17 @@
     }
     .ff-word {
       display: inline-flex;
-      align-items: baseline;
+      flex-direction: column;
+      align-items: flex-start;
       font-family: var(--font-logo);
       font-size: clamp(40px, 5vw, 68px);
       font-weight: 500;
       letter-spacing: -0.025em;
-      line-height: 1.02;
+      line-height: 0.92;
       font-synthesis: none;
+    }
+    .ff-word__line {
+      display: block;
     }
     .logo-period {
       color: var(--client-gold);
@@ -2630,7 +2634,7 @@
                 <p class="section-label">Evolved identity direction</p>
                 <div class="ff-lockup" aria-label="first finance logo direction">
                   <span>
-                    <span class="ff-word">first finance<span class="logo-period">.</span></span>
+                    <span class="ff-word"><span class="ff-word__line">first</span><span class="ff-word__line">finance<span class="logo-period">.</span></span></span>
                     <span class="ff-tagline">finance made personal</span>
                   </span>
                 </div>
@@ -2666,13 +2670,13 @@
                 <div class="logo-specimen" style="margin-top: var(--s-4);">
                   <div class="logo-specimen__row">
                     <div class="ff-lockup">
-                      <span><span class="ff-word">first finance<span class="logo-period">.</span></span><span class="ff-tagline">finance made personal</span></span>
+                      <span><span class="ff-word"><span class="ff-word__line">first</span><span class="ff-word__line">finance<span class="logo-period">.</span></span></span><span class="ff-tagline">finance made personal</span></span>
                     </div>
                     <p class="logo-specimen__caption">Primary lock-up for the website, proposals and client-facing material.</p>
                   </div>
                   <div class="logo-specimen__row is-dark">
                     <div class="ff-lockup">
-                      <span><span class="ff-word">first finance<span class="logo-period">.</span></span></span>
+                      <span><span class="ff-word"><span class="ff-word__line">first</span><span class="ff-word__line">finance<span class="logo-period">.</span></span></span></span>
                     </div>
                     <p class="logo-specimen__caption">Reversed version for plum surfaces and high-confidence moments.</p>
                   </div>
@@ -2809,7 +2813,7 @@
                 <h3 class="brand-panel__title">A homepage fragment that feels like a real finance website.</h3>
                 <div class="mini-home" aria-label="Homepage fragment preview">
                   <div class="mini-home__nav">
-                    <span class="ff-word">first finance<span class="logo-period">.</span></span>
+                    <span class="ff-word"><span class="ff-word__line">first</span><span class="ff-word__line">finance<span class="logo-period">.</span></span></span>
                     <span class="mini-home__cta">Book a free chat</span>
                   </div>
                   <div class="mini-home__body">
@@ -3459,7 +3463,7 @@
           <div class="dfooter__col">
             <p class="dfooter__about">
               <span class="ff-lockup">
-                <span class="ff-word">first finance<span class="logo-period">.</span></span>
+                <span class="ff-word"><span class="ff-word__line">first</span><span class="ff-word__line">finance<span class="logo-period">.</span></span></span>
               </span>
             </p>
             <p class="dfooter__about-body">A Melbourne finance broking practice. Family-led since 1992. Finance made personal.</p>

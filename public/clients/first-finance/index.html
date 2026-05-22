@@ -331,10 +331,10 @@
     .ff-mark::after {
       content: ".";
       position: absolute;
-      right: -0.045em;
-      bottom: -0.015em;
+      right: -0.02em;
+      bottom: 0.02em;
       color: var(--client-gold);
-      font-size: 0.48em;
+      font-size: 0.42em;
       font-style: normal;
       line-height: 1;
     }
@@ -355,8 +355,8 @@
     }
     .ff-word .dot {
       color: var(--client-gold);
-      margin-left: 1px;
-      transform: translateY(-0.015em);
+      margin-left: 0;
+      transform: none;
     }
     .ff-tagline {
       display: block;
@@ -1171,7 +1171,7 @@
       align-items: flex-end;
       background:
         linear-gradient(180deg, rgba(31,31,35,0.00), rgba(31,31,35,0.42)),
-        url("/clients/first-finance/images/family-kitchen.png") center / cover;
+        url("/clients/first-finance/images/family-kitchen.jpg") center / cover;
       color: var(--white);
       font-size: 12px;
       line-height: 1.35;
@@ -1181,17 +1181,17 @@
     .photo-tile:nth-child(2) {
       background:
         linear-gradient(180deg, rgba(31,31,35,0.00), rgba(31,31,35,0.36)),
-        url("/clients/first-finance/images/modern-home.png") center / cover;
+        url("/clients/first-finance/images/modern-home.jpg") center / cover;
     }
     .photo-tile:nth-child(3) {
       background:
         linear-gradient(180deg, rgba(31,31,35,0.00), rgba(31,31,35,0.40)),
-        url("/clients/first-finance/images/warm-interior.png") center / cover;
+        url("/clients/first-finance/images/warm-interior.jpg") center / cover;
     }
     .photo-tile:nth-child(4) {
       background:
         linear-gradient(180deg, rgba(31,31,35,0.00), rgba(31,31,35,0.42)),
-        url("/clients/first-finance/images/client-conversation.png") center / cover;
+        url("/clients/first-finance/images/client-conversation.jpg") center / cover;
     }
     .brand-icon {
       width: 52px;
@@ -1214,12 +1214,6 @@
       border-radius: 18px;
       background: var(--white);
       box-shadow: 0 16px 34px rgba(31,31,35,0.08);
-    }
-    .brand-app-image {
-      width: 100%;
-      border: 1px solid color-mix(in srgb, var(--line) 78%, var(--client-purple) 22%);
-      border-radius: 18px;
-      box-shadow: 0 24px 52px rgba(31,31,35,0.12);
     }
     .mini-home__nav {
       display: flex;
@@ -1272,7 +1266,7 @@
     .mini-home__image {
       background:
         linear-gradient(180deg, rgba(31,31,35,0.00), rgba(31,31,35,0.18)),
-        url("/clients/first-finance/images/home-residential.png") center / cover;
+        url("/clients/first-finance/images/home-residential.jpg") center / cover;
       min-height: 180px;
     }
     .mini-mobile {
@@ -1416,7 +1410,7 @@
       line-height: 0.95;
     }
     .dnav__word { display: inline-flex; align-items: baseline; }
-    .dnav__mark .dot { color: var(--gold); margin-left: 1px; }
+    .dnav__mark .dot { color: var(--gold); margin-left: 0; }
 
     .dnav__links {
       display: none;
@@ -1572,7 +1566,7 @@
       background:
         linear-gradient(180deg, rgba(31,31,35,0.00), rgba(31,31,35,0.38)),
         linear-gradient(90deg, rgba(56,31,63,0.36), rgba(56,31,63,0.04)),
-        url("/clients/first-finance/images/home-residential.png") center / cover;
+        url("/clients/first-finance/images/home-residential.jpg") center / cover;
       border: 1px solid color-mix(in srgb, var(--line) 72%, var(--client-purple) 28%);
       display: flex;
       flex-direction: column;
@@ -1907,7 +1901,7 @@
       aspect-ratio: 4 / 3;
       background:
         linear-gradient(180deg, rgba(31,31,35,0.00), rgba(31,31,35,0.22)),
-        url("/clients/first-finance/images/family-kitchen.png") center / cover;
+        url("/clients/first-finance/images/family-kitchen.jpg") center / cover;
       border-radius: 16px;
       display: flex;
       align-items: flex-end;
@@ -1919,7 +1913,7 @@
     .team:nth-child(2) .team__photo {
       background:
         linear-gradient(180deg, rgba(31,31,35,0.00), rgba(31,31,35,0.24)),
-        url("/clients/first-finance/images/client-conversation.png") center / cover;
+        url("/clients/first-finance/images/client-conversation.jpg") center / cover;
     }
     .team__photo .initials {
       display: none;
@@ -2761,11 +2755,11 @@
                 <p class="brand-panel__label">Photography direction</p>
                 <h3 class="brand-panel__title">Warm, local, and real-world.</h3>
                 <p class="brand-panel__body">Kitchen tables, Australian homes, client conversations, office work, and natural light. No bank-stock handshakes or luxury lifestyle imagery.</p>
-                <div class="photo-direction-grid" aria-label="Photography direction placeholders">
-                  <div class="photo-tile">Family around the kitchen table</div>
-                  <div class="photo-tile">Melbourne home in natural light</div>
-                  <div class="photo-tile">Broker and client conversation</div>
-                  <div class="photo-tile">Documents, calls and real work</div>
+                <div class="photo-direction-grid" aria-label="Photography direction examples">
+                  <div class="photo-tile">At home</div>
+                  <div class="photo-tile">The property</div>
+                  <div class="photo-tile">In conversation</div>
+                  <div class="photo-tile">The details</div>
                 </div>
               </div>
 
@@ -2821,7 +2815,19 @@
               <div class="brand-panel brand-panel--wide">
                 <p class="brand-panel__label">Brand in application</p>
                 <h3 class="brand-panel__title">A homepage fragment that feels like a real finance website.</h3>
-                <img class="brand-app-image" src="/clients/first-finance/images/brand-application.png" alt="First Finance homepage application preview" loading="lazy" style="margin-top: var(--s-4);">
+                <div class="mini-home" aria-label="Homepage fragment preview">
+                  <div class="mini-home__nav">
+                    <span class="ff-word">first finance<span class="dot">.</span></span>
+                    <span class="mini-home__cta">Book a free chat</span>
+                  </div>
+                  <div class="mini-home__body">
+                    <div class="mini-home__copy">
+                      <h4>Advice that moves you forward.</h4>
+                      <p>Home loans, refinancing and finance solutions tailored to you.</p>
+                    </div>
+                    <div class="mini-home__image" aria-hidden="true"></div>
+                  </div>
+                </div>
               </div>
               <div class="brand-panel brand-panel--soft">
                 <p class="brand-panel__label">Mobile behaviour</p>

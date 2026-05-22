@@ -311,8 +311,6 @@
       letter-spacing: 0;
     }
     .ff-mark {
-      width: 1.15em;
-      height: 1em;
       display: inline-flex;
       align-items: baseline;
       justify-content: center;
@@ -321,28 +319,20 @@
       color: var(--client-purple);
       font-family: var(--font-logo);
       font-size: 54px;
-      font-style: italic;
+      font-style: normal;
       font-weight: 500;
       letter-spacing: -0.115em;
-      line-height: 0.9;
-      position: relative;
-      box-shadow: none;
-    }
-    .ff-mark::after {
-      content: ".";
-      position: absolute;
-      right: -0.02em;
-      bottom: 0.02em;
-      color: var(--client-gold);
-      font-size: 0.42em;
-      font-style: normal;
       line-height: 1;
+      font-synthesis: none;
+      box-shadow: none;
     }
     .ff-mark--small {
-      width: 1.15em;
-      height: 1em;
       font-size: 34px;
       box-shadow: none;
+    }
+    .ff-mark .logo-period {
+      letter-spacing: 0;
+      margin-left: 0.035em;
     }
     .ff-word {
       display: inline-flex;
@@ -352,11 +342,12 @@
       font-weight: 500;
       letter-spacing: -0.025em;
       line-height: 1.02;
+      font-synthesis: none;
     }
-    .ff-word .dot {
+    .logo-period {
       color: var(--client-gold);
-      margin-left: 0;
-      transform: none;
+      font: inherit;
+      letter-spacing: 0;
     }
     .ff-tagline {
       display: block;
@@ -1408,9 +1399,10 @@
       align-items: center;
       color: var(--client-purple);
       line-height: 0.95;
+      font-synthesis: none;
     }
     .dnav__word { display: inline-flex; align-items: baseline; }
-    .dnav__mark .dot { color: var(--gold); margin-left: 0; }
+    .dnav__mark .logo-period { color: var(--gold); }
 
     .dnav__links {
       display: none;
@@ -2422,7 +2414,7 @@
       line-height: 1.4;
       max-width: 30ch;
     }
-    .dfooter__about .dot { color: var(--gold); }
+    .dfooter__about .logo-period { color: var(--gold); }
     .dfooter__about .ff-word { font-size: 32px; }
     .dfooter__about-body { margin-top: var(--s-3); color: var(--ink-quiet); font-size: 14.5px; line-height: 1.55; max-width: 38ch; }
     .dfooter__bottom {
@@ -2638,7 +2630,7 @@
                 <p class="section-label">Evolved identity direction</p>
                 <div class="ff-lockup" aria-label="first finance logo direction">
                   <span>
-                    <span class="ff-word">first finance<span class="dot">.</span></span>
+                    <span class="ff-word">first finance<span class="logo-period">.</span></span>
                     <span class="ff-tagline">finance made personal</span>
                   </span>
                 </div>
@@ -2674,18 +2666,18 @@
                 <div class="logo-specimen" style="margin-top: var(--s-4);">
                   <div class="logo-specimen__row">
                     <div class="ff-lockup">
-                      <span><span class="ff-word">first finance<span class="dot">.</span></span><span class="ff-tagline">finance made personal</span></span>
+                      <span><span class="ff-word">first finance<span class="logo-period">.</span></span><span class="ff-tagline">finance made personal</span></span>
                     </div>
                     <p class="logo-specimen__caption">Primary lock-up for the website, proposals and client-facing material.</p>
                   </div>
                   <div class="logo-specimen__row is-dark">
                     <div class="ff-lockup">
-                      <span><span class="ff-word">first finance<span class="dot">.</span></span></span>
+                      <span><span class="ff-word">first finance<span class="logo-period">.</span></span></span>
                     </div>
                     <p class="logo-specimen__caption">Reversed version for plum surfaces and high-confidence moments.</p>
                   </div>
                   <div class="logo-specimen__row">
-                    <span class="ff-mark">ff</span>
+                    <span class="ff-mark">ff<span class="logo-period">.</span></span>
                     <p class="logo-specimen__caption">Standalone mark for favicon, social avatars and small moments where the full wordmark is too wide.</p>
                   </div>
                 </div>
@@ -2817,7 +2809,7 @@
                 <h3 class="brand-panel__title">A homepage fragment that feels like a real finance website.</h3>
                 <div class="mini-home" aria-label="Homepage fragment preview">
                   <div class="mini-home__nav">
-                    <span class="ff-word">first finance<span class="dot">.</span></span>
+                    <span class="ff-word">first finance<span class="logo-period">.</span></span>
                     <span class="mini-home__cta">Book a free chat</span>
                   </div>
                   <div class="mini-home__body">
@@ -2834,7 +2826,7 @@
                 <h3 class="brand-panel__title">Fast to understand, easy to act on.</h3>
                 <div class="mini-mobile" aria-label="Mobile homepage preview">
                   <div class="mini-mobile__top">
-                    <span class="ff-mark ff-mark--small">ff</span>
+                    <span class="ff-mark ff-mark--small">ff<span class="logo-period">.</span></span>
                     <span style="font-weight: 700; color: var(--client-purple);">Menu</span>
                   </div>
                   <div class="mini-mobile__screen">
@@ -2908,7 +2900,7 @@
     <header class="dnav" role="banner">
       <div class="dnav__inner">
         <a href="#" class="dnav__mark" data-page="home">
-          <span class="dnav__word">first finance<span class="dot">.</span></span>
+          <span class="dnav__word">first finance<span class="logo-period">.</span></span>
         </a>
         <nav aria-label="Primary">
           <ul class="dnav__links">
@@ -3467,7 +3459,7 @@
           <div class="dfooter__col">
             <p class="dfooter__about">
               <span class="ff-lockup">
-                <span class="ff-word">first finance<span class="dot">.</span></span>
+                <span class="ff-word">first finance<span class="logo-period">.</span></span>
               </span>
             </p>
             <p class="dfooter__about-body">A Melbourne finance broking practice. Family-led since 1992. Finance made personal.</p>
